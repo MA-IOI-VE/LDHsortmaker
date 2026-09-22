@@ -168,6 +168,13 @@ card.addEventListener("pointerup", () => {
   if (direction) {
   results[direction].push(shuffledMembers[currentIndex]);
 
+
+
+  console.log("今回の判定:", direction);
+console.log("判定結果:", results);
+
+
+
   currentIndex++;
 
   if (currentIndex < shuffledMembers.length) {
