@@ -80,8 +80,9 @@ button:hover {
 
 #cardArea {
   width: 100%;
-  max-width: 250px;
+  max-width: 300px;
   margin: 30px auto;
+  aspect-ratio: 9 / 16;
   touch-action: none;
 }
 
