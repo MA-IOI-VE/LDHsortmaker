@@ -115,6 +115,18 @@ function setCard(cardPrefix, member) {
   document.getElementById(`${cardPrefix}MemberGroup`).textContent =
     member.group;
 }
+
+function showMember(member) {
+
+  setCard("member", member);
+
+  const followingMember =
+    shuffledMembers[currentIndex + 1];
+
+  if (followingMember) {
+    setCard("nextMember", followingMember);
+  }
+
   document.getElementById("progress").textContent =
     `${currentIndex + 1} / ${shuffledMembers.length}`;
 
@@ -181,118 +193,6 @@ card.addEventListener("pointerup", () => {
     direction: direction
   });
 
-  // スワイプ方向へ飛ばす
-  const flyX =
-    direction === "like"
-      ? window.innerWidth * 1.2
-      : direction === "normal" && currentX < 0
-        ? -window.innerWidth * 1.2
-        : 0;
-
-  const flyY =
-    direction === "love"
-      ? -window.innerHeight * 1.2
-      : 0;
-
-  const rotation =
-    direction === "like"
-      ? 15
-      : direction === "normal" && currentX < 0
-        ? -15
-        : 0;
-
-  card.style.transition =
-    "transform 0.35s ease-out";
-
-  card.style.transform =
-    `translate(${flyX}px, ${flyY}px) rotate(${rotation}deg)`;
-
-
-  // ----------------------------------------
-  // カードが飛び終わったら
-  // ----------------------------------------
-
-  setTimeout(() => {
-
-    currentIndex++;
-
-    // 次のメンバーがいる
-    if (currentIndex < shuffledMembers.length) {
-
-      // 現在のカードを一番下へ
-      card.style.transition = "none";
-      card.style.transform = "translate(0, 0)";
-
-      // 次のメンバーを現在のカードにセット
-      const nextMember =
-        shuffledMembers[currentIndex];
-
-      document.getElementById("memberImage").src =
-        `images/${nextMember.id}.jpg`;
-
-      document.getElementById("memberImage").alt =
-        nextMember.name;
-
-      document.getElementById("memberName").textContent =
-        nextMember.name;
-
-      document.getElementById("memberGroup").textContent =
-        nextMember.group;
-
-      // 次の次のメンバーを裏カードにセット
-      const followingMember =
-        shuffledMembers[currentIndex + 1];
-
-      if (followingMember) {
-        document.getElementById("nextMemberImage").src =
-          `images/${followingMember.id}.jpg`;
-
-        document.getElementById("nextMemberImage").alt =
-          followingMember.name;
-
-        document.getElementById("nextMemberName").textContent =
-          followingMember.name;
-
-        document.getElementById("nextMemberGroup").textContent =
-          followingMember.group;
-      }
-
-      // 判定用の見た目をリセット
-      card.classList.remove(
-        "card-love",
-        "card-like",
-        "card-normal"
-      );
-
-      // カードを前面に戻す
-      card.style.zIndex = "2";
-
-      document.getElementById("nextCard").style.zIndex = "1";
-
-      // 表示を更新
-      document.getElementById("progress").textContent =
-        `${currentIndex + 1} / ${shuffledMembers.length}`;
-
-      document.getElementById("backButton").disabled =
-        judgmentHistory.length === 0;
-
-    } else {
-
-      // 全員終了
-      showRound2Intro();
-    }
-
-    currentX = 0;
-    currentY = 0;
-
-    requestAnimationFrame(() => {
-      card.style.transition =
-        "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease";
-    });
-
-  }, 350);
-});
-
 
 // ----------------------------------------
 // カードを動かしているとき
@@ -354,109 +254,6 @@ function getSwipeDirection(x, y) {
 
   return null;
 }
-
-// ========================================
-// カードを離したとき
-// ========================================
-
-card.addEventListener("pointerup", () => {
-  if (!isDragging) {
-    return;
-  }
-
-  isDragging = false;
-
-  if (animationFrame) {
-    cancelAnimationFrame(animationFrame);
-    animationFrame = null;
-  }
-
-  const direction =
-    getSwipeDirection(currentX, currentY);
-
-  // 判定なし
-  if (!direction) {
-    card.style.transform = "translate(0, 0)";
-
-    card.classList.remove(
-      "card-love",
-      "card-like",
-      "card-normal"
-    );
-
-    currentX = 0;
-    currentY = 0;
-
-    return;
-  }
-
-  // 判定を記録
-  results[direction].push(
-    shuffledMembers[currentIndex]
-  );
-
-  judgmentHistory.push({
-    member: shuffledMembers[currentIndex],
-    direction: direction
-  });
-
-  // スワイプ方向へカードを飛ばす
-  const flyX =
-    direction === "like"
-      ? window.innerWidth * 1.2
-      : direction === "normal" && currentX < 0
-        ? -window.innerWidth * 1.2
-        : 0;
-
-  const flyY =
-    direction === "love"
-      ? -window.innerHeight * 1.2
-      : 0;
-
-  const rotation =
-    direction === "like"
-      ? 15
-      : direction === "normal" && currentX < 0
-        ? -15
-        : 0;
-
-  card.style.transition =
-    "transform 0.35s ease-out";
-
-  card.style.transform =
-    `translate(${flyX}px, ${flyY}px) rotate(${rotation}deg)`;
-
-  setTimeout(() => {
-  currentIndex++;
-
-  card.style.transition = "none";
-
-  if (currentIndex < shuffledMembers.length) {
-    // 先に次のメンバーをセット
-    showMember(shuffledMembers[currentIndex]);
-
-    // その後、カードを中央に戻す
-    card.style.transform = "translate(0, 0)";
-  } else {
-    showRound2Intro();
-  }
-
-  card.classList.remove(
-    "card-love",
-    "card-like",
-    "card-normal"
-  );
-
-  currentX = 0;
-  currentY = 0;
-
-  requestAnimationFrame(() => {
-    card.style.transition =
-      "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease";
-  });
-}, 350);
-});
-
 
 
 // ========================================
