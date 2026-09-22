@@ -57,10 +57,11 @@ p {
 button {
   padding: 12px 32px;
   border: none;
-  background: var(--accent);
+  background: var(--accent-light);
   color: #FFFFFF;
   font-size: 16px;
   cursor: pointer;
+   border-radius: 16px;
 }
 
 button:hover {
