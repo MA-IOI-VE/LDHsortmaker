@@ -24,7 +24,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 main {
@@ -85,7 +85,7 @@ button:hover {
 ======================================== */
 
 #memberCard {
-  border: 2px solid var(--accent);
+  border: 1px solid var(--accent);
   border-radius: 16px;
   background: var(--surface);
 
@@ -134,9 +134,9 @@ button:hover {
 #memberImage {
   display: block;
   width: calc(100% - 60px);
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  margin: 10px auto 0;
+  margin: 30px;
 }
 
 
