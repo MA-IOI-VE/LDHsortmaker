@@ -107,6 +107,8 @@ let currentY = 0;
 // ----------------------------------------
 
 card.addEventListener("pointerdown", (event) => {
+  console.log("カードを掴んだ");
+
   isDragging = true;
 
   startX = event.clientX;
