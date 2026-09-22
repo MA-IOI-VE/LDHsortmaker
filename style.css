@@ -62,7 +62,7 @@ button {
   color: #FFFFFF;
   font-size: 16px;
   cursor: pointer;
-   border-radius: 16px;
+   border-radius: 10px;
 }
 
 button:hover {
@@ -80,7 +80,7 @@ button:hover {
 
 #cardArea {
   width: 100%;
-  max-width: 300px;
+  max-width: 350px;
   margin: 30px auto;
   aspect-ratio: 9 / 16;
   touch-action: none;
@@ -95,9 +95,7 @@ button:hover {
   border: 1px solid var(--accent);
   border-radius: 10px;
   background: var(--surface);
-
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
 
   transition:
     transform 0.2s ease,
@@ -140,7 +138,8 @@ button:hover {
 
 #memberImage {
   display: block;
-  width: calc(100% -70%);
+  width: calc(100% );
+  max-width: 320px;
   aspect-ratio: 3 / 4;
   object-fit: cover;
   margin: 15px;
