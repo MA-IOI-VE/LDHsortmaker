@@ -52,6 +52,7 @@ startButton.addEventListener("click", () => {
     member.group;
 });
 
+
 const card = document.getElementById("memberCard");
 
 let isDragging = false;
@@ -81,6 +82,20 @@ card.addEventListener("pointermove", (event) => {
     `translate(${currentX}px, ${currentY}px)`;
 });
 
+function getSwipeDirection(x, y) {
+  const distance = Math.sqrt(x * x + y * y);
+
+  if (distance < 100) {
+    return null;
+  }
+
+  if (Math.abs(x) > Math.abs(y)) {
+    return x > 0 ? "like" : "dislike";
+  }
+
+  return y < 0 ? "love" : "normal";
+}
+
 card.addEventListener("pointerup", () => {
   if (!isDragging) {
     return;
@@ -88,7 +103,13 @@ card.addEventListener("pointerup", () => {
 
   isDragging = false;
 
-  card.style.transform = "translate(0, 0)";
+  const direction = getSwipeDirection(currentX, currentY);
+
+  if (direction) {
+    console.log("判定:", direction);
+  } else {
+    card.style.transform = "translate(0, 0)";
+  }
 
   currentX = 0;
   currentY = 0;
