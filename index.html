@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LDH My Best 6</title>
+
   <link rel="stylesheet" href="style.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
@@ -13,67 +15,82 @@
 <body>
 
   <main>
+
     <h1>LDH My Best 6</h1>
-<p>106人の中から好きな人を選んでください。</p>
 
-<button id="startButton">スタート</button>
+    <p>106人の中から好きな人を選んでください。</p>
 
+    <button id="startButton">スタート</button>
 
-
-<button id="testRound2Button">
-  第2ラウンドをテスト
-</button>
-
+    <button id="testRound2Button">
+      第2ラウンドをテスト
+    </button>
 
 
+    <section id="sortScreen" hidden>
 
-<section id="sortScreen" hidden>
-  <button id="backButton">← 戻る</button>
-  <p id="progress"></p>
+      <button id="backButton">← 戻る</button>
 
- <div id="cardArea">
-  <div id="memberCard">
-    <img id="memberImage" src="" alt="">
-    <h2 id="memberName"></h2>
-    <p id="memberGroup"></p>
-  </div>
-</div>
-</section>
+      <p id="progress"></p>
 
-<section id="round2Intro" hidden>
-  <h2>第2ラウンド</h2>
+      <div id="cardArea">
+        <div id="memberCard">
 
-  <p id="round2IntroText"></p>
+          <img id="memberImage" src="" alt="">
 
-  <button id="round2StartButton">
-    第2ラウンドを始める
-  </button>
-</section>
+          <h2 id="memberName"></h2>
+
+          <p id="memberGroup"></p>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <section id="round2Intro" hidden>
+
+      <h2>第2ラウンド</h2>
+
+      <p id="round2IntroText"></p>
+
+      <button id="round2StartButton">
+        第2ラウンドを始める
+      </button>
+
+    </section>
+
+
+    <section id="round2Screen" hidden>
+
+      <h2>第2ラウンド</h2>
+
+      <p id="round2Progress"></p>
+
+      <div id="round2Area">
+      </div>
+
+      <button id="round2ConfirmButton">
+        決定
+      </button>
+
+    </section>
+
+
+    <section id="finalScreen" hidden>
+
+      <h2 id="finalTitle"></h2>
+
+      <p id="finalProgress"></p>
+
+      <div id="finalArea">
+      </div>
+
+    </section>
+
   </main>
 
   <script src="script.js"></script>
+
 </body>
 </html>
-
-
-<section id="round2Screen" hidden>
-  <h2>第2ラウンド</h2>
-
-  <p id="round2Progress"></p>
-
-  <div id="round2Area">
-  </div>
-
-  <button id="round2ConfirmButton">
-    決定
-  </button>
-</section>
-
-<section id="finalScreen" hidden>
-  <h2 id="finalTitle"></h2>
-
-  <p id="finalProgress"></p>
-
-  <div id="finalArea">
-  </div>
-</section>
