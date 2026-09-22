@@ -97,7 +97,7 @@ button:hover {
 
 
 /* ========================================
-   メンバーカード
+   カード（１）
 ======================================== */
 
 #memberCard {
@@ -136,7 +136,7 @@ button:hover {
 
 
 /* ========================================
-   判定時のカード
+   カード（判定）
 ======================================== */
 
 #memberCard.card-love {
@@ -153,14 +153,16 @@ button:hover {
 
 
 /* ========================================
-   第2ラウンド
+   カード（２）
 ======================================== */
 
 #round2Area {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 24px 0;
+  gap: 12px;
+  margin: 24px auto;
+  width: calc(100% - 24px);
+  max-width: 390px;
 }
 
 .round2Card {
@@ -204,14 +206,16 @@ button:hover {
 
 
 /* ========================================
-   最終順位決定
+   カード（３）
 ======================================== */
 
 #finalArea {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin: 24px 0;
+  gap: 12px;
+  margin: 24px auto;
+  width: calc(100% - 24px);
+  max-width: 520px;
 }
 
 .finalCard {
