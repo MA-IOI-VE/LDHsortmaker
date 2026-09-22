@@ -43,6 +43,10 @@ const member = shuffledMembers[currentIndex];
   document.getElementById("progress").textContent =
     `1 / ${members.length}`;
 
+  showMember(member);
+});
+
+function showMember(member) {
   document.getElementById("memberImage").src =
     `images/${member.id}.jpg`;
 
@@ -54,7 +58,10 @@ const member = shuffledMembers[currentIndex];
 
   document.getElementById("memberGroup").textContent =
     member.group;
-});
+
+  document.getElementById("progress").textContent =
+    `${currentIndex + 1} / ${shuffledMembers.length}`;
+}
 
 
 const card = document.getElementById("memberCard");
