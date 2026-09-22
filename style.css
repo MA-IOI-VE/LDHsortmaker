@@ -75,7 +75,7 @@ button:hover {
 
 #cardArea {
   width: 100%;
-  max-width: 360px;
+  max-width: 250px;
   margin: 50px auto;
   touch-action: none;
 }
