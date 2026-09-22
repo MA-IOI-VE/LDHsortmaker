@@ -260,6 +260,25 @@ card.addEventListener("pointerup", () => {
 
 
 // ----------------------------------------
+// カードを掴んだとき
+// ----------------------------------------
+
+card.addEventListener("pointerdown", (event) => {
+  isDragging = true;
+
+  startX = event.clientX;
+  startY = event.clientY;
+
+  currentX = 0;
+  currentY = 0;
+
+  card.style.transition = "none";
+
+  card.setPointerCapture(event.pointerId);
+});
+
+
+// ----------------------------------------
 // カードを動かしているとき
 // ----------------------------------------
 
