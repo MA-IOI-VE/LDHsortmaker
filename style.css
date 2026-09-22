@@ -139,10 +139,10 @@ button:hover {
 
 #memberImage {
   display: block;
-  width: calc(100% - 60px);
+  width: calc(100%);
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  margin: 20px;
+  margin: 10px;
 }
 
 
