@@ -195,3 +195,27 @@ console.log("判定結果:", results);
   currentX = 0;
   currentY = 0;
 });
+
+
+// ========================================
+// 戻るボタン
+// ========================================
+
+const backButton = document.getElementById("backButton");
+
+backButton.addEventListener("click", () => {
+  if (judgmentHistory.length === 0) {
+    return;
+  }
+
+  const lastJudgment = judgmentHistory.pop();
+
+  results[lastJudgment.direction] =
+    results[lastJudgment.direction].filter(
+      member => member.id !== lastJudgment.member.id
+    );
+
+  currentIndex--;
+
+  showMember(shuffledMembers[currentIndex]);
+});
