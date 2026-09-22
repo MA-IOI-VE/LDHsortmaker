@@ -111,12 +111,10 @@ button:hover {
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 
+  will-change: transform;
+
   user-select: none;
   cursor: grab;
-}
-
-#memberCard:active {
-  cursor: grabbing;
 }
 
 
