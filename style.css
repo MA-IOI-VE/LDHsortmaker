@@ -24,7 +24,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Yu Gothic", sans-serif;
 }
 
 main {
@@ -76,7 +76,7 @@ button:hover {
 #cardArea {
   width: 100%;
   max-width: 360px;
-  margin: 24px auto;
+  margin: 50px auto;
   touch-action: none;
 }
 
@@ -150,6 +150,6 @@ button:hover {
 }
 
 #memberGroup {
-  margin: 0 0 10px;
+  margin: 0 0 30px;
   color: #666666;
 }
