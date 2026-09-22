@@ -592,6 +592,10 @@ round2ConfirmButton.addEventListener("click", () => {
     document.getElementById("round2Progress").textContent =
   `第2ラウンド通過：${results.love.length}人`;
 
+  finalGroups = createFinalGroups();
+
+  console.log("最終グループ:", finalGroups);
+
 startFinalRanking();
 
 return;
