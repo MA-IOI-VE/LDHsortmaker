@@ -8,7 +8,7 @@
   --subtle: #F1F1F1;
   --accent: #3F5527;
   --accent-light: #C9E8AA;
-  --text: #222222;
+  --text: #444444;
 }
 
 
@@ -119,11 +119,11 @@ button:hover {
 }
 
 .card-normal {
-  border: 6px solid #bdbdbd;
+  border: 6px solid #f1f1f1;
 }
 
 .card-dislike {
-  border: 6px solid #616161;
+  border: 6px solid #666666;
 }
 
 
@@ -133,10 +133,10 @@ button:hover {
 
 #memberImage {
   display: block;
-  width: calc(100% - 30px);
+  width: calc(100% - 60px);
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  margin: 8px auto 0;
+  margin: 10px auto 0;
 }
 
 
@@ -149,6 +149,6 @@ button:hover {
 }
 
 #memberGroup {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   color: #666666;
 }
