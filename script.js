@@ -1,8 +1,23 @@
+// ========================================
+// 基本設定・変数
+// ========================================
+
 const startButton = document.getElementById("startButton");
 
 let members = [];
 let currentIndex = 0;
 let shuffledMembers = [];
+let results = {
+  love: [],
+  like: [],
+  normal: [],
+  dislike: []
+};
+
+
+// ========================================
+// CSVからメンバー情報を読み込む
+// ========================================
 
 async function loadMembers() {
   const response = await fetch("members.csv");
@@ -29,13 +44,18 @@ async function loadMembers() {
 
 loadMembers();
 
+
+// ========================================
+// スタートボタン
+// ========================================
+
 startButton.addEventListener("click", () => {
   if (members.length === 0) {
     return;
   }
 
-currentIndex = 0;
-const member = shuffledMembers[currentIndex];
+  currentIndex = 0;
+  const member = shuffledMembers[currentIndex];
 
   document.getElementById("sortScreen").hidden = false;
   startButton.hidden = true;
@@ -45,6 +65,11 @@ const member = shuffledMembers[currentIndex];
 
   showMember(member);
 });
+
+
+// ========================================
+// メンバーをカードに表示
+// ========================================
 
 function showMember(member) {
   document.getElementById("memberImage").src =
@@ -64,6 +89,10 @@ function showMember(member) {
 }
 
 
+// ========================================
+// カードのスワイプ処理
+// ========================================
+
 const card = document.getElementById("memberCard");
 
 let isDragging = false;
@@ -71,6 +100,11 @@ let startX = 0;
 let startY = 0;
 let currentX = 0;
 let currentY = 0;
+
+
+// ----------------------------------------
+// カードを掴んだとき
+// ----------------------------------------
 
 card.addEventListener("pointerdown", (event) => {
   isDragging = true;
@@ -80,6 +114,11 @@ card.addEventListener("pointerdown", (event) => {
 
   card.setPointerCapture(event.pointerId);
 });
+
+
+// ----------------------------------------
+// カードを動かしているとき
+// ----------------------------------------
 
 card.addEventListener("pointermove", (event) => {
   if (!isDragging) {
@@ -92,6 +131,11 @@ card.addEventListener("pointermove", (event) => {
   card.style.transform =
     `translate(${currentX}px, ${currentY}px)`;
 });
+
+
+// ========================================
+// スワイプ方向を判定
+// ========================================
 
 function getSwipeDirection(x, y) {
   const distance = Math.sqrt(x * x + y * y);
@@ -107,6 +151,11 @@ function getSwipeDirection(x, y) {
   return y < 0 ? "love" : "normal";
 }
 
+
+// ========================================
+// カードを離したとき
+// ========================================
+
 card.addEventListener("pointerup", () => {
   if (!isDragging) {
     return;
@@ -117,12 +166,14 @@ card.addEventListener("pointerup", () => {
   const direction = getSwipeDirection(currentX, currentY);
 
   if (direction) {
-    currentIndex++;
+  results[direction].push(shuffledMembers[currentIndex]);
 
-    if (currentIndex < shuffledMembers.length) {
-      showMember(shuffledMembers[currentIndex]);
-    }
+  currentIndex++;
+
+  if (currentIndex < shuffledMembers.length) {
+    showMember(shuffledMembers[currentIndex]);
   }
+}
 
   card.style.transform = "translate(0, 0)";
 
