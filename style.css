@@ -1,3 +1,7 @@
+/* ========================================
+   基本カラー
+======================================== */
+
 :root {
   --bg: #FCFDF0;
   --surface: #FFFFFF;
@@ -6,6 +10,11 @@
   --accent-light: #C9E8AA;
   --text: #222222;
 }
+
+
+/* ========================================
+   全体
+======================================== */
 
 * {
   box-sizing: border-box;
@@ -25,6 +34,11 @@ main {
   text-align: center;
 }
 
+
+/* ========================================
+   見出し・文章
+======================================== */
+
 h1 {
   margin: 0 0 12px;
   color: var(--accent);
@@ -34,6 +48,11 @@ h1 {
 p {
   margin: 0 0 32px;
 }
+
+
+/* ========================================
+   ボタン
+======================================== */
 
 button {
   padding: 12px 32px;
@@ -47,6 +66,12 @@ button {
 button:hover {
   opacity: 0.85;
 }
+
+
+/* ========================================
+   カードエリア
+======================================== */
+
 #cardArea {
   width: 100%;
   max-width: 360px;
@@ -54,18 +79,58 @@ button:hover {
   touch-action: none;
 }
 
+
+/* ========================================
+   メンバーカード
+======================================== */
+
 #memberCard {
+  border: 2px solid var(--accent);
+  border-radius: 16px;
   background: var(--surface);
-  padding: 16px;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
   user-select: none;
   cursor: grab;
-  will-change: transform;
 }
 
 #memberCard:active {
   cursor: grabbing;
 }
 
+
+/* ========================================
+   判定時のカード
+======================================== */
+
+.card-love {
+  border: 6px solid #e53935;
+}
+
+.card-like {
+  border: 6px solid #ff7eb6;
+}
+
+.card-normal {
+  border: 6px solid #bdbdbd;
+}
+
+.card-dislike {
+  border: 6px solid #616161;
+}
+
+
+/* ========================================
+   メンバー画像
+======================================== */
+
 #memberImage {
   display: block;
   width: 100%;
@@ -73,21 +138,10 @@ button:hover {
   object-fit: cover;
 }
 
-#memberName {
-  margin: 16px 0 4px;
-}
 
-#memberGroup {
-  margin: 0;
-  color: #666666;
-}
-
-#memberImage {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
+/* ========================================
+   メンバー情報
+======================================== */
 
 #memberName {
   margin: 16px 0 4px;
