@@ -57,7 +57,7 @@ p {
 button {
   padding: 12px 32px;
   border: none;
-  background: var(--accent-light);
+  background: var(--accent);
   color: #FFFFFF;
   font-size: 16px;
   cursor: pointer;
