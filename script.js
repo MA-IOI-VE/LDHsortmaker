@@ -123,9 +123,9 @@ function showMember(member) {
   const followingMember =
     shuffledMembers[currentIndex + 1];
 
-  if (followingMember) {
-    setCard("nextMember", followingMember);
-  }
+ if (followingMember) {
+  setCard("next", followingMember);
+}
 
   document.getElementById("progress").textContent =
     `${currentIndex + 1} / ${shuffledMembers.length}`;
