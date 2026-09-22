@@ -252,10 +252,124 @@ function showRound2Intro() {
 // 第2ラウンド開始ボタン
 // ========================================
 
+// ----------------------------------------
+// 第2ラウンド開始ボタン
+// ----------------------------------------
+
 round2StartButton.addEventListener("click", () => {
   round2Intro.hidden = true;
   document.getElementById("round2Screen").hidden = false;
 
-  document.getElementById("round2Progress").textContent =
-    "第2ラウンド準備中...";
+  startRound2();
 });
+
+
+// ========================================
+// 第2ラウンド
+// ========================================
+
+let round2Eliminated = [];
+
+
+// ----------------------------------------
+// 第2ラウンド開始
+// ----------------------------------------
+
+function startRound2() {
+  round2Eliminated = [];
+
+  if (results.love.length >= 20) {
+    startLoveSelection();
+  } else {
+    // ❤️選抜は次の段階で作る
+    document.getElementById("round2Progress").textContent =
+      "❤️選抜の準備中...";
+  }
+}
+
+
+// ----------------------------------------
+// 💖メンバーから予選敗退者を選ぶ
+// ----------------------------------------
+
+function startLoveSelection() {
+  const loveMembers = [...results.love];
+
+  const eliminateCount = loveMembers.length - 20;
+
+  document.getElementById("round2Progress").textContent =
+    `${eliminateCount}人を予選敗退にしてください`;
+
+  const area = document.getElementById("round2Area");
+
+  area.innerHTML = "";
+
+  loveMembers.forEach(member => {
+    const card = document.createElement("div");
+
+    card.className = "round2Card";
+
+    card.innerHTML = `
+      <img src="images/${member.id}.jpg" alt="${member.name}">
+      <h3>${member.name}</h3>
+      <p>${member.group}</p>
+    `;
+
+    card.addEventListener("click", () => {
+      toggleRound2Elimination(member, card);
+    });
+
+    area.appendChild(card);
+  });
+
+  updateRound2Button(eliminateCount);
+}
+
+
+// ----------------------------------------
+// 予選敗退の選択・解除
+// ----------------------------------------
+
+function toggleRound2Elimination(member, card) {
+  const index = round2Eliminated.findIndex(
+    person => person.id === member.id
+  );
+
+  if (index !== -1) {
+    round2Eliminated.splice(index, 1);
+    card.classList.remove("eliminated");
+  } else {
+    const eliminateCount = results.love.length - 20;
+
+    if (round2Eliminated.length >= eliminateCount) {
+      return;
+    }
+
+    round2Eliminated.push(member);
+    card.classList.add("eliminated");
+  }
+
+  updateRound2Button(results.love.length - 20);
+}
+
+
+// ----------------------------------------
+// 「次へ」ボタンの状態
+// ----------------------------------------
+
+function updateRound2Button(requiredCount) {
+  const button =
+    document.getElementById("round2ConfirmButton");
+
+  if (requiredCount === 0) {
+    button.disabled = false;
+    button.textContent = "次へ";
+    return;
+  }
+
+  button.disabled =
+    round2Eliminated.length !== requiredCount;
+
+  button.textContent =
+    `次へ（${round2Eliminated.length} / ${requiredCount}）`;
+}

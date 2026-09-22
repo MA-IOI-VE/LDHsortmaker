@@ -153,3 +153,44 @@ button:hover {
   margin: 0 0 30px;
   color: #666666;
 }
+
+
+/* ========================================
+   第2ラウンド
+======================================== */
+
+#round2Area {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.round2Card {
+  border: 2px solid var(--accent);
+  background: var(--surface);
+  cursor: pointer;
+  user-select: none;
+}
+
+.round2Card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.round2Card h3 {
+  margin: 6px 4px 2px;
+  font-size: 14px;
+}
+
+.round2Card p {
+  margin: 0 4px 6px;
+  color: #666666;
+  font-size: 11px;
+}
+
+.round2Card.eliminated {
+  opacity: 0.35;
+}
