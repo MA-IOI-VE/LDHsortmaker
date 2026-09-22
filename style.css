@@ -117,6 +117,23 @@ button:hover {
   cursor: grab;
 }
 
+#memberImage {
+  display: block;
+  width: calc(100% - 30px);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  margin: 15px;
+}
+
+#memberName {
+  margin: 12px 0 4px;
+}
+
+#memberGroup {
+  margin: 0 0 30px;
+  color: #666666;
+}
+
 
 /* ========================================
    判定時のカード
@@ -127,38 +144,11 @@ button:hover {
 }
 
 #memberCard.card-like {
-  border: 6px solid #ff7c87;
-}
-
-#memberCard.card-normal {
   border: 6px solid #f1f1f1;
 }
 
-
-/* ========================================
-   メンバー画像
-======================================== */
-
-#memberImage {
-  display: block;
-  width: calc(100% - 30px);
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  margin: 15px;
-}
-
-
-/* ========================================
-   メンバー情報
-======================================== */
-
-#memberName {
-  margin: 12px 0 4px;
-}
-
-#memberGroup {
-  margin: 0 0 30px;
-  color: #666666;
+#memberCard.card-normal {
+  border: 6px solid #444444;
 }
 
 
@@ -246,11 +236,13 @@ button:hover {
 
 .finalCard h3 {
   margin: 12px 0 4px;
+  font-size: 20px;
 }
 
 .finalCard p {
   margin: 0 0 30px;
   color: #666666;
+  font-size: 15px;
 }
 
 .finalCard.selected {
