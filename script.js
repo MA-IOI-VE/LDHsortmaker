@@ -103,16 +103,16 @@ testRound2Button.addEventListener("click", () => {
 
 function setCard(cardPrefix, member) {
 
-  document.getElementById(`${cardPrefix}MemberImage`).src =
+  document.getElementById(`${cardPrefix}Image`).src =
     `images/${member.id}.jpg`;
 
-  document.getElementById(`${cardPrefix}MemberImage`).alt =
+  document.getElementById(`${cardPrefix}Image`).alt =
     member.name;
 
-  document.getElementById(`${cardPrefix}MemberName`).textContent =
+  document.getElementById(`${cardPrefix}Name`).textContent =
     member.name;
 
-  document.getElementById(`${cardPrefix}MemberGroup`).textContent =
+  document.getElementById(`${cardPrefix}Group`).textContent =
     member.group;
 }
 
