@@ -313,34 +313,6 @@ card.addEventListener("pointerup", () => {
 });
 
 
-
-  console.log("今回の判定:", direction);
-console.log("判定結果:", results);
-
-
-
-  currentIndex++;
-
-  if (currentIndex < shuffledMembers.length) {
-  showMember(shuffledMembers[currentIndex]);
-} else {
-  showRound2Intro();
-}
-}
-
- card.style.transform = "translate(0, 0)";
-
-card.classList.remove(
-  "card-love",
-  "card-like",
-  "card-normal",
-);
-
-currentX = 0;
-currentY = 0;
-});
-
-
 // ========================================
 // 戻るボタン
 // ========================================
