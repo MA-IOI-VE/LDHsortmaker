@@ -80,7 +80,7 @@ button:hover {
 
 #cardArea {
   width: 100%;
-  max-width: 350px;
+  max-width: 250px;
   margin: 30px auto;
   aspect-ratio: 9 / 16;
   touch-action: none;
@@ -138,8 +138,7 @@ button:hover {
 
 #memberImage {
   display: block;
-  width: calc(100% );
-  max-width: 320px;
+  width: calc(100% - 30px);
   aspect-ratio: 3 / 4;
   object-fit: cover;
   margin: 15px;
