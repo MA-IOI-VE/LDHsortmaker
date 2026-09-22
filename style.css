@@ -92,11 +92,11 @@ button:hover {
 
 #memberCard {
   border: 1px solid var(--accent);
-  border-radius: 16px;
+  border-radius: 10px;
   background: var(--surface);
 
   box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.12);
+    0 4px 8px rgba(0, 0, 0, 0.10);
 
   transition:
     transform 0.2s ease,
@@ -142,7 +142,7 @@ button:hover {
   width: calc(100% - 60px);
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  margin: 30px;
+  margin: 20px;
 }
 
 
