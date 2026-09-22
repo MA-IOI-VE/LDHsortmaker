@@ -570,6 +570,9 @@ function updateRound2Button(requiredCount) {
 // 第2ラウンド「次へ」
 // ========================================
 
+const round2ConfirmButton =
+  document.getElementById("round2ConfirmButton");
+  
 round2ConfirmButton.addEventListener("click", () => {
 
   // ----------------------------------------

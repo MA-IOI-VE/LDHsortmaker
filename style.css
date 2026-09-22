@@ -43,6 +43,7 @@ h1 {
   margin: 0 0 12px;
   color: var(--accent);
   font-size: 32px;
+  font-family: "Yu Gothic", sans-serif;
 }
 
 p {
