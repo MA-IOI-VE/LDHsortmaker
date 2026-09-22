@@ -13,82 +13,75 @@
 <body>
 
   <div class="bg_pt"></div>
+
   <main>
 
     <div id="startScreen">
   <h1>LDH My Best 6</h1>
+  <p>106人の中から好きな人を選びます</p>
 
-  <p>106人の中から好きな人を選んでください。</p>
-
-  <button id="startButton">スタート</button>
-
-  <button id="testRound2Button">
-    第2ラウンドをテスト
-  </button>
+  <button id="startButton">START</button>
+  <button id="testRound2Button">第2ラウンドをテスト</button>
+  
 </div>
 
 
     <section id="sortScreen" hidden>
 
-      <h2>第1ラウンド</h2>
-
-      <button id="backButton">← 戻る</button>
-
+      <h2>ROUND1</h2>
+      <p>20人に絞ります</p>
+      <button id="backButton">← BACK</button>
       <p id="progress"></p>
 
       <div id="cardArea">
-        <div id="memberCard">
 
-          <img id="memberImage" src="" alt="">
-
-          <h2 id="memberName"></h2>
-
-          <p id="memberGroup"></p>
-
+        <div id="nextCard" class="memberCard">
+         <img id="nextMemberImage" src="" alt="">
+         <h2 id="nextMemberName"></h2>
+         <p id="nextMemberGroup"></p>
         </div>
+
+        <div id="memberCard" class="memberCard">
+         <img id="memberImage" src="" alt="">
+         <h2 id="memberName"></h2>
+         <p id="memberGroup"></p>
+        </div>
+
       </div>
 
     </section>
 
 
     <section id="round2Intro" hidden>
-
-      <h2>第2ラウンド</h2>
-
+      <h2>ROUND2</h2>
       <p id="round2IntroText"></p>
 
       <button id="round2StartButton">
-        第2ラウンドを始める
+        START
       </button>
 
     </section>
 
 
     <section id="round2Screen" hidden>
-
-      <h2>第2ラウンド</h2>
-
+      <h2>ROUND2</h2>
       <p id="round2Progress"></p>
-
+      
       <div id="round2Area">
       </div>
 
       <button id="round2ConfirmButton">
-        決定
+        ENTER
       </button>
 
     </section>
 
 
     <section id="finalScreen" hidden>
-
       <h2 id="finalTitle"></h2>
-
       <p id="finalProgress"></p>
-
       <div id="finalArea">
       </div>
-
     </section>
 
   </main>
