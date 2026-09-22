@@ -47,11 +47,39 @@ button {
 button:hover {
   opacity: 0.85;
 }
-#memberCard {
-  margin: 24px auto;
+#cardArea {
+  width: 100%;
   max-width: 360px;
+  margin: 24px auto;
+  touch-action: none;
+}
+
+#memberCard {
   background: var(--surface);
   padding: 16px;
+  user-select: none;
+  cursor: grab;
+  will-change: transform;
+}
+
+#memberCard:active {
+  cursor: grabbing;
+}
+
+#memberImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+#memberName {
+  margin: 16px 0 4px;
+}
+
+#memberGroup {
+  margin: 0;
+  color: #666666;
 }
 
 #memberImage {
