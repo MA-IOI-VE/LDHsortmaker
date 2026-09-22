@@ -166,38 +166,42 @@ button:hover {
 
 #round2Area {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   margin: 24px 0;
 }
 
 .round2Card {
   border: 2px solid var(--accent);
+  border-radius: 16px;
   background: var(--surface);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   cursor: pointer;
   user-select: none;
+  overflow: hidden;
 }
 
 .round2Card img {
   display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  width: calc(100% - 20px);
+  aspect-ratio: 3 / 4;
   object-fit: cover;
+  margin: 10px;
 }
 
 .round2Card h3 {
-  margin: 6px 4px 2px;
+  margin: 6px 4px 3px;
   font-size: 14px;
 }
 
 .round2Card p {
-  margin: 0 4px 6px;
+  margin: 0 4px 8px;
   color: #666666;
   font-size: 11px;
 }
 
 .round2Card.eliminated {
-  opacity: 0.35;
+  opacity: 0.4;
 }
 
 
