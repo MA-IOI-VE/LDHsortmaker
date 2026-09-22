@@ -56,10 +56,12 @@ startButton.addEventListener("click", () => {
   }
 
   currentIndex = 0;
+
+  document.getElementById("startScreen").hidden = true;
+
   const member = shuffledMembers[currentIndex];
 
   document.getElementById("sortScreen").hidden = false;
-  startButton.hidden = true;
 
   document.getElementById("progress").textContent =
     `1 / ${members.length}`;
@@ -572,7 +574,7 @@ function updateRound2Button(requiredCount) {
 
 const round2ConfirmButton =
   document.getElementById("round2ConfirmButton");
-  
+
 round2ConfirmButton.addEventListener("click", () => {
 
   // ----------------------------------------
