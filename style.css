@@ -161,7 +161,7 @@ button:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin: 24px auto;
-  width: calc(100% - 24px);
+  width: calc(100% - 36px);
   max-width: 390px;
 }
 
@@ -196,7 +196,7 @@ button:hover {
 .finalCard p {
   margin: 0 0 10px;
   color: #666666;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.1;
 }
 
@@ -214,7 +214,7 @@ button:hover {
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
   margin: 24px auto;
-  width: calc(100% - 24px);
+  width: calc(100% - 36px);
   max-width: 520px;
 }
 
@@ -241,13 +241,13 @@ button:hover {
 
 .finalCard h3 {
   margin: 12px 0 4px;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .finalCard p {
   margin: 0 0 30px;
   color: #666666;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1.1;
 }
 
