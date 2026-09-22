@@ -195,6 +195,7 @@ button:hover {
   margin: 0 0 10px;
   color: #666666;
   font-size: 9px;
+  line-height: 1.1;
 }
 
 .round2Card.eliminated {
@@ -243,6 +244,7 @@ button:hover {
   margin: 0 0 30px;
   color: #666666;
   font-size: 15px;
+  line-height: 1.1;
 }
 
 .finalCard.selected {
