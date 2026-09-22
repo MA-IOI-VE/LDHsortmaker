@@ -11,7 +11,6 @@ let results = {
   love: [],
   like: [],
   normal: [],
-  dislike: []
 };
 let judgmentHistory = [];
 
@@ -85,7 +84,6 @@ testRound2Button.addEventListener("click", () => {
   results.love = [...members.slice(0, 25)];
   results.like = [...members.slice(25, 55)];
   results.normal = [...members.slice(55, 85)];
-  results.dislike = [...members.slice(85, 106)];
 
   // 第2ラウンド説明画面を表示
   showRound2Intro();
@@ -167,8 +165,20 @@ card.addEventListener("pointermove", (event) => {
 
   card.style.transform =
     `translate(${currentX}px, ${currentY}px)`;
-});
 
+  // 判定用クラスをいったん全部削除
+  card.classList.remove(
+    "card-love",
+    "card-like",
+    "card-normal",
+  );
+
+  const direction = getSwipeDirection(currentX, currentY);
+
+  if (direction) {
+    card.classList.add(`card-${direction}`);
+  }
+});
 
 // ========================================
 // スワイプ方向を判定
@@ -182,12 +192,11 @@ function getSwipeDirection(x, y) {
   }
 
   if (Math.abs(x) > Math.abs(y)) {
-    return x > 0 ? "like" : "dislike";
+    return x > 0 ? "like" : "normal";
   }
 
   return y < 0 ? "love" : "normal";
 }
-
 
 // ========================================
 // カードを離したとき
@@ -226,10 +235,16 @@ console.log("判定結果:", results);
 }
 }
 
-  card.style.transform = "translate(0, 0)";
+ card.style.transform = "translate(0, 0)";
 
-  currentX = 0;
-  currentY = 0;
+card.classList.remove(
+  "card-love",
+  "card-like",
+  "card-normal",
+);
+
+currentX = 0;
+currentY = 0;
 });
 
 
