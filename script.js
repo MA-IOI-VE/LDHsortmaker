@@ -193,6 +193,71 @@ card.addEventListener("pointerup", () => {
     direction: direction
   });
 
+  // スワイプ方向へ飛ばす
+  const flyX =
+    direction === "like"
+      ? window.innerWidth * 1.2
+      : direction === "normal" && currentX < 0
+        ? -window.innerWidth * 1.2
+        : 0;
+
+  const flyY =
+    direction === "love"
+      ? -window.innerHeight * 1.2
+      : 0;
+
+  const rotation =
+    direction === "like"
+      ? 15
+      : direction === "normal" && currentX < 0
+        ? -15
+        : 0;
+
+  card.style.transition =
+    "transform 0.35s ease-out";
+
+  card.style.transform =
+    `translate(${flyX}px, ${flyY}px) rotate(${rotation}deg)`;
+
+  setTimeout(() => {
+
+    currentIndex++;
+
+    if (currentIndex < shuffledMembers.length) {
+
+      card.style.transition = "none";
+      card.style.transform = "translate(0, 0)";
+
+      showMember(shuffledMembers[currentIndex]);
+
+      card.classList.remove(
+        "card-love",
+        "card-like",
+        "card-normal"
+      );
+
+      card.style.zIndex = "2";
+
+      document.getElementById("nextCard").style.zIndex = "1";
+
+    } else {
+
+      showRound2Intro();
+
+    }
+
+    currentX = 0;
+    currentY = 0;
+
+    requestAnimationFrame(() => {
+      card.style.transition =
+        "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease";
+    });
+
+  }, 350);
+
+});
+
 
 // ----------------------------------------
 // カードを動かしているとき
