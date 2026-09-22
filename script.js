@@ -195,7 +195,11 @@ function getSwipeDirection(x, y) {
     return x > 0 ? "like" : "normal";
   }
 
-  return y < 0 ? "love" : "normal";
+  if (y < 0) {
+    return "love";
+  }
+
+  return null;
 }
 
 // ========================================

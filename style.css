@@ -124,15 +124,15 @@ button:hover {
    判定時のカード
 ======================================== */
 
-.card-love {
+#memberCard.card-love {
   border: 6px solid #e53935;
 }
 
-.card-like {
+#memberCard.card-like {
   border: 6px solid #ff7c87;
 }
 
-.card-normal {
+#memberCard.card-normal {
   border: 6px solid #f1f1f1;
 }
 
