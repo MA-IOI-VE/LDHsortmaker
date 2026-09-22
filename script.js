@@ -169,8 +169,10 @@ card.addEventListener("pointermove", (event) => {
   }
 
   animationFrame = requestAnimationFrame(() => {
-    card.style.transform =
-      `translate(${currentX}px, ${currentY}px)`;
+    const rotation = currentX * 0.05;
+
+card.style.transform =
+  `translate(${currentX}px, ${currentY}px) rotate(${rotation}deg)`;
 
     card.classList.remove(
       "card-love",
@@ -221,20 +223,93 @@ card.addEventListener("pointerup", () => {
   }
 
   isDragging = false;
-  
+
   if (animationFrame) {
-  cancelAnimationFrame(animationFrame);
-  animationFrame = null;
-}
+    cancelAnimationFrame(animationFrame);
+    animationFrame = null;
+  }
 
-  const direction = getSwipeDirection(currentX, currentY);
+  const direction =
+    getSwipeDirection(currentX, currentY);
 
-  if (direction) {
-  results[direction].push(shuffledMembers[currentIndex]);
+  // 判定なし
+  if (!direction) {
+    card.style.transform = "translate(0, 0)";
 
-judgmentHistory.push({
-  member: shuffledMembers[currentIndex],
-  direction: direction
+    card.classList.remove(
+      "card-love",
+      "card-like",
+      "card-normal"
+    );
+
+    currentX = 0;
+    currentY = 0;
+
+    return;
+  }
+
+  // 判定を記録
+  results[direction].push(
+    shuffledMembers[currentIndex]
+  );
+
+  judgmentHistory.push({
+    member: shuffledMembers[currentIndex],
+    direction: direction
+  });
+
+  // スワイプ方向へカードを飛ばす
+  const flyX =
+    direction === "like"
+      ? window.innerWidth * 1.2
+      : direction === "normal" && currentX < 0
+        ? -window.innerWidth * 1.2
+        : 0;
+
+  const flyY =
+    direction === "love"
+      ? -window.innerHeight * 1.2
+      : 0;
+
+  const rotation =
+    direction === "like"
+      ? 15
+      : direction === "normal" && currentX < 0
+        ? -15
+        : 0;
+
+  card.style.transition =
+    "transform 0.35s ease-out";
+
+  card.style.transform =
+    `translate(${flyX}px, ${flyY}px) rotate(${rotation}deg)`;
+
+  setTimeout(() => {
+    currentIndex++;
+
+    card.style.transition = "none";
+    card.style.transform = "translate(0, 0)";
+
+    card.classList.remove(
+      "card-love",
+      "card-like",
+      "card-normal"
+    );
+
+    if (currentIndex < shuffledMembers.length) {
+      showMember(shuffledMembers[currentIndex]);
+    } else {
+      showRound2Intro();
+    }
+
+    currentX = 0;
+    currentY = 0;
+
+    requestAnimationFrame(() => {
+      card.style.transition =
+        "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease";
+    });
+  }, 350);
 });
 
 
