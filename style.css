@@ -69,6 +69,10 @@ button:hover {
   opacity: 0.85;
 }
 
+#backButton:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
 
 /* ========================================
    カードエリア

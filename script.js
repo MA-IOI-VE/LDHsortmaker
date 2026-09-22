@@ -118,6 +118,9 @@ function showMember(member) {
 
   document.getElementById("progress").textContent =
     `${currentIndex + 1} / ${shuffledMembers.length}`;
+
+  document.getElementById("backButton").disabled =
+    judgmentHistory.length === 0;
 }
 
 
