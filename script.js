@@ -1,6 +1,8 @@
 const startButton = document.getElementById("startButton");
 
 let members = [];
+let currentIndex = 0;
+let shuffledMembers = [];
 
 async function loadMembers() {
   const response = await fetch("members.csv");
@@ -19,6 +21,8 @@ async function loadMembers() {
     };
   });
 
+  shuffledMembers = [...members].sort(() => Math.random() - 0.5);
+
   console.log("読み込んだ人数:", members.length);
   console.log(members);
 }
@@ -30,8 +34,8 @@ startButton.addEventListener("click", () => {
     return;
   }
 
-  const randomIndex = Math.floor(Math.random() * members.length);
-  const member = members[randomIndex];
+currentIndex = 0;
+const member = shuffledMembers[currentIndex];
 
   document.getElementById("sortScreen").hidden = false;
   startButton.hidden = true;
@@ -106,10 +110,14 @@ card.addEventListener("pointerup", () => {
   const direction = getSwipeDirection(currentX, currentY);
 
   if (direction) {
-    console.log("判定:", direction);
-  } else {
-    card.style.transform = "translate(0, 0)";
+    currentIndex++;
+
+    if (currentIndex < shuffledMembers.length) {
+      showMember(shuffledMembers[currentIndex]);
+    }
   }
+
+  card.style.transform = "translate(0, 0)";
 
   currentX = 0;
   currentY = 0;
