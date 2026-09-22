@@ -310,10 +310,172 @@ function startRound2() {
   if (results.love.length >= 20) {
     startLoveSelection();
   } else {
-    // ❤️選抜は次の段階で作る
-    document.getElementById("round2Progress").textContent =
-      "❤️選抜の準備中...";
+    startLikeSelection();
   }
+}
+
+
+// ----------------------------------------
+// ❤️メンバーから選ぶ
+// ----------------------------------------
+
+let round2LikeMembers = [];
+let round2LikeIndex = 0;
+let round2LikeSelected = [];
+let round2LikeOrder = [];
+let finalGroups = [];
+
+
+function startLikeSelection() {
+  // 💖は全員通過
+  const remainingSlots = 20 - results.love.length;
+
+  round2LikeMembers = [...results.like];
+  round2LikeIndex = 0;
+  round2LikeSelected = [];
+
+  document.getElementById("round2Progress").textContent =
+    `残り${remainingSlots}人を選んでください`;
+
+  showLikeGroup();
+}
+
+// ----------------------------------------
+// ❤️6人のグループを表示
+// ----------------------------------------
+
+function showLikeGroup() {
+  const area = document.getElementById("round2Area");
+
+  area.innerHTML = "";
+  round2LikeSelected = [];
+
+  const group = round2LikeMembers.slice(
+    round2LikeIndex,
+    round2LikeIndex + 6
+  );
+
+  group.forEach(member => {
+    const card = document.createElement("div");
+
+    card.className = "round2Card";
+
+    card.innerHTML = `
+      <img src="images/${member.id}.jpg" alt="${member.name}">
+      <h3>${member.name}</h3>
+      <p>${member.group}</p>
+    `;
+
+    card.addEventListener("click", () => {
+      toggleLikeSelection(member, card);
+    });
+
+    area.appendChild(card);
+  });
+
+ updateLikeProgress();
+updateLikeButton();
+}
+
+
+// ----------------------------------------
+// ❤️「次へ」ボタンの状態
+// ----------------------------------------
+
+function updateLikeButton() {
+  const button =
+    document.getElementById("round2ConfirmButton");
+
+  const remainingSlots = 20 - results.love.length;
+
+  // 今回のグループで選ぶ必要がある人数
+  const currentGroupSize = Math.min(
+    6,
+    round2LikeMembers.length - round2LikeIndex
+  );
+
+  // このグループで選べる最大人数
+  const maxSelectable = Math.min(
+    4,
+    remainingSlots,
+    currentGroupSize
+  );
+
+  button.disabled =
+    round2LikeSelected.length !== maxSelectable;
+
+  button.textContent =
+    `次へ（${round2LikeSelected.length} / ${maxSelectable}）`;
+}
+
+
+// ----------------------------------------
+// ❤️選択・選択解除
+// ----------------------------------------
+
+function toggleLikeSelection(member, card) {
+  const index = round2LikeSelected.findIndex(
+    person => person.id === member.id
+  );
+
+  // ----------------------------------------
+  // 選択解除
+  // ----------------------------------------
+
+  if (index !== -1) {
+    round2LikeSelected.splice(index, 1);
+
+    const orderIndex = round2LikeOrder.findIndex(
+      person => person.id === member.id
+    );
+
+    if (orderIndex !== -1) {
+      round2LikeOrder.splice(orderIndex, 1);
+    }
+
+    card.classList.remove("eliminated");
+
+    updateLikeProgress();
+    updateLikeButton();
+
+    return;
+  }
+
+
+  // ----------------------------------------
+  // 選択
+  // ----------------------------------------
+
+  const remainingSlots = 20 - results.love.length;
+
+  if (round2LikeSelected.length >= 4) {
+    return;
+  }
+
+  if (round2LikeSelected.length >= remainingSlots) {
+    return;
+  }
+
+  round2LikeSelected.push(member);
+
+  // 選択した順番を記録
+  round2LikeOrder.push(member);
+
+  card.classList.add("eliminated");
+
+  updateLikeProgress();
+  updateLikeButton();
+}
+
+// ----------------------------------------
+// ❤️選択人数の表示
+// ----------------------------------------
+
+function updateLikeProgress() {
+  const remainingSlots = 20 - results.love.length;
+
+  document.getElementById("round2Progress").textContent =
+    `${round2LikeSelected.length}/${remainingSlots}`;
 }
 
 
@@ -327,7 +489,7 @@ function startLoveSelection() {
   const eliminateCount = loveMembers.length - 20;
 
   document.getElementById("round2Progress").textContent =
-    `${eliminateCount}人を予選敗退にしてください`;
+    `${eliminateCount}人を選択してください`;
 
   const area = document.getElementById("round2Area");
 
@@ -401,4 +563,190 @@ function updateRound2Button(requiredCount) {
 
   button.textContent =
     `次へ（${round2Eliminated.length} / ${requiredCount}）`;
+}
+
+
+// ========================================
+// 第2ラウンド「次へ」
+// ========================================
+
+round2ConfirmButton.addEventListener("click", () => {
+
+  // ----------------------------------------
+  // 💖が20人以上の場合
+  // ----------------------------------------
+
+  if (results.love.length >= 20) {
+    const loveMembers = results.love;
+
+    results.love = loveMembers.filter(
+      member =>
+        !round2Eliminated.some(
+          eliminated => eliminated.id === member.id
+        )
+    );
+
+    console.log("第2ラウンド通過者:", results.love);
+    console.log("通過人数:", results.love.length);
+
+    document.getElementById("round2Progress").textContent =
+      `第2ラウンド通過：${results.love.length}人`;
+
+    return;
+  }
+
+
+  // ----------------------------------------
+  // ❤️から選ぶ場合
+  // ----------------------------------------
+
+  const remainingSlots = 20 - results.love.length;
+
+  // 選択したメンバーを記録
+  round2LikeSelected.forEach(member => {
+    results.love.push(member);
+  });
+
+  // 次の6人へ
+  round2LikeIndex += 6;
+
+  // 20人集まった
+  if (results.love.length >= 20) {
+  console.log("第2ラウンド通過者:", results.love);
+  console.log("通過人数:", results.love.length);
+
+  // 20人を5グループに分ける
+  finalGroups = createFinalGroups();
+
+  console.log("最終グループ:", finalGroups);
+
+  document.getElementById("round2Progress").textContent =
+    "20人が決定しました";
+
+  return;
+}
+
+  // まだ残り枠がある
+  showLikeGroup();
+});
+
+
+// ========================================
+// 20人を5グループに分ける
+// ========================================
+
+function createFinalGroups() {
+  const loveMembers = [...results.love];
+
+  // ❤️の選択順
+  const likeMembers = [...round2LikeOrder];
+
+  // ----------------------------------------
+  // 💖をランダムに並べる
+  // ----------------------------------------
+
+  loveMembers.sort(() => Math.random() - 0.5);
+
+
+  // ----------------------------------------
+  // 5グループを作る
+  // ----------------------------------------
+
+  const groups = [
+    [],
+    [],
+    [],
+    [],
+    []
+  ];
+
+
+  // ----------------------------------------
+  // ❤️を選択順に5グループへ分散
+  // ----------------------------------------
+
+  likeMembers.forEach((member, index) => {
+    groups[index % 5].push(member);
+  });
+
+
+  // ----------------------------------------
+  // 残りの枠に💖をランダム配置
+  // ----------------------------------------
+
+  const remainingLove = [...loveMembers];
+
+  groups.forEach(group => {
+    while (group.length < 4 && remainingLove.length > 0) {
+      group.push(remainingLove.shift());
+    }
+  });
+
+
+  console.log("最終5グループ:", groups);
+
+  return groups;
+}
+
+
+// ========================================
+// 最終順位決定
+// ========================================
+
+let currentFinalGroup = 0;
+let finalRanking = [];
+let currentGroupRanking = [];
+
+
+// ----------------------------------------
+// 最終順位決定を開始
+// ----------------------------------------
+
+function startFinalRanking() {
+  currentFinalGroup = 0;
+  finalRanking = [];
+
+  document.getElementById("round2Screen").hidden = true;
+  document.getElementById("finalScreen").hidden = false;
+
+  showFinalGroup();
+}
+
+
+// ----------------------------------------
+// 4人のグループを表示
+// ----------------------------------------
+
+function showFinalGroup() {
+  const group = finalGroups[currentFinalGroup];
+
+  currentGroupRanking = [];
+
+  document.getElementById("finalTitle").textContent =
+    `グループ ${currentFinalGroup + 1}`;
+
+  document.getElementById("finalProgress").textContent =
+    `${currentFinalGroup + 1} / ${finalGroups.length}`;
+
+  const area = document.getElementById("finalArea");
+
+  area.innerHTML = "";
+
+  group.forEach(member => {
+    const card = document.createElement("div");
+
+    card.className = "finalCard";
+
+    card.innerHTML = `
+      <img src="images/${member.id}.jpg" alt="${member.name}">
+      <h3>${member.name}</h3>
+      <p>${member.group}</p>
+    `;
+
+    card.addEventListener("click", () => {
+      selectFinalMember(member, card);
+    });
+
+    area.appendChild(card);
+  });
 }

@@ -194,3 +194,44 @@ button:hover {
 .round2Card.eliminated {
   opacity: 0.35;
 }
+
+
+/* ========================================
+   最終順位決定
+======================================== */
+
+#finalArea {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.finalCard {
+  border: 2px solid var(--accent);
+  background: var(--surface);
+  cursor: pointer;
+  user-select: none;
+}
+
+.finalCard img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.finalCard h3 {
+  margin: 8px 4px 2px;
+  font-size: 16px;
+}
+
+.finalCard p {
+  margin: 0 4px 8px;
+  color: #666666;
+  font-size: 12px;
+}
+
+.finalCard.selected {
+  opacity: 0.4;
+}
