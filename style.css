@@ -171,13 +171,16 @@ button:hover {
 }
 
 .round2Card {
-  border: 2px solid var(--accent);
-  border-radius: 16px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
   background: var(--surface);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
   cursor: pointer;
   user-select: none;
-  overflow: hidden;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .round2Card img {
@@ -189,14 +192,12 @@ button:hover {
 }
 
 .round2Card h3 {
-  margin: 6px 4px 3px;
-  font-size: 14px;
+  margin: 12px 0 4px;
 }
 
 .round2Card p {
-  margin: 0 4px 8px;
+  margin: 0 0 30px;
   color: #666666;
-  font-size: 11px;
 }
 
 .round2Card.eliminated {
@@ -216,30 +217,54 @@ button:hover {
 }
 
 .finalCard {
-  border: 2px solid var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
   background: var(--surface);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
+
   cursor: pointer;
   user-select: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .finalCard img {
   display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  width: calc(100% - 20px);
+  aspect-ratio: 3 / 4;
   object-fit: cover;
+  margin: 10px;
 }
 
 .finalCard h3 {
-  margin: 8px 4px 2px;
-  font-size: 16px;
+  margin: 12px 0 4px;
 }
 
 .finalCard p {
-  margin: 0 4px 8px;
+  margin: 0 0 30px;
   color: #666666;
-  font-size: 12px;
 }
 
 .finalCard.selected {
   opacity: 0.4;
+}
+
+/* ========================================
+   カードサイズ調整
+======================================== */
+
+#round2Area {
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#finalArea {
+  width: 100%;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
