@@ -915,9 +915,9 @@ function selectMergeMember(candidate) {
 
   // 6人決まったら終了
   if (top6Ranking.length === 6) {
-    showTop6Result();
-    return;
-  }
+  startFinalRanking6();
+  return;
+}
 
   // 次の4人を作る
   showMergeComparison();
@@ -1003,4 +1003,166 @@ function updateFinalProgress() {
   document.getElementById("finalProgress").textContent =
     `${currentFinalGroup + 1} / ${finalGroups.length}　` +
     `次は${rank}位を選んでください`;
+}
+
+// ========================================
+// 決勝戦：6人の順位決定
+// ========================================
+
+let final6Ranking = [];
+let final6Members = [];
+let final6CurrentMemberIndex = 0;
+let final6InsertIndex = 0;
+
+// ----------------------------------------
+// 6人の決勝戦を開始
+// ----------------------------------------
+
+function startFinalRanking6() {
+  final6Members = [...top6Ranking];
+  final6Ranking = [];
+  final6CurrentMemberIndex = 0;
+  final6InsertIndex = 0;
+
+  showFinal6Comparison();
+}
+
+// ----------------------------------------
+// 決勝戦の比較画面
+// ----------------------------------------
+
+function showFinal6Comparison() {
+  // 6人すべて順位が決まったら終了
+  if (final6CurrentMemberIndex >= final6Members.length) {
+    showFinal6Result();
+    return;
+  }
+
+  // 1人目は比較せず、そのまま1位候補にする
+  if (final6Ranking.length === 0) {
+    final6Ranking.push(final6Members[final6CurrentMemberIndex]);
+    final6CurrentMemberIndex++;
+    final6InsertIndex = 0;
+
+    showFinal6Comparison();
+    return;
+  }
+
+  // 現在比較するメンバー
+  const currentMember =
+    final6Members[final6CurrentMemberIndex];
+
+  // 比較対象となる、現在の順位のメンバー
+  const targetMember =
+    final6Ranking[final6InsertIndex];
+
+  document.getElementById("finalTitle").textContent =
+    "決勝戦";
+
+  document.getElementById("finalProgress").textContent =
+    `${final6CurrentMemberIndex + 1}人目の順位を決定`;
+
+  const area = document.getElementById("finalArea");
+
+  area.innerHTML = "";
+
+  // 現在のメンバー
+  const currentCard = document.createElement("div");
+  currentCard.className = "finalCard";
+
+  currentCard.innerHTML = `
+    <img src="images/${currentMember.id}.jpg" alt="${currentMember.name}">
+    <h3>${currentMember.name}</h3>
+    <p>${currentMember.group}</p>
+  `;
+
+  currentCard.addEventListener("click", () => {
+    selectFinal6Member(currentMember);
+  });
+
+  // 比較対象
+  const targetCard = document.createElement("div");
+  targetCard.className = "finalCard";
+
+  targetCard.innerHTML = `
+    <img src="images/${targetMember.id}.jpg" alt="${targetMember.name}">
+    <h3>${targetMember.name}</h3>
+    <p>${targetMember.group}</p>
+  `;
+
+  targetCard.addEventListener("click", () => {
+    selectFinal6Member(targetMember);
+  });
+
+  area.appendChild(currentCard);
+  area.appendChild(targetCard);
+}
+
+// ----------------------------------------
+// 決勝戦：2択の結果を処理
+// ----------------------------------------
+
+function selectFinal6Member(selectedMember) {
+  const currentMember =
+    final6Members[final6CurrentMemberIndex];
+
+  // 現在のメンバーが勝った場合
+  if (selectedMember.id === currentMember.id) {
+    final6Ranking.splice(
+      final6InsertIndex,
+      0,
+      currentMember
+    );
+
+    final6CurrentMemberIndex++;
+    final6InsertIndex = 0;
+
+    showFinal6Comparison();
+    return;
+  }
+
+  // 現在の順位のメンバーが勝った場合
+  final6InsertIndex++;
+
+  // 最後まで来たら、現在のメンバーを末尾に入れる
+  if (final6InsertIndex >= final6Ranking.length) {
+    final6Ranking.push(currentMember);
+
+    final6CurrentMemberIndex++;
+    final6InsertIndex = 0;
+  }
+
+  showFinal6Comparison();
+}
+
+// ----------------------------------------
+// 決勝戦：最終結果
+// ----------------------------------------
+
+function showFinal6Result() {
+  document.getElementById("finalTitle").textContent =
+    "最終結果";
+
+  document.getElementById("finalProgress").textContent =
+    "1位〜6位が決定しました";
+
+  const area = document.getElementById("finalArea");
+
+  area.innerHTML = "";
+
+  final6Ranking.forEach((member, index) => {
+    const card = document.createElement("div");
+
+    card.className = "finalCard";
+
+    card.innerHTML = `
+      <img src="images/${member.id}.jpg" alt="${member.name}">
+      <h3>${index + 1}位　${member.name}</h3>
+      <p>${member.group}</p>
+    `;
+
+    area.appendChild(card);
+  });
+
+  console.log("最終順位:", final6Ranking);
 }
