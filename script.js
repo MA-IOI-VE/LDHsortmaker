@@ -203,6 +203,8 @@ console.log("判定結果:", results);
 
 const backButton = document.getElementById("backButton");
 
+console.log("戻るボタン:", backButton);
+
 backButton.addEventListener("click", () => {
   if (judgmentHistory.length === 0) {
     return;
