@@ -1,0 +1,71 @@
+:root {
+  --bg: #FCFDF0;
+  --surface: #FFFFFF;
+  --subtle: #F1F1F1;
+  --accent: #3F5527;
+  --accent-light: #C9E8AA;
+  --text: #222222;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+main {
+  width: min(100% - 32px, 600px);
+  margin: 0 auto;
+  padding: 48px 0;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 32px;
+}
+
+p {
+  margin: 0 0 32px;
+}
+
+button {
+  padding: 12px 32px;
+  border: none;
+  background: var(--accent);
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+#memberCard {
+  margin: 24px auto;
+  max-width: 360px;
+  background: var(--surface);
+  padding: 16px;
+}
+
+#memberImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+#memberName {
+  margin: 16px 0 4px;
+}
+
+#memberGroup {
+  margin: 0;
+  color: #666666;
+}
