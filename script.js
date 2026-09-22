@@ -37,8 +37,16 @@ async function loadMembers() {
   });
 
   shuffledMembers = [...members].sort(() => Math.random() - 0.5);
+  
+  // 画像を先読み
+  shuffledMembers.forEach(member => {
+    const img = new Image();
+    img.src = `images/${member.id}.jpg`;
+  });
 
+console.log("読み込んだ人数:", members.length);
   console.log("読み込んだ人数:", members.length);
+
   console.log(members);
 }
 

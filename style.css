@@ -84,19 +84,6 @@ button:hover {
   cursor: default;
 }
 
-/* ========================================
-   カードエリア
-======================================== */
-
-#cardArea {
-  position: relative;
-  width: 100%;
-  max-width: 250px;
-  margin: 30px auto;
-  aspect-ratio: 9 / 16;
-  touch-action: none;
-}
-
 
 /* ========================================
    カード（１）
@@ -126,7 +113,7 @@ button:hover {
   cursor: grab;
   transition:
     transform 0.2s ease,
-    border-color 0.2s ease,
+    border 0.2s ease,
     box-shadow 0.2s ease;
   will-change: transform;
 }
