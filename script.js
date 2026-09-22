@@ -590,9 +590,11 @@ round2ConfirmButton.addEventListener("click", () => {
     console.log("通過人数:", results.love.length);
 
     document.getElementById("round2Progress").textContent =
-      `第2ラウンド通過：${results.love.length}人`;
+  `第2ラウンド通過：${results.love.length}人`;
 
-    return;
+startFinalRanking();
+
+return;
   }
 
 
@@ -621,9 +623,11 @@ round2ConfirmButton.addEventListener("click", () => {
   console.log("最終グループ:", finalGroups);
 
   document.getElementById("round2Progress").textContent =
-    "20人が決定しました";
+  "20人が決定しました";
 
-  return;
+startFinalRanking();
+
+return;
 }
 
   // まだ残り枠がある
@@ -695,6 +699,7 @@ function createFinalGroups() {
 
 let currentFinalGroup = 0;
 let finalRanking = [];
+let finalGroupRankings = [];
 let currentGroupRanking = [];
 
 
@@ -705,6 +710,7 @@ let currentGroupRanking = [];
 function startFinalRanking() {
   currentFinalGroup = 0;
   finalRanking = [];
+  finalGroupRankings = [];
 
   document.getElementById("round2Screen").hidden = true;
   document.getElementById("finalScreen").hidden = false;
@@ -749,4 +755,93 @@ function showFinalGroup() {
 
     area.appendChild(card);
   });
+}
+
+
+// ----------------------------------------
+// 4人の順位を決める
+// ----------------------------------------
+
+function selectFinalMember(member, card) {
+
+  // すでに選択済みなら何もしない
+  if (
+    currentGroupRanking.some(
+      person => person.id === member.id
+    )
+  ) {
+    return;
+  }
+
+  currentGroupRanking.push(member);
+  card.classList.add("selected");
+
+  // 3人選んだら、残り1人を4位にする
+  if (currentGroupRanking.length === 3) {
+
+    const group = finalGroups[currentFinalGroup];
+
+    const lastMember = group.find(
+      person =>
+        !currentGroupRanking.some(
+          selected => selected.id === person.id
+        )
+    );
+
+    currentGroupRanking.push(lastMember);
+
+    finishFinalGroup();
+
+    return;
+  }
+
+  updateFinalProgress();
+}
+
+
+// ----------------------------------------
+// 最終グループの順位確定
+// ----------------------------------------
+
+function finishFinalGroup() {
+
+  // グループごとの順位を保存
+  finalGroupRankings.push([...currentGroupRanking]);
+
+  // 全体用にも保存
+  finalRanking.push(...currentGroupRanking);
+
+  console.log(
+    `グループ${currentFinalGroup + 1}の順位:`,
+    currentGroupRanking
+  );
+
+  currentFinalGroup++;
+
+  // まだグループが残っている
+  if (currentFinalGroup < finalGroups.length) {
+    showFinalGroup();
+    return;
+  }
+
+  // 5グループすべて終了
+  console.log("グループ別順位:", finalGroupRankings);
+  console.log("全グループの順位:", finalRanking);
+
+  document.getElementById("finalProgress").textContent =
+    "すべてのグループの順位が決まりました";
+}
+
+// ----------------------------------------
+// 最終順位の進捗
+// ----------------------------------------
+
+function updateFinalProgress() {
+
+  const rank =
+    currentGroupRanking.length + 1;
+
+  document.getElementById("finalProgress").textContent =
+    `${currentFinalGroup + 1} / ${finalGroups.length}　` +
+    `次は${rank}位を選んでください`;
 }
