@@ -288,17 +288,21 @@ card.addEventListener("pointerup", () => {
     currentIndex++;
 
     card.style.transition = "none";
+    card.style.visibility = "hidden";
+
     card.style.transform = "translate(0, 0)";
 
     card.classList.remove(
-      "card-love",
-      "card-like",
-      "card-normal"
-    );
+        "card-love",
+        "card-like",
+        "card-normal"
+);
 
-    if (currentIndex < shuffledMembers.length) {
-      showMember(shuffledMembers[currentIndex]);
-    } else {
+if (currentIndex < shuffledMembers.length) {
+  showMember(shuffledMembers[currentIndex]);
+}
+
+card.style.visibility = "visible"; else {
       showRound2Intro();
     }
 
