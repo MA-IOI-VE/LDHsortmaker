@@ -11,6 +11,16 @@
   --text: #444444;
 }
 
+.bg_pt {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  background-color: #f3fcfa;
+  background-image: radial-gradient(#C9E8AA 1px, #f3fcfa 1px);
+  background-size: 20px 20px;
+}
+
 
 /* ========================================
    全体
@@ -22,7 +32,6 @@
 
 body {
   margin: 0;
-  background: var(--bg);
   color: var(--text);
   font-family: "Yu Gothic", sans-serif;
 }
