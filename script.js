@@ -114,13 +114,30 @@ function showMember(member) {
   document.getElementById("memberGroup").textContent =
     member.group;
 
+  // 次のメンバーを先読み
+  const nextMember =
+    shuffledMembers[currentIndex + 1];
+
+  if (nextMember) {
+    document.getElementById("nextMemberImage").src =
+      `images/${nextMember.id}.jpg`;
+
+    document.getElementById("nextMemberImage").alt =
+      nextMember.name;
+
+    document.getElementById("nextMemberName").textContent =
+      nextMember.name;
+
+    document.getElementById("nextMemberGroup").textContent =
+      nextMember.group;
+  }
+
   document.getElementById("progress").textContent =
     `${currentIndex + 1} / ${shuffledMembers.length}`;
 
   document.getElementById("backButton").disabled =
     judgmentHistory.length === 0;
 }
-
 
 // ========================================
 // カードのスワイプ処理
