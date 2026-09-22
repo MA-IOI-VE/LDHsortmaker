@@ -186,8 +186,10 @@ console.log("判定結果:", results);
   currentIndex++;
 
   if (currentIndex < shuffledMembers.length) {
-    showMember(shuffledMembers[currentIndex]);
-  }
+  showMember(shuffledMembers[currentIndex]);
+} else {
+  showRound2Intro();
+}
 }
 
   card.style.transform = "translate(0, 0)";
@@ -220,4 +222,40 @@ backButton.addEventListener("click", () => {
   currentIndex--;
 
   showMember(shuffledMembers[currentIndex]);
+});
+
+
+// ========================================
+// 第2ラウンドの説明画面
+// ========================================
+
+const round2Intro = document.getElementById("round2Intro");
+const round2IntroText = document.getElementById("round2IntroText");
+const round2StartButton =
+  document.getElementById("round2StartButton");
+
+function showRound2Intro() {
+  document.getElementById("sortScreen").hidden = true;
+  round2Intro.hidden = false;
+
+  if (results.love.length >= 20) {
+    round2IntroText.textContent =
+      "「大好き」に選んだメンバーの中から、第2ラウンドへ進めるのは20人までです。残念ながら予選敗退にするメンバーを「n人」選択して「次へ」を押してください。";
+  } else {
+    round2IntroText.textContent =
+      "「大好き」のメンバーは全員予選を通過します。残りの枠は「好き」のメンバーから選びます。6人ずつ表示されるので、その中から「1~4人まで」を「好きな順番に」選んで「次へ」を押してください。";
+  }
+}
+
+
+// ========================================
+// 第2ラウンド開始ボタン
+// ========================================
+
+round2StartButton.addEventListener("click", () => {
+  round2Intro.hidden = true;
+  document.getElementById("round2Screen").hidden = false;
+
+  document.getElementById("round2Progress").textContent =
+    "第2ラウンド準備中...";
 });
