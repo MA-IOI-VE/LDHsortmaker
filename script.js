@@ -13,6 +13,7 @@ let results = {
   normal: [],
   dislike: []
 };
+let judgmentHistory = [];
 
 
 // ========================================
@@ -169,6 +170,11 @@ card.addEventListener("pointerup", () => {
 
   if (direction) {
   results[direction].push(shuffledMembers[currentIndex]);
+
+judgmentHistory.push({
+  member: shuffledMembers[currentIndex],
+  direction: direction
+});
 
 
 
