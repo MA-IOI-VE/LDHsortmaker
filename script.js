@@ -51,3 +51,45 @@ startButton.addEventListener("click", () => {
   document.getElementById("memberGroup").textContent =
     member.group;
 });
+
+const card = document.getElementById("memberCard");
+
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let currentX = 0;
+let currentY = 0;
+
+card.addEventListener("pointerdown", (event) => {
+  isDragging = true;
+
+  startX = event.clientX;
+  startY = event.clientY;
+
+  card.setPointerCapture(event.pointerId);
+});
+
+card.addEventListener("pointermove", (event) => {
+  if (!isDragging) {
+    return;
+  }
+
+  currentX = event.clientX - startX;
+  currentY = event.clientY - startY;
+
+  card.style.transform =
+    `translate(${currentX}px, ${currentY}px)`;
+});
+
+card.addEventListener("pointerup", () => {
+  if (!isDragging) {
+    return;
+  }
+
+  isDragging = false;
+
+  card.style.transform = "translate(0, 0)";
+
+  currentX = 0;
+  currentY = 0;
+});
