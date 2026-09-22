@@ -133,6 +133,7 @@ let startX = 0;
 let startY = 0;
 let currentX = 0;
 let currentY = 0;
+let animationFrame = null;
 
 
 // ----------------------------------------
@@ -163,21 +164,29 @@ card.addEventListener("pointermove", (event) => {
   currentX = event.clientX - startX;
   currentY = event.clientY - startY;
 
-  card.style.transform =
-    `translate(${currentX}px, ${currentY}px)`;
-
-  // 判定用クラスをいったん全部削除
-  card.classList.remove(
-    "card-love",
-    "card-like",
-    "card-normal",
-  );
-
-  const direction = getSwipeDirection(currentX, currentY);
-
-  if (direction) {
-    card.classList.add(`card-${direction}`);
+  if (animationFrame) {
+    return;
   }
+
+  animationFrame = requestAnimationFrame(() => {
+    card.style.transform =
+      `translate(${currentX}px, ${currentY}px)`;
+
+    card.classList.remove(
+      "card-love",
+      "card-like",
+      "card-normal"
+    );
+
+    const direction =
+      getSwipeDirection(currentX, currentY);
+
+    if (direction) {
+      card.classList.add(`card-${direction}`);
+    }
+
+    animationFrame = null;
+  });
 });
 
 // ========================================
@@ -212,6 +221,11 @@ card.addEventListener("pointerup", () => {
   }
 
   isDragging = false;
+  
+  if (animationFrame) {
+  cancelAnimationFrame(animationFrame);
+  animationFrame = null;
+}
 
   const direction = getSwipeDirection(currentX, currentY);
 
