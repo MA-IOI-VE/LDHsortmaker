@@ -285,35 +285,34 @@ card.addEventListener("pointerup", () => {
     `translate(${flyX}px, ${flyY}px) rotate(${rotation}deg)`;
 
   setTimeout(() => {
-    currentIndex++;
+  currentIndex++;
 
-    card.style.transition = "none";
-    card.style.visibility = "hidden";
+  card.style.transition = "none";
 
+  if (currentIndex < shuffledMembers.length) {
+    // 先に次のメンバーをセット
+    showMember(shuffledMembers[currentIndex]);
+
+    // その後、カードを中央に戻す
     card.style.transform = "translate(0, 0)";
+  } else {
+    showRound2Intro();
+  }
 
-    card.classList.remove(
-        "card-love",
-        "card-like",
-        "card-normal"
-);
+  card.classList.remove(
+    "card-love",
+    "card-like",
+    "card-normal"
+  );
 
-if (currentIndex < shuffledMembers.length) {
-  showMember(shuffledMembers[currentIndex]);
-}
+  currentX = 0;
+  currentY = 0;
 
-card.style.visibility = "visible"; else {
-      showRound2Intro();
-    }
-
-    currentX = 0;
-    currentY = 0;
-
-    requestAnimationFrame(() => {
-      card.style.transition =
-        "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease";
-    });
-  }, 350);
+  requestAnimationFrame(() => {
+    card.style.transition =
+      "transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease";
+  });
+}, 350);
 });
 
 
