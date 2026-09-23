@@ -219,7 +219,7 @@ card.addEventListener("pointerup", () => {
   // スワイプ方向へ飛ばす
   const flyX =
   direction === "like"
-    ? 500
+    ? Math.max(window.innerWidth * 1.2, 500)
     : direction === "normal" && currentX < 0
       ? -window.innerWidth * 1.2
       : 0;
