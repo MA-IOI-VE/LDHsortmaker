@@ -593,8 +593,8 @@ function toggleLikeSelection(member, card) {
 
   updateLikeProgress();
   updateLikeButton();
-}
 
+  
 // ----------------------------------------
 // ❤️選択人数の表示
 // ----------------------------------------
