@@ -229,12 +229,7 @@ card.addEventListener("pointerup", () => {
       ? -window.innerHeight * 1.2
       : 0;
 
-  const rotation =
-    direction === "like"
-      ? 15
-      : direction === "normal" && currentX < 0
-        ? -15
-        : 0;
+  const rotation = 0;
 
   card.style.transition =
     "transform 0.35s ease-out";
