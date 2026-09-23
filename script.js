@@ -122,7 +122,7 @@ function setCard(cardPrefix, member) {
 
   document.getElementById(`${cardPrefix}Group`).textContent =
     member.group;
-    
+
 }
 function showMember(member) {
 
@@ -242,16 +242,16 @@ card.addEventListener("pointerup", () => {
 
     if (currentIndex < shuffledMembers.length) {
 
-      card.style.transition = "none";
-      card.style.transform = "translate(0, 0)";
-
-      showMember(shuffledMembers[currentIndex]);
-
       card.classList.remove(
         "card-love",
         "card-like",
         "card-normal"
       );
+
+      card.style.transition = "none";
+      card.style.transform = "translate(0, 0)";
+
+      showMember(shuffledMembers[currentIndex]);
 
       card.style.zIndex = "2";
 
