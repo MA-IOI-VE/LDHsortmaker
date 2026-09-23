@@ -32,7 +32,7 @@ async function loadMembers() {
     return {
       id: line.slice(0, firstComma),
       name: line.slice(firstComma + 1, secondComma),
-      group: line.slice(secondComma + 1)
+      group: line.slice(secondComma + 1).replace(/^"|"$/g, "")
     };
   });
 
