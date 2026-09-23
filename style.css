@@ -3,7 +3,7 @@
 ======================================== */
 
 :root {
-  --bg: #FCFDF0;
+  --bg: #FCFCF0;
   --surface: #FFFFFF;
   --subtle: #F1F1F1;
   --accent: #3F5527;
@@ -16,10 +16,23 @@
   inset: 0;
   z-index: -1;
 
-  background-color: #FCFDF0;
-  background-image: radial-gradient(#C9E8AA 1px, #FCFDF0 1px);
-  background-size: 20px 20px;
+  background-color: #FCFCF0;
+  opacity: 0.8;
+  background-image:  linear-gradient(#C9E8AA 1px, transparent 1px), linear-gradient(to right, #C9E8AA 1px, #FCFCF0 1px);
+  background-size: 15px 15px;
 }
+
+
+/* ========================================
+   memo
+ background-color: #FCFCF0;
+  background-image: radial-gradient(#C9E8AA 1px, #FCFCF0 1px);
+  background-size: 20px 20px;
+
+
+======================================== */
+
+
 
 
 /* ========================================
@@ -53,7 +66,7 @@ h1 {
   color: var(--accent);
   font-size: 70px;
   font-family: "Mouse Memoirs", sans-serif;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.em;
 }
 
 p {
