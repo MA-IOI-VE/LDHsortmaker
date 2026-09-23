@@ -742,28 +742,6 @@ round2ConfirmButton.addEventListener("click", () => {
 
 
   // ----------------------------------------
-  // ❤️から選ぶ場合
-  // ----------------------------------------
-
-    // 選択したメンバーを記録
-  round2LikeSelected.forEach(member => {
-    results.love.push(member);
-  });
-
-  // 16人集まった
-  if (results.love.length >= 16) {
-    finishRound2();
-    return;
-  }
-
-  // まだ残り枠があるので次の6人へ
-  round2LikeIndex += 6;
-
-  showLikeGroup();
-
-  });
-
-  // ----------------------------------------
   // ❤️がちょうど16人の場合
   // ----------------------------------------
 
@@ -1010,7 +988,7 @@ const finalBattleStartButton =
 
 finalBattleStartButton.addEventListener("click", () => {
   document.getElementById("finalBattleIntro").hidden = true;
-  startFinalRanking6();
+  startTop6Merge();
 });
 
 // ========================================
