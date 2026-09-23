@@ -857,6 +857,8 @@ let currentGroupRanking = [];
 let top6Ranking = [];
 let mergePositions = [0, 0, 0, 0];
 let mergeCandidates = [];
+let mergeCurrentWinner = null;
+let mergeNextGroup = 0;
 
 // ----------------------------------------
 // 最終順位決定を開始
@@ -884,7 +886,7 @@ function showFinalGroup() {
   currentGroupRanking = [];
 
   document.getElementById("finalTitle").textContent =
-    `GROUP ${currentFinalGroup + 1}`;
+  "第2ラウンド";
 
   document.getElementById("finalProgress").textContent =
     `${currentFinalGroup + 1} / ${finalGroups.length}`;
@@ -941,23 +943,22 @@ function selectFinalMember(member, card) {
   // 3人選んだら、残り1人を4位にする
   if (currentGroupRanking.length === 3) {
 
-    const group = finalGroups[currentFinalGroup];
+  const group = finalGroups[currentFinalGroup];
 
-    const lastMember = group.find(
-      person =>
-        !currentGroupRanking.some(
-          selected => selected.id === person.id
-        )
-    );
+  const lastMember = group.find(
+    person =>
+      !currentGroupRanking.some(
+        selected => selected.id === person.id
+      )
+  );
 
-    currentGroupRanking.push(lastMember);
+  currentGroupRanking.push(lastMember);
 
+  setTimeout(() => {
     finishFinalGroup();
+  }, 150);
 
-    return;
-  }
-
-  updateFinalProgress();
+  return;
 }
 
 
@@ -999,10 +1000,9 @@ console.log("finishFinalGroup実行");
 
   document.getElementById("finalScreen").hidden = true;
 
-  document.getElementById("finalBattleIntroText").textContent =
-    "第2ラウンドが終了しました。\n\nここから最終決戦です。\n2人ずつのメンバーを比較し、どちらを上位にするか決定してください。";
+  document.getElementById("finalScreen").hidden = true;
 
-  document.getElementById("finalBattleIntro").hidden = false;
+  startTop6Merge();
 }
 
 const finalBattleStartButton =
@@ -1018,43 +1018,93 @@ finalBattleStartButton.addEventListener("click", () => {
 // ========================================
 
 function startTop6Merge() {
+
   top6Ranking = [];
   mergePositions = [0, 0, 0, 0];
   mergeCandidates = [];
 
+  mergeCurrentWinner = null;
+  mergeNextGroup = 0;
+
   document.getElementById("finalScreen").hidden = false;
 
-  showMergeComparison();
+  startMergeTournament();
 }
+
 // ----------------------------------------
 // 4人の比較候補を作る
 // ----------------------------------------
 
 function showMergeComparison() {
-  mergeCandidates = [];
 
-  document.getElementById("finalTitle").textContent =
-    "最終決戦";
+  // 今回の勝者をリセット
+  mergeCurrentWinner = null;
 
-  const excludedGroup =
-    top6Ranking.length % 4;
+  // 最初に残っているグループを探す
+  mergeNextGroup = 0;
 
-  for (let i = 0; i < finalGroupRankings.length; i++) {
-    if (i === excludedGroup) {
-      continue;
-    }
-
-    const position = mergePositions[i];
-
-    if (position < finalGroupRankings[i].length) {
-      mergeCandidates.push({
-        member: finalGroupRankings[i][position],
-        groupIndex: i
-      });
-    }
+  while (
+    mergeNextGroup < finalGroupRankings.length &&
+    mergePositions[mergeNextGroup] >=
+      finalGroupRankings[mergeNextGroup].length
+  ) {
+    mergeNextGroup++;
   }
 
-  console.log("今回の比較候補:", mergeCandidates);
+  // 比較できるメンバーがいない場合
+  if (
+    mergeNextGroup >=
+    finalGroupRankings.length
+  ) {
+    return;
+  }
+
+  // 最初の候補
+  mergeCurrentWinner = {
+    member:
+      finalGroupRankings[mergeNextGroup][
+        mergePositions[mergeNextGroup]
+      ],
+    groupIndex: mergeNextGroup
+  };
+
+  mergeNextGroup++;
+
+  showNextMergeComparison();
+}
+
+function showNextMergeComparison() {
+
+  // 比較できる次のグループを探す
+  while (
+    mergeNextGroup < finalGroupRankings.length &&
+    mergePositions[mergeNextGroup] >=
+      finalGroupRankings[mergeNextGroup].length
+  ) {
+    mergeNextGroup++;
+  }
+
+  // すべてのグループとの比較が終わった
+  if (
+    mergeNextGroup >=
+    finalGroupRankings.length
+  ) {
+    finishMergeWinner();
+    return;
+  }
+
+  const challenger = {
+    member:
+      finalGroupRankings[mergeNextGroup][
+        mergePositions[mergeNextGroup]
+      ],
+    groupIndex: mergeNextGroup
+  };
+
+  mergeCandidates = [
+    mergeCurrentWinner,
+    challenger
+  ];
 
   showMergeComparisonScreen();
 
@@ -1065,28 +1115,49 @@ function showMergeComparison() {
 // ----------------------------------------
 
 function selectMergeMember(candidate) {
-  const member = candidate.member;
-  const groupIndex = candidate.groupIndex;
 
-  // TOP6に追加
-  top6Ranking.push(member);
+  // 今回選ばれた人が次の勝者になる
+  mergeCurrentWinner = candidate;
 
-  // その人がいたグループを次の順位へ進める
-  mergePositions[groupIndex]++;
+  // 次のグループへ進む
+  mergeNextGroup++;
 
-  console.log(
-    `${top6Ranking.length}位:`,
-    member.name
-  );
-
-  // 6人決まったら終了
-  if (top6Ranking.length === 6) {
-  startFinalRanking6();
-  return;
+  // まだ比較するグループがある
+  showNextMergeComparison();
 }
 
-  // 次の4人を作る
-  showMergeComparison();
+function finishMergeWinner() {
+
+  // 今回の勝者をTOP6に追加
+  top6Ranking.push(
+    mergeCurrentWinner.member
+  );
+
+  // 勝者のグループを次の順位へ進める
+  mergePositions[
+    mergeCurrentWinner.groupIndex
+  ]++;
+
+  console.log(
+    `${top6Ranking.length}位候補:`,
+    mergeCurrentWinner.member.name
+  );
+
+  // 6人決定
+  if (top6Ranking.length === 6) {
+
+    document.getElementById("finalScreen").hidden = true;
+
+    document.getElementById("finalBattleIntroText").textContent =
+      "ここから最終決戦です。\n\n決定した6人を2人ずつ比較してください。";
+
+    document.getElementById("finalBattleIntro").hidden = false;
+
+    return;
+  }
+
+  // 次の順位を決定
+  startMergeTournament();
 }
 
 // ----------------------------------------
@@ -1126,32 +1197,42 @@ function showTop6Result() {
 // ----------------------------------------
 
 function showMergeComparisonScreen() {
+
   document.getElementById("finalTitle").textContent =
-    `全体TOP${top6Ranking.length + 1}候補`;
+    "第2ラウンド";
 
   document.getElementById("finalProgress").textContent =
-    `TOP6決定　${top6Ranking.length} / 6`;
+    `${top6Ranking.length} / 6`;
 
-  const area = document.getElementById("finalArea");
+  const area =
+    document.getElementById("finalArea");
 
   area.innerHTML = "";
 
   mergeCandidates.forEach(candidate => {
+
     const member = candidate.member;
 
-    const card = document.createElement("div");
+    const card =
+      document.createElement("div");
 
     card.className = "finalCard";
 
     card.innerHTML = `
-      <img src="images/${member.id}.jpg" alt="${member.name}">
+      <img
+        src="images/${member.id}.jpg"
+        alt="${member.name}"
+      >
       <h3>${member.name}</h3>
       <p>${member.group}</p>
     `;
 
-    card.addEventListener("click", () => {
-      selectMergeMember(candidate);
-    });
+    card.addEventListener(
+      "click",
+      () => {
+        selectMergeMember(candidate);
+      }
+    );
 
     area.appendChild(card);
   });
@@ -1247,7 +1328,7 @@ function showFinal6Comparison() {
 
 
   document.getElementById("finalTitle").textContent =
-    "決勝戦";
+    "最終決戦";
 
   document.getElementById("finalProgress").textContent =
     `${final6CurrentMemberIndex + 1}人目　順位を決定`;
