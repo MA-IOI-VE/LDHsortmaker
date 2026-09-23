@@ -982,7 +982,7 @@ function finishFinalGroup() {
   console.log("グループ別順位:", finalGroupRankings);
   console.log("全グループの順位:", finalRanking);
 
-  startTop6Merge();
+  startFinalRanking6();
 }
 
 // ========================================

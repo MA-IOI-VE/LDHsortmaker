@@ -53,7 +53,7 @@ h1 {
   color: var(--accent);
   font-size: 70px;
   font-family: "Mouse Memoirs", sans-serif;
-  letter-spacing: -0.1em;
+  letter-spacing: -0.05em;
 }
 
 p {
