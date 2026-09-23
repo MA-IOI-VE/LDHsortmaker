@@ -952,15 +952,15 @@ function selectFinalMember(member, card) {
       )
   );
 
-  currentGroupRanking.push(lastMember);
+    currentGroupRanking.push(lastMember);
 
-  setTimeout(() => {
-    finishFinalGroup();
-  }, 150);
+    setTimeout(() => {
+      finishFinalGroup();
+    }, 150);
 
-  return;
+    return;
+  }
 }
-
 
 // ----------------------------------------
 // 最終グループの順位確定
