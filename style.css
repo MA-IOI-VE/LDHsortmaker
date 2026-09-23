@@ -51,9 +51,9 @@ main {
 h1 {
   margin: 0 0 12px;
   color: var(--accent);
-  font-size: 50px;
+  font-size: 60px;
   font-family: "Mouse Memoirs", sans-serif;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
 p {
@@ -128,6 +128,10 @@ button:hover {
   opacity: 0.6;
 }
 
+/* ========================================
+   カード（判定）
+======================================== */
+
 #memberCard.card-love {
   border: 6px solid #e53935;
 }
@@ -158,23 +162,6 @@ button:hover {
 #nextMemberGroup {
   margin: 0 0 30px;
   color: #666666;
-}
-
-
-/* ========================================
-   カード（判定）
-======================================== */
-
-#memberCard.card-love {
-  border: 6px solid #e53935;
-}
-
-#memberCard.card-like {
-  border: 6px solid #f1f1f1;
-}
-
-#memberCard.card-normal {
-  border: 6px solid #444444;
 }
 
 
