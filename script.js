@@ -218,18 +218,23 @@ card.addEventListener("pointerup", () => {
 
   // スワイプ方向へ飛ばす
   const flyX =
-    direction === "like"
-      ? window.innerWidth * 1.2
-      : direction === "normal" && currentX < 0
-        ? -window.innerWidth * 1.2
-        : 0;
+  direction === "like"
+    ? 500
+    : direction === "normal" && currentX < 0
+      ? -window.innerWidth * 1.2
+      : 0;
 
   const flyY =
     direction === "love"
       ? -window.innerHeight * 1.2
       : 0;
 
-  const rotation = 0;
+  const rotation =
+  direction === "like"
+    ? 15
+    : direction === "normal" && currentX < 0
+      ? -15
+      : 0;
 
   card.style.transition =
     "transform 0.35s ease-out";
