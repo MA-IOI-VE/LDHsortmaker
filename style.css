@@ -137,11 +137,11 @@ button:hover {
 }
 
 #memberCard.card-like {
-  border: 6px solid #ff7c87;
+  border: 6px solid #F1F1F1;
 }
 
 #memberCard.card-normal {
-  border: 6px solid #f1f1f1;
+  border: 6px solid #444444;
 }
 
 #memberImage,
