@@ -88,12 +88,10 @@ const testRound2Button =
   document.getElementById("testRound2Button");
 
 testRound2Button.addEventListener("click", () => {
-  // 仮の判定結果を作る
- results.love = [...members.slice(0, 9)];
-results.like = [...members.slice(9, 39)];
-results.normal = [...members.slice(39, 69)];
+  results.love = [...members.slice(0, 16)];
+  results.like = [...members.slice(16, 46)];
+  results.normal = [...members.slice(46, 76)];
 
-  // 第2ラウンド説明画面を表示
   showRound2Intro();
 });
 
@@ -824,7 +822,7 @@ function finishRound2() {
   document.getElementById("round2Screen").hidden = true;
 
   document.getElementById("finalIntroText").textContent =
-    "予選を通過した16人が決定しました。\n第2ラウンドでは、この16人を4人ずつの4グループに分け、グループ内でランキングを決めます。";
+  "予選を通過した16人が決定しました。\n\n第2ラウンドでは、16人を4人ずつの4グループに分けます。\n各グループで1位から4位までの順位を決定してください。";
 
   document.getElementById("finalIntro").hidden = false;
 }
@@ -838,7 +836,7 @@ finalStartButton.addEventListener("click", () => {
 });
 
 // ========================================
-// 16人を5グループに分ける
+// 16人を4グループに分ける
 // ========================================
 
 function createFinalGroups() {
@@ -910,9 +908,8 @@ let currentGroupRanking = [];
 // ========================================
 
 let top6Ranking = [];
-let mergePositions = [0, 0, 0, 0, 0];
+let mergePositions = [0, 0, 0, 0];
 let mergeCandidates = [];
-
 
 // ----------------------------------------
 // 最終順位決定を開始
@@ -1040,12 +1037,25 @@ function finishFinalGroup() {
     return;
   }
 
-   // 5グループすべて終了
+   // 4グループすべて終了
   console.log("グループ別順位:", finalGroupRankings);
   console.log("全グループの順位:", finalRanking);
 
-  startFinalRanking6();
+  document.getElementById("round2Screen").hidden = true;
+
+  document.getElementById("finalBattleIntroText").textContent =
+    "第2ラウンドが終了しました。\n\nここから最終決戦です。\n2人ずつのメンバーを比較し、どちらを上位にするか決定してください。";
+
+  document.getElementById("finalBattleIntro").hidden = false;
 }
+
+const finalBattleStartButton =
+  document.getElementById("finalBattleStartButton");
+
+finalBattleStartButton.addEventListener("click", () => {
+  document.getElementById("finalBattleIntro").hidden = true;
+  startFinalRanking6();
+});
 
 // ========================================
 // 全体TOP6決定
@@ -1067,7 +1077,7 @@ function showMergeComparison() {
   mergeCandidates = [];
 
   const excludedGroup =
-    top6Ranking.length % 5;
+    top6Ranking.length % 4;
 
   for (let i = 0; i < finalGroupRankings.length; i++) {
     if (i === excludedGroup) {
