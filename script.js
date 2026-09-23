@@ -403,16 +403,13 @@ function showRound2Intro() {
   document.getElementById("sortScreen").hidden = true;
   round2Intro.hidden = false;
 
-  if (results.love.length >= 17) {
-  round2IntroText.textContent =
-    "第2ラウンドへ進めるのは16人です。残念ながら予選敗退にするメンバーを選択して「NEXT」を押してください。";
-} else if (results.love.length === 16) {
-  round2IntroText.textContent =
-    "「特別」に選んだ16人が第2ラウンドに進みます。";
-} else {
-  round2IntroText.textContent =
-    "「特別」に選んだメンバーは全員予選を通過します。第2ラウンドに進出する16人のうち、残りの枠を選びます。6人ずつ表示されるので、その中から必要な人数を選んで「NEXT」を押してください。";
-}
+  if (results.love.length === 16) {
+    round2IntroText.textContent =
+      "「特別」に選んだ16人が予選を通過します。";
+  } else {
+    round2IntroText.textContent =
+      "「特別」に選んだメンバーは全員予選を通過します。\n残りのメンバーを6人ずつ表示します。そこから予選を通過させたいメンバーを選んで「NEXT」を押してください。";
+  }
 }
 
 
@@ -817,19 +814,28 @@ round2ConfirmButton.addEventListener("click", () => {
   // ----------------------------------------
 
 function finishRound2() {
-  console.log("第2ラウンド通過者:", results.love);
+  console.log("予選通過者:", results.love);
   console.log("通過人数:", results.love.length);
 
   finalGroups = createFinalGroups();
 
   console.log("最終4グループ:", finalGroups);
 
-  document.getElementById("round2Progress").textContent =
-    "16人が決定しました";
+  document.getElementById("round2Screen").hidden = true;
 
-  startFinalRanking();
+  document.getElementById("finalIntroText").textContent =
+    "予選を通過した16人が決定しました。\n第2ラウンドでは、この16人を4人ずつの4グループに分け、グループ内でランキングを決めます。";
+
+  document.getElementById("finalIntro").hidden = false;
 }
 
+const finalStartButton =
+  document.getElementById("finalStartButton");
+
+finalStartButton.addEventListener("click", () => {
+  document.getElementById("finalIntro").hidden = true;
+  startFinalRanking();
+});
 
 // ========================================
 // 16人を5グループに分ける

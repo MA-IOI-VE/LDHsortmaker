@@ -6,8 +6,8 @@
   --bg: #FCFCF0;
   --surface: #FFFFFF;
   --subtle: #F1F1F1;
-  --accent: #3F5527;
-  --accent-light: #E1E5B3;
+  --accent: #333B22;
+  --accent-light: #EEF2CC;
   --text: #444444;
 }
 
@@ -18,19 +18,9 @@
 
   background-color: #FCFCF0;
   opacity: 0.8;
-  background-image:  linear-gradient(#E1E5B3 1px, transparent 1px), linear-gradient(to right, #E1E5B3 1px, #FCFCF0 1px);
+  background-image:  linear-gradient(#EEF2CC 1px, transparent 1px), linear-gradient(to right, #EEF2CC 1px, #FCFCF0 1px);
   background-size: 15px 15px;
 }
-
-
-/* ========================================
-   memo
- background-color: #FCFCF0;
-  background-image: radial-gradient(#C9E8AA 1px, #FCFCF0 1px);
-  background-size: 20px 20px;
-======================================== */
-
-
 
 
 /* ========================================
