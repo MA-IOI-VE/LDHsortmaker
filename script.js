@@ -122,18 +122,27 @@ function setCard(cardPrefix, member) {
 
   document.getElementById(`${cardPrefix}Group`).textContent =
     member.group;
+    
 }
-
 function showMember(member) {
 
-  setCard("member", member);
+  setCard("", member);
 
   const followingMember =
     shuffledMembers[currentIndex + 1];
 
- if (followingMember) {
-  setCard("next", followingMember);
-}
+  if (followingMember) {
+
+    setCard("next", followingMember);
+
+    document.getElementById("nextCard").style.visibility =
+      "visible";
+
+  } else {
+
+    document.getElementById("nextCard").style.visibility =
+      "hidden";
+  }
 
   document.getElementById("progress").textContent =
     `${currentIndex + 1} / ${shuffledMembers.length}`;
