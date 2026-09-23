@@ -570,30 +570,6 @@ function toggleLikeSelection(member, card) {
   updateLikeButton();
 }
 
-  // ----------------------------------------
-  // 選択
-  // ----------------------------------------
-
-  const remainingSlots = 16 - results.love.length;
-
-  if (round2LikeSelected.length >= 4) {
-    return;
-  }
-
-  if (round2LikeSelected.length >= remainingSlots) {
-    return;
-  }
-
-  round2LikeSelected.push(member);
-
-  // 選択した順番を記録
-  round2LikeOrder.push(member);
-
-  card.classList.add("eliminated");
-
-  updateLikeProgress();
-  updateLikeButton();
-
 // ----------------------------------------
 // ❤️選択人数の表示
 // ----------------------------------------
