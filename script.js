@@ -1019,12 +1019,13 @@ finalBattleStartButton.addEventListener("click", () => {
 
 function startTop6Merge() {
   top6Ranking = [];
-  mergePositions = [0, 0, 0, 0, 0];
+  mergePositions = [0, 0, 0, 0];
   mergeCandidates = [];
+
+  document.getElementById("finalScreen").hidden = false;
 
   showMergeComparison();
 }
-
 // ----------------------------------------
 // 4人の比較候補を作る
 // ----------------------------------------
