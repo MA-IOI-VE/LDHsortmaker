@@ -919,6 +919,13 @@ function showFinalGroup() {
 
 function selectFinalMember(member, card) {
 
+    console.log(
+    "選択:",
+    member.name,
+    "現在の人数:",
+    currentGroupRanking.length
+  );
+
   // すでに選択済みなら何もしない
   if (
     currentGroupRanking.some(
