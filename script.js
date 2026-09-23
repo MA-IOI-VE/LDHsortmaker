@@ -707,6 +707,68 @@ const round2ConfirmButton =
   document.getElementById("round2ConfirmButton");
 
 round2ConfirmButton.addEventListener("click", () => {
+  // 現在の6人について、選択された人と選択されなかった人を記録
+  round2PassSelected.push(...round2LikeSelected);
+
+  const currentGroup =
+    round2LikeMembers.slice(
+      round2LikeIndex,
+      round2LikeIndex + 6
+    );
+
+  currentGroup.forEach(member => {
+    const isSelected =
+      round2LikeSelected.some(
+        selected => selected.id === member.id
+      );
+
+    if (!isSelected) {
+      round2PassUnselected.push(member);
+    }
+  });
+
+  // まだ次の候補がある
+  round2LikeIndex += 6;
+
+  if (round2LikeIndex < round2LikeMembers.length) {
+    showLikeGroup();
+    return;
+  }
+
+  // 一巡終了
+  const totalSelected =
+    results.love.length + round2PassSelected.length;
+
+  // 16人ちょうど
+  if (totalSelected === 16) {
+    results.love.push(...round2PassSelected);
+    round2LikeOrder.push(...round2PassSelected);
+
+    finishRound2();
+    return;
+  }
+
+  // 17人以上 → 今回選ばれた人だけを再選抜
+  if (totalSelected > 16) {
+    round2LikeMembers = [...round2PassSelected];
+  }
+
+  // 15人以下 → 今回選ばれなかった人を再選抜
+  if (totalSelected < 16) {
+    results.love.push(...round2PassSelected);
+    round2LikeOrder.push(...round2PassSelected);
+
+    round2LikeMembers = [...round2PassUnselected];
+  }
+
+  // 次の一巡を開始
+  round2LikeIndex = 0;
+  round2LikeSelected = [];
+  round2PassSelected = [];
+  round2PassUnselected = [];
+
+  showLikeGroup();
+});
 
   // ----------------------------------------
   // 💖が16人以上の場合
