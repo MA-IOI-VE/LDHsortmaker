@@ -124,16 +124,17 @@ function setCard(cardPrefix, member) {
     member.group;
 
 }
+
 function showMember(member) {
 
-  setCard("", member);
+  setCard("member", member);
 
   const followingMember =
     shuffledMembers[currentIndex + 1];
 
   if (followingMember) {
 
-    setCard("next", followingMember);
+    setCard("nextMember", followingMember);
 
     document.getElementById("nextCard").style.visibility =
       "visible";
