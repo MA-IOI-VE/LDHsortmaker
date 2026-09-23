@@ -462,24 +462,28 @@ function startRound2() {
 
 let round2LikeMembers = [];
 let round2LikeIndex = 0;
+// 現在の「6人」の中で選択したメンバー
 let round2LikeSelected = [];
+// 今回の一巡で選択されたメンバー
+let round2PassSelected = [];
+// 今回の一巡で選択されなかったメンバー
+let round2PassUnselected = [];
+// 最終的に予選を通過したLIKEメンバーの順番
 let round2LikeOrder = [];
 let finalGroups = [];
 
 
 function startLikeSelection() {
-  // 💖は全員通過
-  const remainingSlots = 16 - results.love.length;
-
   round2LikeMembers = [...results.like];
   round2LikeIndex = 0;
-  round2LikeSelected = [];
 
-  document.getElementById("round2Progress").textContent =
-    `残り${remainingSlots}人を選んでください`;
+  round2LikeSelected = [];
+  round2PassSelected = [];
+  round2PassUnselected = [];
 
   showLikeGroup();
 }
+
 
 // ----------------------------------------
 // ❤️6人のグループを表示
@@ -514,8 +518,7 @@ function showLikeGroup() {
     area.appendChild(card);
   });
 
- updateLikeProgress();
-updateLikeButton();
+  updateLikeButton();
 }
 
 
@@ -527,18 +530,13 @@ function updateLikeButton() {
   const button =
     document.getElementById("round2ConfirmButton");
 
-  const remainingSlots = 16 - results.love.length;
-
-  // 今回のグループで選ぶ必要がある人数
   const currentGroupSize = Math.min(
     6,
     round2LikeMembers.length - round2LikeIndex
   );
 
-  // このグループで選べる最大人数
   const maxSelectable = Math.min(
     4,
-    remainingSlots,
     currentGroupSize
   );
 
@@ -558,29 +556,24 @@ function toggleLikeSelection(member, card) {
     person => person.id === member.id
   );
 
-  // ----------------------------------------
-  // 選択解除
-  // ----------------------------------------
-
   if (index !== -1) {
     round2LikeSelected.splice(index, 1);
-
-    const orderIndex = round2LikeOrder.findIndex(
-      person => person.id === member.id
-    );
-
-    if (orderIndex !== -1) {
-      round2LikeOrder.splice(orderIndex, 1);
-    }
-
     card.classList.remove("eliminated");
 
-    updateLikeProgress();
     updateLikeButton();
 
     return;
   }
 
+  if (round2LikeSelected.length >= 4) {
+    return;
+  }
+
+  round2LikeSelected.push(member);
+  card.classList.add("eliminated");
+
+  updateLikeButton();
+}
 
   // ----------------------------------------
   // 選択
