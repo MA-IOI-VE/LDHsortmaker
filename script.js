@@ -960,6 +960,8 @@ function selectFinalMember(member, card) {
 
 function finishFinalGroup() {
 
+console.log("finishFinalGroup実行");
+
   // グループごとの順位を保存
   finalGroupRankings.push([...currentGroupRanking]);
 
