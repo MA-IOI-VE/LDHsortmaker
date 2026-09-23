@@ -677,7 +677,20 @@ const round2ConfirmButton =
   document.getElementById("round2ConfirmButton");
 
 round2ConfirmButton.addEventListener("click", () => {
-  // 現在の6人について、選択された人と選択されなかった人を記録
+
+  // LOVEが17人以上の場合は、LOVE敗退ルート
+  if (results.love.length >= 17) {
+    results.love = results.love.filter(
+      member =>
+        !round2Eliminated.some(
+          eliminated => eliminated.id === member.id
+        )
+    );
+
+    finishRound2();
+    return;
+  }
+
   round2PassSelected.push(...round2LikeSelected);
 
   const currentGroup =
