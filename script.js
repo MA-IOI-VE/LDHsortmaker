@@ -405,10 +405,10 @@ function showRound2Intro() {
 
   if (results.love.length >= 20) {
     round2IntroText.textContent =
-      "「大好き」に選んだメンバーの中から、第2ラウンドへ進めるのは20人までです。残念ながら予選敗退にするメンバーを「n人」選択して「次へ」を押してください。";
+      "第2ラウンドへ進めるのは20人までです。残念ながら予選敗退にするメンバーを「n人」選択して「NEXT」を押してください。";
   } else {
     round2IntroText.textContent =
-      "「大好き」のメンバーは全員予選を通過します。残りの枠は「好き」のメンバーから選びます。6人ずつ表示されるので、その中から「1~4人まで」を「好きな順番に」選んで「次へ」を押してください。";
+      "「特別」に選んだメンバーは全員予選を通過します。残りの枠は「好き」から選びます。6人ずつ表示されるので、その中から「1~4人まで」を「好きな順番に」選んで「NEXT」を押してください。";
   }
 }
 
@@ -436,7 +436,6 @@ round2StartButton.addEventListener("click", () => {
 // ========================================
 
 let round2Eliminated = [];
-
 
 // ----------------------------------------
 // 第2ラウンド開始
@@ -543,7 +542,7 @@ function updateLikeButton() {
     round2LikeSelected.length !== maxSelectable;
 
   button.textContent =
-    `次へ（${round2LikeSelected.length} / ${maxSelectable}）`;
+    `NEXT（${round2LikeSelected.length} / ${maxSelectable}）`;
 }
 
 
@@ -692,7 +691,7 @@ function updateRound2Button(requiredCount) {
 
   if (requiredCount === 0) {
     button.disabled = false;
-    button.textContent = "次へ";
+    button.textContent = "NEXT";
     return;
   }
 
@@ -700,7 +699,7 @@ function updateRound2Button(requiredCount) {
     round2Eliminated.length !== requiredCount;
 
   button.textContent =
-    `次へ（${round2Eliminated.length} / ${requiredCount}）`;
+    `NEXT（${round2Eliminated.length} / ${requiredCount}）`;
 }
 
 
@@ -884,7 +883,7 @@ function showFinalGroup() {
   currentGroupRanking = [];
 
   document.getElementById("finalTitle").textContent =
-    `グループ ${currentFinalGroup + 1}`;
+    `GROUP ${currentFinalGroup + 1}`;
 
   document.getElementById("finalProgress").textContent =
     `${currentFinalGroup + 1} / ${finalGroups.length}`;
