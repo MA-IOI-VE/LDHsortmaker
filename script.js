@@ -997,7 +997,7 @@ console.log("finishFinalGroup実行");
   console.log("グループ別順位:", finalGroupRankings);
   console.log("全グループの順位:", finalRanking);
 
-  document.getElementById("round2Screen").hidden = true;
+  document.getElementById("finalScreen").hidden = true;
 
   document.getElementById("finalBattleIntroText").textContent =
     "第2ラウンドが終了しました。\n\nここから最終決戦です。\n2人ずつのメンバーを比較し、どちらを上位にするか決定してください。";
