@@ -89,9 +89,9 @@ const testRound2Button =
 
 testRound2Button.addEventListener("click", () => {
   // 仮の判定結果を作る
-  results.love = [...members.slice(0, 25)];
-  results.like = [...members.slice(25, 55)];
-  results.normal = [...members.slice(55, 85)];
+  results.love = [...members.slice(0, 16)];
+results.like = [...members.slice(16, 46)];
+results.normal = [...members.slice(46, 76)];
 
   // 第2ラウンド説明画面を表示
   showRound2Intro();
@@ -403,13 +403,16 @@ function showRound2Intro() {
   document.getElementById("sortScreen").hidden = true;
   round2Intro.hidden = false;
 
-  if (results.love.length >= 20) {
-    round2IntroText.textContent =
-      "第2ラウンドへ進めるのは20人までです。残念ながら予選敗退にするメンバーを「n人」選択して「NEXT」を押してください。";
-  } else {
-    round2IntroText.textContent =
-      "「特別」に選んだメンバーは全員予選を通過します。残りの枠は「好き」から選びます。6人ずつ表示されるので、その中から「1~4人まで」を「好きな順番に」選んで「NEXT」を押してください。";
-  }
+  if (results.love.length >= 17) {
+  round2IntroText.textContent =
+    "第2ラウンドへ進めるのは16人です。残念ながら予選敗退にするメンバーを選択して「NEXT」を押してください。";
+} else if (results.love.length === 16) {
+  round2IntroText.textContent =
+    "「特別」に選んだ16人が第2ラウンドに進みます。";
+} else {
+  round2IntroText.textContent =
+    "「特別」に選んだメンバーは全員予選を通過します。第2ラウンドに進出する16人のうち、残りの枠を選びます。6人ずつ表示されるので、その中から必要な人数を選んで「NEXT」を押してください。";
+}
 }
 
 
@@ -444,13 +447,14 @@ let round2Eliminated = [];
 function startRound2() {
   round2Eliminated = [];
 
-  if (results.love.length >= 20) {
+  if (results.love.length >= 17) {
     startLoveSelection();
+  } else if (results.love.length === 16) {
+    finishRound2();
   } else {
     startLikeSelection();
   }
 }
-
 
 // ----------------------------------------
 // ❤️メンバーから選ぶ
@@ -465,7 +469,7 @@ let finalGroups = [];
 
 function startLikeSelection() {
   // 💖は全員通過
-  const remainingSlots = 20 - results.love.length;
+  const remainingSlots = 16 - results.love.length;
 
   round2LikeMembers = [...results.like];
   round2LikeIndex = 0;
@@ -523,7 +527,7 @@ function updateLikeButton() {
   const button =
     document.getElementById("round2ConfirmButton");
 
-  const remainingSlots = 20 - results.love.length;
+  const remainingSlots = 16 - results.love.length;
 
   // 今回のグループで選ぶ必要がある人数
   const currentGroupSize = Math.min(
@@ -583,7 +587,7 @@ function toggleLikeSelection(member, card) {
   // 選択
   // ----------------------------------------
 
-  const remainingSlots = 20 - results.love.length;
+  const remainingSlots = 16 - results.love.length;
 
   if (round2LikeSelected.length >= 4) {
     return;
@@ -609,7 +613,7 @@ function toggleLikeSelection(member, card) {
 // ----------------------------------------
 
 function updateLikeProgress() {
-  const remainingSlots = 20 - results.love.length;
+  const remainingSlots = 16 - results.love.length;
 
   document.getElementById("round2Progress").textContent =
     `${round2LikeSelected.length}/${remainingSlots}`;
@@ -623,7 +627,7 @@ function updateLikeProgress() {
 function startLoveSelection() {
   const loveMembers = [...results.love];
 
-  const eliminateCount = loveMembers.length - 20;
+  const eliminateCount = loveMembers.length - 16;
 
   document.getElementById("round2Progress").textContent =
     `${eliminateCount}人を選択してください`;
@@ -667,7 +671,7 @@ function toggleRound2Elimination(member, card) {
     round2Eliminated.splice(index, 1);
     card.classList.remove("eliminated");
   } else {
-    const eliminateCount = results.love.length - 20;
+    const eliminateCount = results.love.length - 16;
 
     if (round2Eliminated.length >= eliminateCount) {
       return;
@@ -677,7 +681,7 @@ function toggleRound2Elimination(member, card) {
     card.classList.add("eliminated");
   }
 
-  updateRound2Button(results.love.length - 20);
+  updateRound2Button(results.love.length - 16);
 }
 
 
@@ -713,74 +717,68 @@ const round2ConfirmButton =
 round2ConfirmButton.addEventListener("click", () => {
 
   // ----------------------------------------
-  // 💖が20人以上の場合
+  // 💖が16人以上の場合
   // ----------------------------------------
 
-  if (results.love.length >= 20) {
-    const loveMembers = results.love;
+  if (results.love.length >= 17) {
+  const loveMembers = results.love;
 
-    results.love = loveMembers.filter(
-      member =>
-        !round2Eliminated.some(
-          eliminated => eliminated.id === member.id
-        )
-    );
+  results.love = loveMembers.filter(
+    member =>
+      !round2Eliminated.some(
+        eliminated => eliminated.id === member.id
+      )
+  );
 
-    console.log("第2ラウンド通過者:", results.love);
-    console.log("通過人数:", results.love.length);
+  finishRound2();
 
-    document.getElementById("round2Progress").textContent =
-  `第2ラウンド通過：${results.love.length}人`;
-
-  finalGroups = createFinalGroups();
-
-  console.log("最終グループ:", finalGroups);
-
-startFinalRanking();
-
-return;
-  }
+  return;
+}
 
 
   // ----------------------------------------
   // ❤️から選ぶ場合
   // ----------------------------------------
 
-  const remainingSlots = 20 - results.love.length;
-
-  // 選択したメンバーを記録
+    // 選択したメンバーを記録
   round2LikeSelected.forEach(member => {
     results.love.push(member);
   });
 
-  // 次の6人へ
+  // 16人集まった
+  if (results.love.length >= 16) {
+    finishRound2();
+    return;
+  }
+
+  // まだ残り枠があるので次の6人へ
   round2LikeIndex += 6;
 
-  // 20人集まった
-  if (results.love.length >= 20) {
+  showLikeGroup();
+
+  });
+
+  // ----------------------------------------
+  // ❤️がちょうど16人の場合
+  // ----------------------------------------
+
+function finishRound2() {
   console.log("第2ラウンド通過者:", results.love);
   console.log("通過人数:", results.love.length);
 
-  // 20人を5グループに分ける
   finalGroups = createFinalGroups();
 
-  console.log("最終グループ:", finalGroups);
+  console.log("最終4グループ:", finalGroups);
 
   document.getElementById("round2Progress").textContent =
-  "20人が決定しました";
+    "16人が決定しました";
 
-startFinalRanking();
-
-return;
+  startFinalRanking();
 }
-
-  // まだ残り枠がある
-  showLikeGroup();
-});
 
 
 // ========================================
-// 20人を5グループに分ける
+// 16人を5グループに分ける
 // ========================================
 
 function createFinalGroups() {
@@ -797,11 +795,10 @@ function createFinalGroups() {
 
 
   // ----------------------------------------
-  // 5グループを作る
+  // 4グループを作る
   // ----------------------------------------
 
   const groups = [
-    [],
     [],
     [],
     [],
@@ -810,11 +807,11 @@ function createFinalGroups() {
 
 
   // ----------------------------------------
-  // ❤️を選択順に5グループへ分散
+  // ❤️を選択順に4グループへ分散
   // ----------------------------------------
 
   likeMembers.forEach((member, index) => {
-    groups[index % 5].push(member);
+    groups[index % 4].push(member);
   });
 
 
@@ -831,7 +828,7 @@ function createFinalGroups() {
   });
 
 
-  console.log("最終5グループ:", groups);
+  console.log("最終4グループ:", groups);
 
   return groups;
 }
@@ -961,6 +958,11 @@ function finishFinalGroup() {
 
   // グループごとの順位を保存
   finalGroupRankings.push([...currentGroupRanking]);
+
+  // 第1段階の順位をメンバーごとに保存
+  currentGroupRanking.forEach((member, index) => {
+    member.stage1Rank = index + 1;
+  });
 
   // 全体用にも保存
   finalRanking.push(...currentGroupRanking);
