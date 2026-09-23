@@ -89,9 +89,9 @@ const testRound2Button =
 
 testRound2Button.addEventListener("click", () => {
   // 仮の判定結果を作る
-  results.love = [...members.slice(0, 16)];
-results.like = [...members.slice(16, 46)];
-results.normal = [...members.slice(46, 76)];
+ results.love = [...members.slice(0, 15)];
+results.like = [...members.slice(15, 45)];
+results.normal = [...members.slice(45, 75)];
 
   // 第2ラウンド説明画面を表示
   showRound2Intro();

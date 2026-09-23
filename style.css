@@ -7,7 +7,7 @@
   --surface: #FFFFFF;
   --subtle: #F1F1F1;
   --accent: #3F5527;
-  --accent-light: #C9E8AA;
+  --accent-light: #E1E5B3;
   --text: #444444;
 }
 
@@ -18,7 +18,7 @@
 
   background-color: #FCFCF0;
   opacity: 0.8;
-  background-image:  linear-gradient(#C9E8AA 1px, transparent 1px), linear-gradient(to right, #C9E8AA 1px, #FCFCF0 1px);
+  background-image:  linear-gradient(#E1E5B3 1px, transparent 1px), linear-gradient(to right, #E1E5B3 1px, #FCFCF0 1px);
   background-size: 15px 15px;
 }
 
