@@ -1033,6 +1033,9 @@ function startTop6Merge() {
 function showMergeComparison() {
   mergeCandidates = [];
 
+  document.getElementById("finalTitle").textContent =
+    "最終決戦";
+
   const excludedGroup =
     top6Ranking.length % 4;
 
