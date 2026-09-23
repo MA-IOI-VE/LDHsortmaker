@@ -542,8 +542,7 @@ function updateLikeButton() {
     currentGroupSize
   );
 
-  button.disabled =
-    round2LikeSelected.length !== maxSelectable;
+  button.disabled = false;
 
   button.textContent =
     `NEXT（${round2LikeSelected.length} / ${maxSelectable}）`;
