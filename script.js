@@ -1172,7 +1172,7 @@ function updateFinalProgress() {
 }
 
 // ========================================
-// 決勝戦：6人の順位決定
+// 決勝戦：6人の最終順位決定
 // ========================================
 
 let final6Ranking = [];
@@ -1189,6 +1189,11 @@ function startFinalRanking6() {
 
   final6Members = [...top6Ranking];
 
+  // 第2ラウンドの順位を基準に並べる
+  final6Members.sort(
+    (a, b) => a.stage1Rank - b.stage1Rank
+  );
+
   final6Ranking = [];
 
   final6CurrentMemberIndex = 0;
@@ -1204,10 +1209,7 @@ function startFinalRanking6() {
 
 function showFinal6Comparison() {
 
-  // ----------------------------------------
   // 全員の順位が決まった
-  // ----------------------------------------
-
   if (
     final6CurrentMemberIndex >=
     final6Members.length
@@ -1217,10 +1219,7 @@ function showFinal6Comparison() {
   }
 
 
-  // ----------------------------------------
-  // 1人目
-  // ----------------------------------------
-
+  // 最初の1人
   if (final6Ranking.length === 0) {
 
     final6Ranking.push(
@@ -1229,33 +1228,23 @@ function showFinal6Comparison() {
 
     final6CurrentMemberIndex++;
 
-    final6InsertIndex = 0;
-
     showFinal6Comparison();
 
     return;
   }
 
 
-  // ----------------------------------------
-  // 現在順位を入れたいメンバー
-  // ----------------------------------------
-
   const currentMember =
     final6Members[final6CurrentMemberIndex];
 
 
-  // ----------------------------------------
-  // 比較対象
-  // ----------------------------------------
+  // 下位側から比較する
+  const targetIndex =
+    final6Ranking.length - 1 - final6InsertIndex;
 
   const targetMember =
-    final6Ranking[final6InsertIndex];
+    final6Ranking[targetIndex];
 
-
-  // ----------------------------------------
-  // 画面
-  // ----------------------------------------
 
   document.getElementById("finalTitle").textContent =
     "決勝戦";
@@ -1270,10 +1259,7 @@ function showFinal6Comparison() {
   area.innerHTML = "";
 
 
-  // ----------------------------------------
   // 現在のメンバー
-  // ----------------------------------------
-
   const currentCard =
     document.createElement("div");
 
@@ -1297,10 +1283,7 @@ function showFinal6Comparison() {
   );
 
 
-  // ----------------------------------------
   // 比較対象
-  // ----------------------------------------
-
   const targetCard =
     document.createElement("div");
 
@@ -1339,24 +1322,24 @@ function selectFinal6Member(selectedMember) {
     final6Members[final6CurrentMemberIndex];
 
 
-  // ----------------------------------------
-  // 現在のメンバーが勝った
-  // → 比較対象の前に入る
-  // ----------------------------------------
-
+  // 現在のメンバーが上
   if (
     selectedMember.id ===
     currentMember.id
   ) {
 
+    const insertIndex =
+      final6Ranking.length -
+      final6InsertIndex -
+      1;
+
     final6Ranking.splice(
-      final6InsertIndex,
+      insertIndex,
       0,
       currentMember
     );
 
     final6CurrentMemberIndex++;
-
     final6InsertIndex = 0;
 
     showFinal6Comparison();
@@ -1365,19 +1348,11 @@ function selectFinal6Member(selectedMember) {
   }
 
 
-  // ----------------------------------------
-  // 比較対象が勝った
-  // → 次の順位と比較
-  // ----------------------------------------
-
+  // 比較対象が上
   final6InsertIndex++;
 
 
-  // ----------------------------------------
-  // 全員に負けた
-  // → 最下位に入る
-  // ----------------------------------------
-
+  // すべての人に負けた
   if (
     final6InsertIndex >=
     final6Ranking.length
@@ -1388,8 +1363,11 @@ function selectFinal6Member(selectedMember) {
     );
 
     final6CurrentMemberIndex++;
-
     final6InsertIndex = 0;
+
+    showFinal6Comparison();
+
+    return;
   }
 
 
