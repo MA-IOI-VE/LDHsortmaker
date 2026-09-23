@@ -740,25 +740,6 @@ round2ConfirmButton.addEventListener("click", () => {
   showLikeGroup();
 });
 
-  // ----------------------------------------
-  // 💖が16人以上の場合
-  // ----------------------------------------
-
-  if (results.love.length >= 17) {
-  const loveMembers = results.love;
-
-  results.love = loveMembers.filter(
-    member =>
-      !round2Eliminated.some(
-        eliminated => eliminated.id === member.id
-      )
-  );
-
-  finishRound2();
-
-  return;
-}
-
 
   // ----------------------------------------
   // ❤️から選ぶ場合
