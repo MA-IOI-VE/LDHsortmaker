@@ -428,7 +428,6 @@ function showRound2Intro() {
   } else {
     document.getElementById("round2UnderText").hidden = false;
   }
-}
 
 // ========================================
 // 第2ラウンド開始ボタン
