@@ -395,7 +395,7 @@ const round2StartButton =
   document.getElementById("round2StartButton");
 
 function showRound2Intro() {
-
+  
   round2StartButton.textContent = "START";
   document.getElementById("sortScreen").hidden = true;
   round2Intro.hidden = false;
@@ -426,6 +426,7 @@ function showRound2Intro() {
   } else {
     document.getElementById("round2UnderText").hidden = false;
   }
+}
 
 // ========================================
 // 第2ラウンド開始ボタン
