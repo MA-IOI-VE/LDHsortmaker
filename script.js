@@ -999,10 +999,10 @@ const finalBattleStartButton =
   document.getElementById("finalBattleStartButton");
 
 finalBattleStartButton.addEventListener("click", () => {
+  console.log("最終決戦STARTを押しました");
   document.getElementById("finalBattleIntro").hidden = true;
   startFinalRanking6();
 });
-
 // ========================================
 // 全体TOP6決定
 // ========================================
@@ -1141,7 +1141,7 @@ function showMergeComparisonScreen() {
     "第2ラウンド";
 
   document.getElementById("finalProgress").textContent =
-    `${top6Ranking.length + 1}〜${top6Ranking.length + mergeCandidates.length}位`;
+  "1位から順番に選択してください";
 
   const area =
     document.getElementById("finalArea");
