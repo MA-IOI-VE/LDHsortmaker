@@ -476,7 +476,6 @@ let round2NormalMembers = [];
 let round2NormalIndex = 0;
 let round2NormalSelected = [];
 let round2NormalUnselected = [];
-let round2NormalPassSelected = [];
 let round2SelectionType = "like";
 
 // 現在の「6人」の中で選択したメンバー
@@ -578,11 +577,6 @@ card.addEventListener("click", () => {
 
   if (selected.length >= 4) {
     console.log("4人上限");
-    return;
-  }
-
-  if (selected.length >= remainingSlots) {
-    console.log("残り枠上限");
     return;
   }
 
@@ -783,12 +777,10 @@ round2ConfirmButton.addEventListener("click", () => {
 
   if (round2SelectionType === "normal") {
 
-  // 今回の6人から選んだ人を累積
   round2NormalPassSelected.push(
     ...round2NormalSelected
   );
 
-  // 今回の6人から選ばなかった人を累積
   const currentGroup =
     round2NormalMembers.slice(
       round2NormalIndex,
@@ -808,8 +800,9 @@ round2ConfirmButton.addEventListener("click", () => {
 
   });
 
-  // 次の6人へ
   round2NormalIndex += 6;
+
+  round2NormalSelected = [];
 
   // まだ一巡していない
   if (
@@ -827,7 +820,7 @@ round2ConfirmButton.addEventListener("click", () => {
   const totalSelected =
     round2NormalPassSelected.length;
 
-  // 必要人数ちょうど
+  // ちょうど必要人数
   if (totalSelected === required) {
 
     results.love.push(
@@ -842,7 +835,7 @@ round2ConfirmButton.addEventListener("click", () => {
     return;
   }
 
-  // 選びすぎ → 選んだ人だけでもう一巡
+  // 選びすぎ → 選んだ人だけで再選抜
   if (totalSelected > required) {
 
     round2NormalMembers =
@@ -857,7 +850,7 @@ round2ConfirmButton.addEventListener("click", () => {
     return;
   }
 
-  // 足りない → 選ばなかった人でもう一巡
+  // 足りない → 選ばなかった人だけで再選抜
   if (totalSelected < required) {
 
     round2NormalMembers =
@@ -872,7 +865,6 @@ round2ConfirmButton.addEventListener("click", () => {
     return;
   }
 }
-
 
   // LOVEが17人以上の場合は、LOVE敗退ルート
   if (results.love.length >= 17) {
@@ -945,13 +937,12 @@ if (totalSelected < 16) {
   round2NormalIndex = 0;
   round2NormalSelected = [];
   round2NormalUnselected = [];
-  round2NormalPassSelected = [];
 
   round2SelectionType = "normal";
 
-  showRound2SelectionGroup();
-  return;
-}
+    showRound2SelectionGroup();
+    return;
+  }
 
   // 次の一巡を開始
   round2LikeIndex = 0;
