@@ -24,7 +24,8 @@
   
 </div>
 
-
+  <!--- 書類選考 --->
+  <!--- 書類選考 --->
     <section id="sortScreen" hidden>
 
       <h2>ROUND1</h2>
@@ -51,27 +52,30 @@
     </section>
 
 
+  <!--- ROUND1 --->
+  <!--- ROUND1 --->
     <section id="round2Intro" hidden>
       <h2>ROUND1</h2>
 
       <!-- LOVEが16人より多い場合 -->
       <div id="round2OverText" hidden>
-        <p>「特別」に選んだメンバーが</p>
+        <p>"特別"に選んだメンバーが</p>
         <p><b id="round2OverCount"></b></p>
-        <p>予選枠をoverしています。</p>
-        <p>予選から外すメンバーを選んでください。</p>
+        <p>予選枠をoverしています</p>
+        <p>残念ながらROUND2の候補から外すメンバーを選んでください</p>
       </div>
 
       <!-- LOVEが16人の場合 -->
       <div id="round2FullText" hidden>
-        <p>「特別」に選んだ16人が予選を通過しました。</p>
+        <p>"特別"に選んだ16人が予選を通過しました</p>
       </div>
 
       <!-- LOVEが16人未満の場合 -->
       <div id="round2UnderText" hidden>
-        <p>「特別」に選んだメンバーは全員予選を通過しました。</p>
-        <p>残りの枠の候補をまとめて順番に表示します。</p>
-        <p>6人の中から<b id="round2RemainingCount"></b>自由に選んで「NEXT」を押してください。</p>
+        <p>"特別"に選んだメンバーは全員予選を通過しました</p>
+        <p>ROUND2に進めるのは残り<b id="round2RemainingCount"></b>です</p>
+        <p>好きなメンバーを<b>0~4人</b>自由に選択して「NEXT」を押してください<br>
+          *選ばなかったメンバーも、枠にまだ余りがあれば再び回ってきます</p>
       </div>
 
       <button id="round2StartButton">START</button>
@@ -86,13 +90,15 @@
     </section>
 
 
+  <!--- ROUND3 --->
+  <!--- ROUND3 --->
     <section id="finalIntro" hidden>
       <h2>ROUND2</h2>
 
       <div id="finalIntroText">
-        <p>候補が4人ずつ表示されます</p>
-        <p>各グループで1位から好きな順番に選択してください</p>
-        <p>*<b>3位まで選択すると自動で次のグループに進みます</b></p>
+        <p>予選を勝ち抜いた16人から6人まで絞ります</p>
+        <p>候補が4人ずつ表示されます<br>各グループで1位から好きな順番に選択してください</p>
+        <p><b>*3位まで選択すると自動で次のグループに進みます</b></p>
         <p>「BACK」を押すとこの画面まで戻ります。</p>
       </div>
 
