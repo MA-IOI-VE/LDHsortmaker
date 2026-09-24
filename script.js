@@ -77,7 +77,6 @@ startButton.addEventListener("click", () => {
 });
 
 
-
 // ========================================
 // ========================================
 // 第2ラウンド テスト
@@ -167,7 +166,6 @@ let startY = 0;
 let currentX = 0;
 let currentY = 0;
 let animationFrame = null;
-
 
 // ----------------------------------------
 // カードを掴んだとき
@@ -279,11 +277,6 @@ card.addEventListener("pointerup", () => {
 
 });
 
-
-// ----------------------------------------
-// カードを掴んだとき
-// ----------------------------------------
-
 card.addEventListener("pointerdown", (event) => {
   isDragging = true;
 
@@ -297,7 +290,6 @@ card.addEventListener("pointerdown", (event) => {
 
   card.setPointerCapture(event.pointerId);
 });
-
 
 // ----------------------------------------
 // カードを動かしているとき
@@ -337,6 +329,7 @@ card.style.transform =
     animationFrame = null;
   });
 });
+
 
 // ========================================
 // スワイプ方向を判定
@@ -384,6 +377,7 @@ backButton.addEventListener("click", () => {
 
   showMember(shuffledMembers[currentIndex]);
 });
+
 
 
 // ========================================
