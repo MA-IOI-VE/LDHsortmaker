@@ -1208,6 +1208,8 @@ function startFinalRanking6() {
   console.log("top6Ranking", top6Ranking);
   console.log("人数", top6Ranking.length);
 
+  document.getElementById("finalScreen").hidden = false;
+
   final6Members = [...top6Ranking];
 
   // 第2ラウンドの順位を基準に並べる
