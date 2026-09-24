@@ -405,8 +405,10 @@ function showRound2Intro() {
     round2IntroText.textContent =
       "「特別」に選んだ16人が予選を通過します。";
   } else {
-    round2IntroText.textContent =
-      "「特別」に選んだメンバーは全員予選を通過しました。\n残りの枠の候補をまとめて順番に表示します。\n6人の中から<b>4人まで<b>自由に選んで「NEXT」を押してください。";
+    round2IntroText.innerHTML =
+  "「特別」に選んだメンバーは全員予選を通過しました。<br>" +
+  "残りの枠の候補をまとめて順番に表示します。<br>" +
+  "6人の中から<b>4人まで</b>自由に選んで「NEXT」を押してください。";
   }
 }
 
@@ -768,8 +770,11 @@ function finishRound2() {
 
   document.getElementById("round2Screen").hidden = true;
 
-  document.getElementById("finalIntroText").textContent =
-  "候補が4人ずつ表示されます\n各グループで1位から好きな順番に選択してください\n*<b>3位まで選択すると自動で次のグループに進みます\n\n「BACK」を押すとこの画面まで戻ります。<b>";
+  document.getElementById("finalIntroText").innerHTML =
+  "候補が4人ずつ表示されます<br>" +
+  "各グループで1位から好きな順番に選択してください<br>" +
+  "*<b>3位まで選択すると自動で次のグループに進みます</b><br>" +
+  "「BACK」を押すとこの画面まで戻ります。";
 
   document.getElementById("finalIntro").hidden = false;
 }
@@ -877,7 +882,7 @@ function showFinalGroup() {
   currentGroupRanking = [];
 
   document.getElementById("finalTitle").textContent =
-  "第2ラウンド";
+  "ROUND2";
 
   document.getElementById("finalProgress").textContent =
     "1位から順番に選択してください";
@@ -1136,7 +1141,9 @@ function finishMergeRound() {
     document.getElementById("finalScreen").hidden = true;
 
     document.getElementById("finalBattleIntroText").textContent =
-      "候補が2人ずつ表示されます\nより好きな方を選択してください\n\n「BACK」を押すとこの画面まで戻ります。";
+      "候補が2人ずつ表示されます<br>"
+      "より好きな方を選択してください<br>"
+      "「BACK」を押すとこの画面まで戻ります。";
 
     document.getElementById("finalBattleIntro").hidden = false;
 
@@ -1156,7 +1163,7 @@ function finishMergeRound() {
 function showMergeComparisonScreen() {
 
   document.getElementById("finalTitle").textContent =
-    "第2ラウンド";
+    "ROUND2";
 
   document.getElementById("finalProgress").textContent =
   "1位から順番に選択してください";
