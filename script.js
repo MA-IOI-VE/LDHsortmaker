@@ -398,7 +398,6 @@ function showRound2Intro() {
 
   document.getElementById("sortScreen").hidden = true;
   round2Intro.hidden = false;
-  round2StartButton.textContent = "START";
 
   // 一旦全部非表示
   document.getElementById("round2OverText").hidden = true;
@@ -420,7 +419,6 @@ function showRound2Intro() {
   } else if (results.love.length === 16) {
 
   document.getElementById("round2FullText").hidden = false;
-  round2StartButton.textContent = "NEXT";
   
   // LOVEが16人未満
   } else {
