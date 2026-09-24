@@ -878,7 +878,7 @@ round2ConfirmButton.addEventListener("click", () => {
 
   showRound2SelectionGroup();
   return;
-}
+
 
   // LOVEが17人以上の場合は、LOVE敗退ルート
   if (results.love.length >= 17) {
