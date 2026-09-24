@@ -1028,7 +1028,7 @@ function startTop6Merge() {
 
   document.getElementById("finalScreen").hidden = false;
 
-  startMergeTournament();
+  showMergeComparison();
 }
 
 // ----------------------------------------
@@ -1157,7 +1157,7 @@ function finishMergeWinner() {
   }
 
   // 次の順位を決定
-  startMergeTournament();
+  showMergeComparison();
 }
 
 // ----------------------------------------
