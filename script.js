@@ -421,8 +421,6 @@ function showRound2Intro() {
 
     document.getElementById("round2FullText").hidden = false;
     round2StartButton.textContent = "NEXT";
-
-}
   
   // LOVEが16人未満
   } else {
