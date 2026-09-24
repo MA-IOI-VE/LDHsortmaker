@@ -475,8 +475,9 @@ let round2LikeIndex = 0;
 let round2NormalMembers = [];
 let round2NormalIndex = 0;
 let round2NormalSelected = [];
-let round2SelectionType = "like";
+let round2NormalUnselected = [];
 let round2NormalPassSelected = [];
+let round2SelectionType = "like";
 
 // 現在の「6人」の中で選択したメンバー
 let round2LikeSelected = [];
@@ -782,16 +783,52 @@ round2ConfirmButton.addEventListener("click", () => {
 
   if (round2SelectionType === "normal") {
 
+  // 今回の6人から選んだ人を累積
   round2NormalPassSelected.push(
     ...round2NormalSelected
   );
 
+  // 今回の6人から選ばなかった人を累積
+  const currentGroup =
+    round2NormalMembers.slice(
+      round2NormalIndex,
+      round2NormalIndex + 6
+    );
+
+  currentGroup.forEach(member => {
+
+    const isSelected =
+      round2NormalSelected.some(
+        selected => selected.id === member.id
+      );
+
+    if (!isSelected) {
+      round2NormalUnselected.push(member);
+    }
+
+  });
+
+  // 次の6人へ
+  round2NormalIndex += 6;
+
+  // まだ一巡していない
+  if (
+    round2NormalIndex <
+    round2NormalMembers.length
+  ) {
+    showRound2SelectionGroup();
+    return;
+  }
+
+  // 一巡終了
   const required =
     16 - results.love.length;
 
-  if (
-    round2NormalPassSelected.length >= required
-  ) {
+  const totalSelected =
+    round2NormalPassSelected.length;
+
+  // 必要人数ちょうど
+  if (totalSelected === required) {
 
     results.love.push(
       ...round2NormalPassSelected
@@ -804,6 +841,37 @@ round2ConfirmButton.addEventListener("click", () => {
     finishRound2();
     return;
   }
+
+  // 選びすぎ → 選んだ人だけでもう一巡
+  if (totalSelected > required) {
+
+    round2NormalMembers =
+      [...round2NormalPassSelected];
+
+    round2NormalIndex = 0;
+    round2NormalSelected = [];
+    round2NormalUnselected = [];
+    round2NormalPassSelected = [];
+
+    showRound2SelectionGroup();
+    return;
+  }
+
+  // 足りない → 選ばなかった人でもう一巡
+  if (totalSelected < required) {
+
+    round2NormalMembers =
+      [...round2NormalUnselected];
+
+    round2NormalIndex = 0;
+    round2NormalSelected = [];
+    round2NormalUnselected = [];
+    round2NormalPassSelected = [];
+
+    showRound2SelectionGroup();
+    return;
+  }
+}
 
   round2NormalIndex += 6;
   round2NormalSelected = [];
@@ -882,6 +950,7 @@ if (totalSelected < 16) {
 
   round2NormalIndex = 0;
   round2NormalSelected = [];
+  round2NormalUnselected = [];
   round2NormalPassSelected = [];
 
   round2SelectionType = "normal";
