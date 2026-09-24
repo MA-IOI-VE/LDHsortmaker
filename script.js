@@ -465,9 +465,10 @@ function startRound2() {
   }
 }
 
-// ----------------------------------------
-// ❤️メンバーから選ぶ
-// ----------------------------------------
+
+// ========================================
+// パターン1.残り枠
+// ========================================
 
 let round2LikeMembers = [];
 let round2LikeIndex = 0;
@@ -481,7 +482,6 @@ let round2PassUnselected = [];
 let round2LikeOrder = [];
 let finalGroups = [];
 
-
 function startLikeSelection() {
   round2LikeMembers = [...results.like];
   round2LikeIndex = 0;
@@ -494,7 +494,7 @@ function startLikeSelection() {
 }
 
 // ----------------------------------------
-// ❤️6人のグループを表示
+// 6人のグループを表示
 // ----------------------------------------
 
 function showLikeGroup() {
@@ -530,7 +530,7 @@ function showLikeGroup() {
 }
 
 // ----------------------------------------
-// ❤️「次へ」ボタンの状態
+// 「次へ」ボタンの状態
 // ----------------------------------------
 
 function updateLikeButton() {
@@ -554,7 +554,7 @@ function updateLikeButton() {
 }
 
 // ----------------------------------------
-// ❤️選択・選択解除
+// 選択・選択解除
 // ----------------------------------------
 
 function toggleLikeSelection(member, card) {
@@ -582,7 +582,7 @@ function toggleLikeSelection(member, card) {
 }
 
 // ----------------------------------------
-// ❤️選択人数の表示
+// 選択人数の表示
 // ----------------------------------------
 
 function updateLikeProgress() {
@@ -592,9 +592,9 @@ function updateLikeProgress() {
     `${round2LikeSelected.length}/${remainingSlots}`;
 }
 
-// ----------------------------------------
-// 💖メンバーから予選敗退者を選ぶ
-// ----------------------------------------
+// ========================================
+// パターン2.予選敗退を選ぶ
+// ========================================
 
 function startLoveSelection() {
   const loveMembers = [...results.love];
@@ -761,9 +761,8 @@ round2ConfirmButton.addEventListener("click", () => {
   showLikeGroup();
 });
 
-
   // ----------------------------------------
-  // ❤️がちょうど16人の場合
+  // LOVEがちょうど16人の場合
   // ----------------------------------------
 
 function finishRound2() {
@@ -857,7 +856,6 @@ function startFinalRanking() {
   showFinalGroup();
 }
 
-
 // ----------------------------------------
 // 4人のグループを表示
 // ----------------------------------------
@@ -895,7 +893,6 @@ function showFinalGroup() {
     area.appendChild(card);
   });
 }
-
 
 // ----------------------------------------
 // 4人の順位を決める
@@ -1013,7 +1010,7 @@ finalBackButton.addEventListener("click", () => {
 });
 
 // ========================================
-// 全体TOP6決定
+// TOP6決定
 // ========================================
 
 let top6Ranking = [];
@@ -1022,7 +1019,7 @@ let mergeCandidates = [];
 let mergeCurrentRanking = [];
 
 // ----------------------------------------
-// 全体TOP6決定を開始
+// TOP6の決定を開始
 // ----------------------------------------
 
 function startTop6Merge() {
@@ -1230,7 +1227,6 @@ function startFinalRanking6() {
   showFinal6Comparison();
 }
 
-
 // ----------------------------------------
 // 2択の比較画面
 // ----------------------------------------
@@ -1253,7 +1249,6 @@ function showFinal6Comparison() {
     return;
   }
 
-
   // 最初の1人
   if (final6Ranking.length === 0) {
 
@@ -1267,11 +1262,8 @@ function showFinal6Comparison() {
 
     return;
   }
-
-
   const currentMember =
     final6Members[final6CurrentMemberIndex];
-
 
   // 下位側から比較する
   const targetIndex =
@@ -1317,7 +1309,6 @@ function showFinal6Comparison() {
     }
   );
 
-
   // 比較対象
   const targetCard =
     document.createElement("div");
@@ -1341,11 +1332,9 @@ function showFinal6Comparison() {
     }
   );
 
-
   area.appendChild(currentCard);
   area.appendChild(targetCard);
 }
-
 
 // ----------------------------------------
 // 2択の結果を処理
@@ -1408,7 +1397,6 @@ function selectFinal6Member(selectedMember) {
 
   showFinal6Comparison();
 }
-
 
 // ----------------------------------------
 // 最終結果
