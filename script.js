@@ -472,6 +472,7 @@ function startRound2() {
 
 let round2LikeMembers = [];
 let round2LikeIndex = 0;
+
 // 現在の「6人」の中で選択したメンバー
 let round2LikeSelected = [];
 // 今回の一巡で選択されたメンバー
