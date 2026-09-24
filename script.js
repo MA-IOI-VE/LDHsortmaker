@@ -879,7 +879,7 @@ function showFinalGroup() {
   "第2ラウンド";
 
   document.getElementById("finalProgress").textContent =
-    `${currentFinalGroup + 1} / ${finalGroups.length}`;
+    "1位から順番に選択してください";
 
   const area = document.getElementById("finalArea");
 
