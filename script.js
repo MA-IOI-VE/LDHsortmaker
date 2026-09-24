@@ -87,9 +87,9 @@ const testRound2Button =
   document.getElementById("testRound2Button");
 
 testRound2Button.addEventListener("click", () => {
-results.love = [...members.slice(0, 16)];
-results.like = [...members.slice(16, 20)];
-results.normal = [...members.slice(20, 75)];
+results.love = [...members.slice(0, 10)];
+results.like = [...members.slice(10, 13)];
+results.normal = [...members.slice(13, 75)];
 
 console.log("テスト：showRound2Intro実行");
 
@@ -395,7 +395,7 @@ const round2StartButton =
   document.getElementById("round2StartButton");
 
 function showRound2Intro() {
-  
+
   round2StartButton.textContent = "START";
   document.getElementById("sortScreen").hidden = true;
   round2Intro.hidden = false;
