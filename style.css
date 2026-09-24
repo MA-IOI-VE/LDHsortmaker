@@ -58,6 +58,15 @@ h1 {
   font-style: normal;
 }
 
+h2 {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 40px;
+  font-family: "Vina Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 p {
   margin: 0 0 32px;
 }
@@ -134,15 +143,15 @@ button:hover {
 ======================================== */
 
 #memberCard.card-love {
-  border: 6px solid #e53935;
+  outline: 6px solid #e53935;
 }
 
 #memberCard.card-like {
-  border: 6px solid #F1F1F1;
+  outline: 6px solid #F1F1F1;
 }
 
 #memberCard.card-normal {
-  border: 6px solid #444444;
+  outline: 6px solid #444444;
 }
 
 #memberImage,

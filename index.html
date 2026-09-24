@@ -17,12 +17,12 @@
   <main>
 
     <div id="startScreen">
-  <h1>LDH My Best 6</h1>
-
-  <button id="startButton">START</button>
-  <button id="testRound2Button">第2ラウンドをテスト</button>
-  
-</div>
+      <h1>LDH My Best 6</h1>
+      <p>106人から好きなメンバーTOP6を選びます</p>
+      <button id="startButton">START</button>
+      <button id="testRound2Button">第2ラウンドをテスト</button>
+      
+    </div>
 
   <!--- 書類選考 --->
   <!--- 書類選考 --->
@@ -59,9 +59,7 @@
 
       <!-- LOVEが16人より多い場合 -->
       <div id="round2OverText" hidden>
-        <p>"特別"に選んだメンバーが</p>
-        <p><b id="round2OverCount"></b></p>
-        <p>予選枠をoverしています</p>
+        <p>"特別"に選んだメンバーが<br><b id="round2OverCount"></b></p><br><p>予選枠をoverしています</p>
         <p>残念ながらROUND2の候補から外すメンバーを選んでください</p>
       </div>
 
@@ -72,8 +70,7 @@
 
       <!-- LOVEが16人未満の場合 -->
       <div id="round2UnderText" hidden>
-        <p>"特別"に選んだメンバーは全員予選を通過しました</p>
-        <p>ROUND2に進めるのは残り<b id="round2RemainingCount"></b>です</p>
+        <p>"特別"に選んだメンバーは全員予選を通過しました<br>それ以外のメンバーからROUND2に進むメンバーを決めます</p>
         <p>好きなメンバーを<b>0~4人</b>自由に選択して「NEXT」を押してください<br>
           *選ばなかったメンバーも、枠にまだ余りがあれば再び回ってきます</p>
       </div>
