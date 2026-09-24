@@ -538,41 +538,52 @@ function showRound2SelectionGroup() {
     <p>${member.group}</p>
   `;
 
-   card.addEventListener("click", () => {
+card.addEventListener("click", () => {
 
-      console.log("カードクリック", member.name);
+  console.log("カードクリック", member.name);
 
-    const selected =
-      isNormal
-        ? round2NormalSelected
-        : round2LikeSelected;
+  const selected =
+    isNormal
+      ? round2NormalSelected
+      : round2LikeSelected;
 
-    const remainingSlots =
-      16 - results.love.length;
+  const remainingSlots =
+    16 - results.love.length;
 
-    if (
-      selected.some(
-        item => item.id === member.id
-      )
-    ) {
-      return;
-    }
+  console.log(
+    "選択前",
+    selected.length,
+    "残り枠",
+    remainingSlots
+  );
 
-    if (selected.length >= 4) {
-      return;
-    }
+  if (
+    selected.some(
+      item => item.id === member.id
+    )
+  ) {
+    console.log("既に選択済み");
+    return;
+  }
 
-    if (selected.length >= remainingSlots) {
-      return;
-    }
+  if (selected.length >= 4) {
+    console.log("4人上限");
+    return;
+  }
 
-    selected.push(member);
+  if (selected.length >= remainingSlots) {
+    console.log("残り枠上限");
+    return;
+  }
 
-    card.classList.add("selected");
+  selected.push(member);
 
-    updateRound2SelectionButton();
-  });
+  console.log("選択後", selected.length);
 
+  card.classList.add("selected");
+
+  updateRound2SelectionButton();
+});
     area.appendChild(card);
   });
 
