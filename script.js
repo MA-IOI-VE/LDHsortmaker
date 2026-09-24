@@ -392,23 +392,48 @@ backButton.addEventListener("click", () => {
 // ========================================
 // ========================================
 
-const round2Intro = document.getElementById("round2Intro");
-const round2IntroText = document.getElementById("round2IntroText");
+const round2Intro =
+  document.getElementById("round2Intro");
+
 const round2StartButton =
   document.getElementById("round2StartButton");
 
 function showRound2Intro() {
+
   document.getElementById("sortScreen").hidden = true;
   round2Intro.hidden = false;
 
-  if (results.love.length === 16) {
-    round2IntroText.textContent =
-      "「特別」に選んだ16人が予選を通過します。";
+  // 一旦全部非表示
+  document.getElementById("round2OverText").hidden = true;
+  document.getElementById("round2FullText").hidden = true;
+  document.getElementById("round2UnderText").hidden = true;
+
+  // LOVEが16人より多い
+  if (results.love.length > 16) {
+
+    const overCount =
+      results.love.length - 16;
+
+    document.getElementById("round2OverCount").textContent =
+      `${overCount}人`;
+
+    document.getElementById("round2OverText").hidden = false;
+
+  // LOVEが16人
+  } else if (results.love.length === 16) {
+
+    document.getElementById("round2FullText").hidden = false;
+
+  // LOVEが16人未満
   } else {
-    round2IntroText.innerHTML =
-  "「特別」に選んだメンバーは全員予選を通過しました。<br>" +
-  "残りの枠の候補をまとめて順番に表示します。<br>" +
-  "6人の中から<b>4人まで</b>自由に選んで「NEXT」を押してください。";
+
+    const remainingCount =
+      16 - results.love.length;
+
+    document.getElementById("round2RemainingCount").textContent =
+      `${remainingCount}人まで`;
+
+    document.getElementById("round2UnderText").hidden = false;
   }
 }
 
@@ -769,13 +794,6 @@ function finishRound2() {
   console.log("最終4グループ:", finalGroups);
 
   document.getElementById("round2Screen").hidden = true;
-
-  document.getElementById("finalIntroText").innerHTML =
-  "候補が4人ずつ表示されます<br>" +
-  "各グループで1位から好きな順番に選択してください<br>" +
-  "*<b>3位まで選択すると自動で次のグループに進みます</b><br>" +
-  "「BACK」を押すとこの画面まで戻ります。";
-
   document.getElementById("finalIntro").hidden = false;
 }
 
@@ -1126,12 +1144,6 @@ function finishMergeRound() {
       top6Ranking.slice(0, 6);
 
     document.getElementById("finalScreen").hidden = true;
-
-    document.getElementById("finalBattleIntroText").textContent =
-      "候補が2人ずつ表示されます<br>"
-      "より好きな方を選択してください<br>"
-      "「BACK」を押すとこの画面まで戻ります。";
-
     document.getElementById("finalBattleIntro").hidden = false;
 
     return;
