@@ -235,6 +235,9 @@ button:hover {
 .round2Card.eliminated {
   opacity: 0.4;
 }
+.round2Card.selected {
+  border: 5px solid #e53935;
+}
 
 
 /* ========================================
