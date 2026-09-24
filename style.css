@@ -111,7 +111,7 @@ button:hover {
 .memberCard {
   position: absolute;
   inset: 0;
-  border: 6px solid transparent;
+  border: 1px solid var(--accent);
   border-radius: 10px;
   background: var(--surface);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
@@ -122,10 +122,9 @@ button:hover {
   z-index: 2;
   cursor: grab;
   transition:
-    transform 0.2s ease,
-    border 0.2s ease,
-    box-shadow 0.2s ease;
-  will-change: transform;
+  transform 0.2s ease,
+  border-color 0.2s ease,
+  box-shadow 0.2s ease;
 }
 
 #memberCard:active {
@@ -144,14 +143,23 @@ button:hover {
 
 #memberCard.card-love {
   border-color: #e53935;
+  box-shadow:
+    0 0 0 5px #e53935,
+    0 4px 8px rgba(0, 0, 0, 0.10);
 }
 
 #memberCard.card-like {
   border-color: #F1F1F1;
+  box-shadow:
+    0 0 0 5px #F1F1F1,
+    0 4px 8px rgba(0, 0, 0, 0.10);
 }
 
 #memberCard.card-normal {
   border-color: #444444;
+  box-shadow:
+    0 0 0 5px #444444,
+    0 4px 8px rgba(0, 0, 0, 0.10);
 }
 
 #memberImage,
