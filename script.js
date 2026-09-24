@@ -850,16 +850,6 @@ let finalRanking = [];
 let finalGroupRankings = [];
 let currentGroupRanking = [];
 
-// ========================================
-// 全体TOP6
-// ========================================
-
-let top6Ranking = [];
-let mergePositions = [0, 0, 0, 0];
-let mergeCandidates = [];
-let mergeCurrentWinner = null;
-let mergeNextGroup = 0;
-
 // ----------------------------------------
 // 最終順位決定を開始
 // ----------------------------------------
