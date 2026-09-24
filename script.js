@@ -422,13 +422,6 @@ function showRound2Intro() {
   
   // LOVEが16人未満
   } else {
-
-    const remainingCount =
-      16 - results.love.length;
-
-    document.getElementById("round2RemainingCount").textContent =
-      `${remainingCount}人まで`;
-
     document.getElementById("round2UnderText").hidden = false;
   }
 }
