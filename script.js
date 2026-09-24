@@ -1280,7 +1280,7 @@ function showFinal6Comparison() {
     "最終決戦";
 
   document.getElementById("finalProgress").textContent =
-    `${final6CurrentMemberIndex + 1}人目　順位を決定`;
+    "1人を選んでください";
 
 
   const area =
