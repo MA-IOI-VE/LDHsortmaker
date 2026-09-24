@@ -472,6 +472,10 @@ function startRound2() {
 
 let round2LikeMembers = [];
 let round2LikeIndex = 0;
+let round2NormalMembers = [];
+let round2NormalIndex = 0;
+let round2NormalSelected = [];
+let round2SelectionType = "like";
 
 // 現在の「6人」の中で選択したメンバー
 let round2LikeSelected = [];
@@ -498,36 +502,103 @@ function startLikeSelection() {
 // 6人のグループを表示
 // ----------------------------------------
 
-function showLikeGroup() {
-  const area = document.getElementById("round2Area");
+function showRound2SelectionGroup() {
+
+  const isNormal =
+    round2SelectionType === "normal";
+
+  const members =
+    isNormal
+      ? round2NormalMembers
+      : round2LikeMembers;
+
+  const index =
+    isNormal
+      ? round2NormalIndex
+      : round2LikeIndex;
+
+  const group =
+    members.slice(index, index + 6);
+
+  const area =
+    document.getElementById("round2Area");
 
   area.innerHTML = "";
-  round2LikeSelected = [];
-
-  const group = round2LikeMembers.slice(
-    round2LikeIndex,
-    round2LikeIndex + 6
-  );
 
   group.forEach(member => {
-    const card = document.createElement("div");
+
+    const card =
+      document.createElement("div");
 
     card.className = "round2Card";
 
     card.innerHTML = `
-      <img src="images/${member.id}.jpg" alt="${member.name}">
+      <img src="${member.image}" alt="">
       <h3>${member.name}</h3>
       <p>${member.group}</p>
     `;
 
-    card.addEventListener("click", () => {
-      toggleLikeSelection(member, card);
-    });
+   card.addEventListener("click", () => {
+
+    const selected =
+      isNormal
+        ? round2NormalSelected
+        : round2LikeSelected;
+
+    const remainingSlots =
+      16 - results.love.length;
+
+    if (
+      selected.some(
+        item => item.id === member.id
+      )
+    ) {
+      return;
+    }
+
+    if (selected.length >= 4) {
+      return;
+    }
+
+    if (selected.length >= remainingSlots) {
+      return;
+    }
+
+    selected.push(member);
+
+    card.classList.add("selected");
+
+    updateRound2SelectionButton();
+  });
 
     area.appendChild(card);
   });
 
-  updateLikeButton();
+  updateRound2SelectionButton();
+}
+
+function updateRound2SelectionButton() {
+
+  const button =
+    document.getElementById("round2ConfirmButton");
+
+  const selected =
+    round2SelectionType === "normal"
+      ? round2NormalSelected
+      : round2LikeSelected;
+
+  const remaining =
+    16 - results.love.length;
+
+  button.disabled = false;
+  button.textContent = "NEXT";
+}
+
+function showLikeGroup() {
+
+  round2SelectionType = "like";
+
+  showRound2SelectionGroup();
 }
 
 // ----------------------------------------
@@ -687,6 +758,36 @@ const round2ConfirmButton =
 
 round2ConfirmButton.addEventListener("click", () => {
 
+  if (round2SelectionType === "normal") {
+
+  const remainingSlots =
+    16 - results.love.length;
+
+  round2NormalSelected.forEach(member => {
+    results.love.push(member);
+    round2LikeOrder.push(member);
+  });
+
+  if (
+    round2NormalSelected.length >= remainingSlots
+  ) {
+    finishRound2();
+    return;
+  }
+
+  round2NormalIndex += 6;
+  round2NormalSelected = [];
+
+  if (
+    round2NormalIndex <
+    round2NormalMembers.length
+  ) {
+    showRound2SelectionGroup();
+    return;
+  }
+
+}
+
   // LOVEが17人以上の場合は、LOVE敗退ルート
   if (results.love.length >= 17) {
     results.love = results.love.filter(
@@ -745,13 +846,24 @@ round2ConfirmButton.addEventListener("click", () => {
     round2LikeMembers = [...round2PassSelected];
   }
 
-  // 15人以下 → 今回選ばれなかった人を再選抜
-  if (totalSelected < 16) {
-    results.love.push(...round2PassSelected);
-    round2LikeOrder.push(...round2PassSelected);
+  // LOVE + LIKE が16人未満
+if (totalSelected < 16) {
 
-    round2LikeMembers = [...round2PassUnselected];
-  }
+  // LOVEとLIKEを全員通過させる
+  results.love.push(...round2PassSelected);
+  round2LikeOrder.push(...round2PassSelected);
+
+  // NORMALを選抜対象にする
+  round2NormalMembers = [...results.normal];
+
+  round2NormalIndex = 0;
+  round2NormalSelected = [];
+
+  round2SelectionType = "normal";
+
+  showRound2SelectionGroup();
+  return;
+}
 
   // 次の一巡を開始
   round2LikeIndex = 0;
@@ -1167,9 +1279,7 @@ function showMergeComparisonScreen() {
       <p>${member.group}</p>
     `;
 
-    card.addEventListener(
-      "click",
-      () => {
+    card.addEventListener("click",() => {
         selectMergeMember(member, card);
       }
     );
