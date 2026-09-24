@@ -540,6 +540,8 @@ function showRound2SelectionGroup() {
 
    card.addEventListener("click", () => {
 
+      console.log("カードクリック", member.name);
+
     const selected =
       isNormal
         ? round2NormalSelected
