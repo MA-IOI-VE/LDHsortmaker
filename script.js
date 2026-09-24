@@ -476,6 +476,7 @@ let round2NormalMembers = [];
 let round2NormalIndex = 0;
 let round2NormalSelected = [];
 let round2SelectionType = "like";
+let round2NormalPassSelected = [];
 
 // 現在の「6人」の中で選択したメンバー
 let round2LikeSelected = [];
@@ -773,17 +774,25 @@ round2ConfirmButton.addEventListener("click", () => {
 
   if (round2SelectionType === "normal") {
 
-  const remainingSlots =
+  round2NormalPassSelected.push(
+    ...round2NormalSelected
+  );
+
+  const required =
     16 - results.love.length;
 
-  round2NormalSelected.forEach(member => {
-    results.love.push(member);
-    round2LikeOrder.push(member);
-  });
-
   if (
-    round2NormalSelected.length >= remainingSlots
+    round2NormalPassSelected.length >= required
   ) {
+
+    results.love.push(
+      ...round2NormalPassSelected
+    );
+
+    round2LikeOrder.push(
+      ...round2NormalPassSelected
+    );
+
     finishRound2();
     return;
   }
@@ -791,14 +800,8 @@ round2ConfirmButton.addEventListener("click", () => {
   round2NormalIndex += 6;
   round2NormalSelected = [];
 
-  if (
-    round2NormalIndex <
-    round2NormalMembers.length
-  ) {
-    showRound2SelectionGroup();
-    return;
-  }
-
+  showRound2SelectionGroup();
+  return;
 }
 
   // LOVEが17人以上の場合は、LOVE敗退ルート
@@ -871,6 +874,7 @@ if (totalSelected < 16) {
 
   round2NormalIndex = 0;
   round2NormalSelected = [];
+  round2NormalPassSelected = [];
 
   round2SelectionType = "normal";
 
