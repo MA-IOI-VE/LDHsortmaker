@@ -873,12 +873,6 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 }
 
-  round2NormalIndex += 6;
-  round2NormalSelected = [];
-
-  showRound2SelectionGroup();
-  return;
-
 
   // LOVEが17人以上の場合は、LOVE敗退ルート
   if (results.love.length >= 17) {
