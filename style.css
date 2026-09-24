@@ -53,14 +53,14 @@ h1 {
   margin: 0 0 12px;
   color: var(--accent);
   font-size: 70px;
-  font-family: "Mouse Memoirs", sans-serif;
-  letter-spacing: -0.em;
+  font-family: "Vina Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 p {
   margin: 0 0 32px;
 }
-
 
 /* ========================================
    ボタン
