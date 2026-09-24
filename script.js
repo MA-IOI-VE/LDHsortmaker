@@ -794,19 +794,18 @@ finalStartButton.addEventListener("click", () => {
 function createFinalGroups() {
   const loveMembers = [...results.love];
 
-  // ❤️の選択順
-  const likeMembers = [...round2LikeOrder];
+  // round2LikeOrderに入っている人のうち、
+  // LOVEにも入っている人は除外する
+  const loveIds = new Set(
+    loveMembers.map(member => member.id)
+  );
 
-  // ----------------------------------------
-  // 💖をランダムに並べる
-  // ----------------------------------------
+  const likeMembers =
+    [...round2LikeOrder].filter(
+      member => !loveIds.has(member.id)
+    );
 
   loveMembers.sort(() => Math.random() - 0.5);
-
-
-  // ----------------------------------------
-  // 4グループを作る
-  // ----------------------------------------
 
   const groups = [
     [],
@@ -815,19 +814,9 @@ function createFinalGroups() {
     []
   ];
 
-
-  // ----------------------------------------
-  // ❤️を選択順に4グループへ分散
-  // ----------------------------------------
-
   likeMembers.forEach((member, index) => {
     groups[index % 4].push(member);
   });
-
-
-  // ----------------------------------------
-  // 残りの枠に💖をランダム配置
-  // ----------------------------------------
 
   const remainingLove = [...loveMembers];
 
@@ -837,12 +826,10 @@ function createFinalGroups() {
     }
   });
 
-
   console.log("最終4グループ:", groups);
 
   return groups;
 }
-
 
 // ========================================
 // ========================================
