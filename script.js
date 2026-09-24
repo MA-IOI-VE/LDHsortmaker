@@ -235,7 +235,7 @@ card.addEventListener("pointerup", () => {
       : 0;
 
   card.style.transition =
-    "transform 0.35s ease-out";
+    "transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)";
 
   card.style.transform =
     `translate(${flyX}px, ${flyY}px) rotate(${rotation}deg)`;
