@@ -91,6 +91,8 @@ results.love = [...members.slice(0, 10)];
 results.like = [...members.slice(10, 20)];
 results.normal = [...members.slice(20, 75)];
 
+console.log("テスト：showRound2Intro実行");
+
   showRound2Intro();
 });
 
@@ -260,7 +262,7 @@ card.addEventListener("pointerup", () => {
       document.getElementById("nextCard").style.zIndex = "1";
 
     } else {
-
+      
       showRound2Intro();
 
     }
