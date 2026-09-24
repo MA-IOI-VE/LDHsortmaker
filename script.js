@@ -431,14 +431,9 @@ function showRound2Intro() {
   }
 }
 
-
 // ========================================
 // 第2ラウンド開始ボタン
 // ========================================
-
-// ----------------------------------------
-// 第2ラウンド開始ボタン
-// ----------------------------------------
 
 round2StartButton.addEventListener("click", () => {
   round2Intro.hidden = true;
@@ -446,6 +441,7 @@ round2StartButton.addEventListener("click", () => {
 
   startRound2();
 });
+
 
 
 // ========================================
@@ -500,7 +496,6 @@ function startLikeSelection() {
   showLikeGroup();
 }
 
-
 // ----------------------------------------
 // ❤️6人のグループを表示
 // ----------------------------------------
@@ -537,7 +532,6 @@ function showLikeGroup() {
   updateLikeButton();
 }
 
-
 // ----------------------------------------
 // ❤️「次へ」ボタンの状態
 // ----------------------------------------
@@ -561,7 +555,6 @@ function updateLikeButton() {
   button.textContent =
     `NEXT`;
 }
-
 
 // ----------------------------------------
 // ❤️選択・選択解除
@@ -602,7 +595,6 @@ function updateLikeProgress() {
     `${round2LikeSelected.length}/${remainingSlots}`;
 }
 
-
 // ----------------------------------------
 // 💖メンバーから予選敗退者を選ぶ
 // ----------------------------------------
@@ -640,7 +632,6 @@ function startLoveSelection() {
   updateRound2Button(eliminateCount);
 }
 
-
 // ----------------------------------------
 // 予選敗退の選択・解除
 // ----------------------------------------
@@ -666,7 +657,6 @@ function toggleRound2Elimination(member, card) {
 
   updateRound2Button(results.love.length - 16);
 }
-
 
 // ----------------------------------------
 // 「次へ」ボタンの状態
