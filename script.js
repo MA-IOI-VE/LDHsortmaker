@@ -406,7 +406,7 @@ function showRound2Intro() {
       "「特別」に選んだ16人が予選を通過します。";
   } else {
     round2IntroText.textContent =
-      "「特別」に選んだメンバーは全員予選を通過します。\n残りのメンバーを6人ずつ表示します。そこから予選を通過させたいメンバーを選んで「NEXT」を押してください。";
+      "「特別」に選んだメンバーは全員予選を通過しました。\n残りの枠の候補をまとめて順番に表示します。\n6人の中から<b>4人まで<b>自由に選んで「NEXT」を押してください。";
   }
 }
 
@@ -538,7 +538,7 @@ function updateLikeButton() {
   button.disabled = false;
 
   button.textContent =
-    `NEXT（${round2LikeSelected.length} / ${maxSelectable}）`;
+    `NEXT`;
 }
 
 
@@ -769,7 +769,7 @@ function finishRound2() {
   document.getElementById("round2Screen").hidden = true;
 
   document.getElementById("finalIntroText").textContent =
-  "予選を通過した16人が決定しました。\n\n第2ラウンドでは、16人を4人ずつの4グループに分けます。\n各グループで1位から4位までの順位を決定してください。";
+  "候補が4人ずつ表示されます\n各グループで1位から好きな順番に選択してください\n*<b>3位まで選択すると自動で次のグループに進みます\n\n「BACK」を押すとこの画面まで戻ります。<b>";
 
   document.getElementById("finalIntro").hidden = false;
 }
@@ -999,7 +999,7 @@ const finalBattleStartButton =
   document.getElementById("finalBattleStartButton");
 
 finalBattleStartButton.addEventListener("click", () => {
-  console.log("最終決戦STARTを押しました");
+
   document.getElementById("finalBattleIntro").hidden = true;
   startFinalRanking6();
 });
@@ -1118,7 +1118,7 @@ function finishMergeRound() {
     document.getElementById("finalScreen").hidden = true;
 
     document.getElementById("finalBattleIntroText").textContent =
-      "ここから最終決戦です。\n\n決定した6人を2人ずつ比較してください。";
+      "候補が2人ずつ表示されます\nより好きな方を選択してください\n\n「BACK」を押すとこの画面まで戻ります。";
 
     document.getElementById("finalBattleIntro").hidden = false;
 
@@ -1277,10 +1277,10 @@ function showFinal6Comparison() {
 
 
   document.getElementById("finalTitle").textContent =
-    "最終決戦";
+    "ROUND3";
 
   document.getElementById("finalProgress").textContent =
-    "1人を選んでください";
+    "1人選んでください";
 
 
   const area =
