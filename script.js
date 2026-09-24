@@ -1268,6 +1268,9 @@ let final6InsertIndex = 0;
 
 function startFinalRanking6() {
 
+  console.log("top6Ranking", top6Ranking);
+  console.log("人数", top6Ranking.length);
+
   final6Members = [...top6Ranking];
 
   // 第2ラウンドの順位を基準に並べる
@@ -1289,6 +1292,13 @@ function startFinalRanking6() {
 // ----------------------------------------
 
 function showFinal6Comparison() {
+
+  console.log(
+  "current",
+  final6CurrentMemberIndex,
+  "/",
+  final6Members.length
+);
 
   // 全員の順位が決まった
   if (
