@@ -855,6 +855,7 @@ let currentGroupRanking = [];
 // ----------------------------------------
 
 function startFinalRanking() {
+  finalScreenMode = "round2";
   currentFinalGroup = 0;
   finalRanking = [];
   finalGroupRankings = [];
@@ -1003,6 +1004,23 @@ finalBattleStartButton.addEventListener("click", () => {
   document.getElementById("finalBattleIntro").hidden = true;
   startFinalRanking6();
 });
+
+const finalBackButton =
+  document.getElementById("finalBackButton");
+
+let finalScreenMode = "round2";
+
+finalBackButton.addEventListener("click", () => {
+
+  document.getElementById("finalScreen").hidden = true;
+
+  if (finalScreenMode === "round2") {
+    document.getElementById("finalIntro").hidden = false;
+  } else {
+    document.getElementById("finalBattleIntro").hidden = false;
+  }
+});
+
 // ========================================
 // 全体TOP6決定
 // ========================================
@@ -1204,7 +1222,7 @@ let final6InsertIndex = 0;
 // ----------------------------------------
 
 function startFinalRanking6() {
-
+  finalScreenMode = "finalBattle";
   console.log("top6Ranking", top6Ranking);
   console.log("人数", top6Ranking.length);
 
