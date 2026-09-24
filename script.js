@@ -533,10 +533,10 @@ function showRound2SelectionGroup() {
     card.className = "round2Card";
 
     card.innerHTML = `
-      <img src="${member.image}" alt="">
-      <h3>${member.name}</h3>
-      <p>${member.group}</p>
-    `;
+    <img src="images/${member.id}.jpg" alt="${member.name}">
+    <h3>${member.name}</h3>
+    <p>${member.group}</p>
+  `;
 
    card.addEventListener("click", () => {
 
