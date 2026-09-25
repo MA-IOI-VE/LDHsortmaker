@@ -821,6 +821,13 @@ round2ConfirmButton.addEventListener("click", () => {
   const totalSelected =
     round2NormalPassSelected.length;
 
+    console.log(
+  "NORMAL終了判定",
+  "required=", required,
+  "selected=", totalSelected,
+  "love=", results.love.length
+);
+
   // ちょうど必要人数
   if (totalSelected === required) {
 
