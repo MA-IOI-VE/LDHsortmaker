@@ -1011,15 +1011,18 @@ round2ConfirmButton.addEventListener("click", () => {
     );
 
   currentGroup.forEach(member => {
-    const isSelected =
-      round2LikeSelected.some(
-        selected => selected.id === member.id
-      );
+  const isSelected =
+    round2LikeSelected.some(
+      selected => selected.id === member.id
+    );
 
     if (!isSelected) {
       round2PassUnselected.push(member);
     }
   });
+
+  // この6人分の選択処理は完了
+  round2LikeSelected = [];
 
   // まだ次の候補がある
   round2LikeIndex += 6;
