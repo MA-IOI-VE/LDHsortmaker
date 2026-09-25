@@ -91,6 +91,8 @@ results.love = [...members.slice(0, 10)];
 results.like = [...members.slice(10, 13)];
 results.normal = [...members.slice(13, 75)];
 
+console.log("テストNORMAL人数", results.normal.length);
+
 console.log("テスト：showRound2Intro実行");
 
   showRound2Intro();
