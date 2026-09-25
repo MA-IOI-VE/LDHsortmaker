@@ -1,6 +1,9 @@
 async function createResultImage(designFile) {
 
-   console.log("createResultImage開始");
+    
+  // 日付と名前を取得
+    const userName = document.getElementById("resultUserName").value;
+    const resultDate = document.getElementById("resultDate").value;
 
   // 最終順位6人を取得
   const members = final6Ranking.slice(0, 6);
@@ -115,7 +118,7 @@ resultMembers.forEach((member, index) => {
     ctx.font = 'bold 60px sans-serif';
 
     ctx.strokeStyle = "#FFFFFF";
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 5;
         ctx.strokeText(
         member.name,
         600,
@@ -179,14 +182,14 @@ resultMembers.forEach((member, index) => {
         ctx.strokeText(
         member.group,
         pos.x + pos.w / 2,
-        pos.y + pos.h - 2
+        pos.y + pos.h - 8
         );
 
     ctx.fillStyle = "#FFFFFF";
         ctx.fillText(
         member.group,
         pos.x + pos.w / 2,
-        pos.y + pos.h - 2
+        pos.y + pos.h - 8
         );
   }
 
