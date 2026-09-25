@@ -476,6 +476,7 @@ let round2NormalMembers = [];
 let round2NormalIndex = 0;
 let round2NormalSelected = [];
 let round2NormalUnselected = [];
+let round2NormalPassSelected = [];
 let round2SelectionType = "like";
 
 // 現在の「6人」の中で選択したメンバー
