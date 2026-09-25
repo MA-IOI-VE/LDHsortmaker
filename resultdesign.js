@@ -2,8 +2,16 @@ async function createResultImage(designFile) {
 
     
   // 日付と名前を取得
-    const userName = document.getElementById("resultUserName").value;
-    const resultDate = document.getElementById("resultDate").value;
+    cconst userName = document.getElementById("resultUserName").value;
+
+    const now = new Date();
+
+    const resultDate =
+        now.getFullYear() +
+        "." +
+        String(now.getMonth() + 1).padStart(2, "0") +
+        "." +
+        String(now.getDate()).padStart(2, "0");
 
   // 最終順位6人を取得
   const members = final6Ranking.slice(0, 6);
@@ -194,6 +202,28 @@ resultMembers.forEach((member, index) => {
   }
 
 });
+
+// ========================================
+// 作成日・名前
+// ========================================
+
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
+
+let infoText = resultDate;
+
+if (userName) {
+  infoText += "　" + userName;
+}
+
+ctx.font = '18px "Yu Gothic", sans-serif';
+ctx.fillStyle = "#FFFFFF";
+
+ctx.fillText(
+  infoText,
+  canvas.width / 2,
+  1150
+);
 
 
 // ========================================
