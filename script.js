@@ -1038,7 +1038,7 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   showLikeGroup();
-});
+}});
 
 
 /********************************************************
