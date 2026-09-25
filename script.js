@@ -579,36 +579,7 @@ function showRound2SelectionGroup() {
       ? round2NormalMembers
       : round2LikeMembers;
 
-    // 残り候補人数と残り枠が一致したら、全員を自動通過
-  if (isNormal) {
-
-    const remainingRequired =
-      16
-      - results.love.length
-      - round2NormalConfirmed.length;
-
-    if (members.length === remainingRequired) {
-
-      console.log(
-        "NORMAL残り候補と残り枠が一致 → 全員通過"
-      );
-
-      round2NormalConfirmed.push(
-        ...members
-      );
-
-      results.love.push(
-        ...round2NormalConfirmed
-      );
-
-      round2LikeOrder.push(
-        ...round2NormalConfirmed
-      );
-
-      finishRound2();
-      return;
-    }
-  }
+    
 
 const index =
 
@@ -973,21 +944,50 @@ round2ConfirmButton.addEventListener("click", () => {
     return;
   }
 
-  // 足りない → 今回選んだ人は確定通過
-  if (totalSelected < remainingRequired) {
+    // 足りない → 今回選んだ人は確定通過
+    if (totalSelected < remainingRequired) {
 
-    round2NormalConfirmed.push(
-      ...round2NormalPassSelected
-    );
+      round2NormalConfirmed.push(
+        ...round2NormalPassSelected
+      );
 
-    round2NormalMembers =
-      [...round2NormalUnselected];
+      round2NormalMembers =
+        [...round2NormalUnselected];
 
-    round2NormalIndex = 0;
-    round2NormalSelected = [];
-    round2NormalUnselected = [];
-    round2NormalPassSelected = [];
+      round2NormalIndex = 0;
+      round2NormalSelected = [];
+      round2NormalUnselected = [];
+      round2NormalPassSelected = [];
 
+    // 次の一巡の候補人数と残り枠を確認
+    const nextRemainingRequired =
+      16
+      - results.love.length
+      - round2NormalConfirmed.length;
+
+    // 候補と残り枠が一致 → 全員確定して終了
+    if (
+      round2NormalMembers.length ===
+      nextRemainingRequired
+    ) {
+
+      round2NormalConfirmed.push(
+        ...round2NormalMembers
+      );
+
+      results.love.push(
+        ...round2NormalConfirmed
+      );
+
+      round2LikeOrder.push(
+        ...round2NormalConfirmed
+      );
+
+      finishRound2();
+      return;
+    }
+
+    // まだ選抜が必要
     showRound2SelectionGroup();
     return;
   }
