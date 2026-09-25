@@ -290,3 +290,103 @@ button:hover {
 .finalCard.selected {
   opacity: 0.4;
 }
+
+/* ========================================
+   RESULT SCREEN
+======================================== */
+
+#resultScreen {
+  text-align: center;
+}
+
+#resultScreen h2 {
+  margin-bottom: 20px;
+}
+
+#resultScreen > p {
+  margin-bottom: 20px;
+}
+
+/* YouTube */
+
+#resultMovie {
+  width: 90%;
+  max-width: 560px;
+  margin: 0 auto 30px;
+}
+
+#resultMovie iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+}
+
+/* 読み込みバー */
+
+#resultLoading {
+  width: 80%;
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+#resultLoadingBar {
+  width: 100%;
+  height: 12px;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+#resultLoadingProgress {
+  width: 0%;
+  height: 100%;
+  background: #000;
+  transition: width 0.03s linear;
+}
+
+#resultLoadingText {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+/* デザイン選択 */
+
+#resultDesignSelect {
+  margin-top: 30px;
+}
+
+#resultDesignSelect p {
+  margin-bottom: 15px;
+}
+
+#resultDesignSelect button {
+  margin: 5px;
+}
+
+/* ========================================
+   RESULT IMAGE SCREEN
+======================================== */
+
+#resultImageScreen {
+  text-align: center;
+}
+
+#resultImageArea {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+#resultImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#resultButtons {
+  margin-top: 20px;
+}
+
+#resultButtons button {
+  margin: 5px;
+}

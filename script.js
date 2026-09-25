@@ -351,8 +351,6 @@ function getSwipeDirection(x, y) {
 
 const backButton = document.getElementById("backButton");
 
-console.log("戻るボタン:", backButton);
-
 backButton.addEventListener("click", () => {
   if (judgmentHistory.length === 0) {
     return;
