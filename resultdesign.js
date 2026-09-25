@@ -38,74 +38,45 @@ async function createResultImage(designFile) {
     })
   );
 
-  // 3列 × 2行
-  const columns = 3;
-  const rows = 2;
+  // ========================================
+// メンバー画像の配置
+// ========================================
 
-  const cellWidth =
-    canvas.width / columns;
+    const positions = [
 
-  const cellHeight =
-    canvas.height / rows;
+    // 1位
+    { x: 400, y: 290, w: 385, h: 368 },
 
+    // 2位
+    { x: 99, y: 462, w: 281, h: 282 },
 
-  // 6人の画像を配置
-  memberImages.forEach((img, index) => {
+    // 3位
+    { x: 818, y: 462, w: 284, h: 282 },
 
-    const column =
-      index % columns;
+    // 4位
+    { x: 112, y: 793, w: 268, h: 270 },
 
-    const row =
-      Math.floor(index / columns);
+    // 5位
+    { x: 465, y: 793, w: 269, h: 270 },
 
-    const x =
-      column * cellWidth;
+    // 6位
+    { x: 818, y: 793, w: 269, h: 270 }
 
-    const y =
-      row * cellHeight;
+    ];
 
+    memberImages.forEach((img, index) => {
 
-    // 縦横比を維持してセルいっぱいに表示
-    const imageRatio =
-      img.width / img.height;
-
-    const cellRatio =
-      cellWidth / cellHeight;
-
-    let drawWidth;
-    let drawHeight;
-
-    if (imageRatio > cellRatio) {
-
-      drawHeight = cellHeight;
-      drawWidth =
-        drawHeight * imageRatio;
-
-    } else {
-
-      drawWidth = cellWidth;
-      drawHeight =
-        drawWidth / imageRatio;
-
-    }
-
-    // 中央配置
-    const drawX =
-      x + (cellWidth - drawWidth) / 2;
-
-    const drawY =
-      y + (cellHeight - drawHeight) / 2;
-
+    const pos = positions[index];
 
     ctx.drawImage(
-      img,
-      drawX,
-      drawY,
-      drawWidth,
-      drawHeight
+        img,
+        pos.x,
+        pos.y,
+        pos.w,
+        pos.h
     );
 
-  });
+    });
 
 
   // 最後に透過PNGを重ねる
