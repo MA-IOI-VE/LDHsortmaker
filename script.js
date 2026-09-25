@@ -871,7 +871,7 @@ round2ConfirmButton.addEventListener("click", () => {
   "NORMAL一巡終了",
   "候補人数=", round2NormalMembers.length,
   "選択人数=", totalSelected,
-  "必要人数=", required,
+  "必要人数=", remainingRequired,
   "未選択人数=", round2NormalUnselected.length
 );
 
