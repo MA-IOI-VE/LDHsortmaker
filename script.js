@@ -87,9 +87,9 @@ const testRound2Button =
   document.getElementById("testRound2Button");
 
 testRound2Button.addEventListener("click", () => {
-results.love = [...members.slice(0, 10)];
-results.like = [...members.slice(10, 16)];
-results.normal = [...members.slice(16, 75)];
+results.love = [...members.slice(0, 17)];
+results.like = [...members.slice(17, 18)];
+results.normal = [...members.slice(18, 75)];
 
 console.log("テストNORMAL人数", results.normal.length);
 
