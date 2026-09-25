@@ -865,10 +865,11 @@ round2ConfirmButton.addEventListener("click", () => {
     round2NormalPassSelected.length;
 
     console.log(
-  "NORMAL終了判定",
-  "required=", required,
-  "selected=", totalSelected,
-  "love=", results.love.length
+  "NORMAL一巡終了",
+  "候補人数=", round2NormalMembers.length,
+  "選択人数=", totalSelected,
+  "必要人数=", required,
+  "未選択人数=", round2NormalUnselected.length
 );
 
   // ちょうど必要人数
