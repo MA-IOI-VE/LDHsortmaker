@@ -1146,8 +1146,9 @@ function startFinalRanking() {
   finalGroupRankings = [];
 
   document.getElementById("round2Screen").hidden = true;
+  document.getElementById("finalScreen").hidden = false;
 
-  showFinalGroup();
+showFinalGroup();
 }
 
 function showFinalGroup() {
