@@ -508,6 +508,11 @@ function startLikeSelection() {
 
 function showRound2SelectionGroup() {
 
+  console.log(
+  "SelectionType",
+  round2SelectionType
+);
+
   const isNormal =
     round2SelectionType === "normal";
 
@@ -940,6 +945,10 @@ if (totalSelected < 16) {
   round2LikeOrder.push(...round2PassSelected);
 
   // NORMALを選抜対象にする
+  console.log(
+  "NORMAL開始",
+  results.normal.length
+);
   round2NormalMembers = [...results.normal];
 
   round2NormalIndex = 0;
