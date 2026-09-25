@@ -727,6 +727,26 @@ updateRound2SelectionButton();
 }
 
 // ----------------------------------------
+// 選抜ボタン
+// ----------------------------------------
+function updateRound2SelectionButton() {
+
+  const button =
+    document.getElementById("round2ConfirmButton");
+
+  const selected =
+    round2SelectionType === "normal"
+      ? round2NormalSelected
+      : round2LikeSelected;
+
+  const remaining =
+    16 - results.love.length;
+
+  button.disabled = false;
+  button.textContent = "NEXT";
+}
+
+// ----------------------------------------
 // LIKEグループ
 // ----------------------------------------
 function showLikeGroup() {
@@ -882,6 +902,7 @@ round2ConfirmButton.addEventListener("click", () => {
     showRound2SelectionGroup();
     return;
   }
+}
 
   // LOVEが17人以上の場合は、LOVE敗退ルート
   if (results.love.length >= 17) {
@@ -898,13 +919,13 @@ round2ConfirmButton.addEventListener("click", () => {
 
   round2PassSelected.push(...round2LikeSelected);
 
-  const currentLikeGroup =
+  const currentGroup =
     round2LikeMembers.slice(
       round2LikeIndex,
       round2LikeIndex + 6
     );
 
-  currentLikeGroup.forEach(member => {
+  currentGroup.forEach(member => {
   const isSelected =
     round2LikeSelected.some(
       selected => selected.id === member.id
@@ -927,14 +948,14 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   // 一巡終了
-  const totalLikeSelected =
+  const totalSelected =
     round2PassSelected.length;
 
-  const remainingLikeRequired =
+  const remainingRequired =
     16 - results.love.length;
 
   // ちょうど必要人数
-  if (totalLikeSelected === remainingLikeRequired) {
+  if (totalSelected === remainingRequired) {
 
     results.love.push(
       ...round2PassSelected
@@ -949,7 +970,7 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   // 選びすぎ → 選んだ人だけで再選抜
-  if (totalLikeSelected > remainingLikeRequired) {
+  if (totalSelected > remainingRequired) {
 
     round2LikeMembers =
       [...round2PassSelected];
@@ -964,7 +985,7 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   // 足りない → 今回選んだ人は確定
-  if (totalLikeSelected < remainingLikeRequired) {
+  if (totalSelected < remainingRequired) {
 
     results.love.push(
       ...round2PassSelected
@@ -1036,7 +1057,6 @@ round2ConfirmButton.addEventListener("click", () => {
 
     return;
   }
-}
 
   showLikeGroup();
 });
