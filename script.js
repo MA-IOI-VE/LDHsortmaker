@@ -524,12 +524,10 @@ function showRound2SelectionGroup() {
   const group =
     members.slice(index, index + 6);
     console.log(
-  "NORMAL候補人数",
-  round2NormalMembers.length,
-  "現在位置",
-  round2NormalIndex,
-  "表示人数",
-  group.length
+  "表示グループ",
+  "候補人数=", members.length,
+  "開始位置=", index,
+  "グループ人数=", group.length
 );
 
   const area =
