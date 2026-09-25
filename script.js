@@ -867,10 +867,6 @@ round2ConfirmButton.addEventListener("click", () => {
   16 - results.love.length
   - round2NormalConfirmed.length;
 
-    const remainingRequired =
-  16 - results.love.length
-  - round2NormalConfirmed.length;
-
     console.log(
   "NORMAL一巡終了",
   "候補人数=", round2NormalMembers.length,
