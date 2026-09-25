@@ -112,25 +112,41 @@ resultMembers.forEach((member, index) => {
   if (index === 0) {
 
     // 名前
-    ctx.font = "bold 60px sans-serif";
-    ctx.fillStyle = "#333333";
+    ctx.font = 'bold 60px "Yu Gothic", sans-serif';
 
-    ctx.fillText(
-      member.name,
-      600,
-      720
-    );
+    ctx.strokeStyle = "#FFFFFF";
+        ctx.lineWidth = 8;
+        ctx.strokeText(
+        member.name,
+        600,
+        670
+        );
+
+    ctx.fillStyle = "#333333";
+        ctx.fillText(
+        member.name,
+        600,
+        670
+        );
 
     // グループ名
-    ctx.font = "30px sans-serif";
+    ctx.font = '30px "Yu Gothic", sans-serif';
 
-    ctx.fillText(
-      member.group,
-      600,
-      765
-    );
+    ctx.strokeStyle = "#FFFFFF";
+        ctx.lineWidth = 8;
+        ctx.strokeText(
+        member.group,
+        600,
+        665
+        );
 
-  }
+    ctx.fillStyle = "#333333";
+        ctx.fillText(
+        member.group,
+        600,
+        665
+        );
+    }
 
   // --------------------
   // 2～6位
@@ -138,24 +154,40 @@ resultMembers.forEach((member, index) => {
   else {
 
     // 名前
-    ctx.font = "bold 30px sans-serif";
+    ctx.font = 'bold 30px "Yu Gothic", sans-serif';
+
+    ctx.strokeStyle = "#333333";
+        ctx.lineWidth = 6;
+        ctx.strokeText(
+        member.name,
+        pos.x + pos.w / 2,
+        pos.y + pos.h - 40
+        );
+
     ctx.fillStyle = "#FFFFFF";
-
-    ctx.fillText(
-      member.name,
-      pos.x + pos.w / 2,
-      pos.y + pos.h - 20
-    );
-
+        ctx.fillText(
+        member.name,
+        pos.x + pos.w / 2,
+        pos.y + pos.h - 40
+        );
+        
     // グループ名
-    ctx.font = "18px sans-serif";
+    ctx.font = '18px "Yu Gothic", sans-serif';
 
-    ctx.fillText(
-      member.group,
-      pos.x + pos.w / 2,
-      pos.y + pos.h + 12
-    );
+    ctx.strokeStyle = "#333333";
+        ctx.lineWidth = 6;
+        ctx.strokeText(
+        member.group,
+        pos.x + pos.w / 2,
+        pos.y + pos.h - 32
+        );
 
+    ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(
+        member.group,
+        pos.x + pos.w / 2,
+        pos.y + pos.h - 32
+        );
   }
 
 });
