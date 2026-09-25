@@ -380,6 +380,12 @@ button:active {
   display: block;
   width: 100%;
   height: auto;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
+  user-select: none;
+  
 }
 
 #resultButtons {
