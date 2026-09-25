@@ -112,7 +112,7 @@ resultMembers.forEach((member, index) => {
   if (index === 0) {
 
     // 名前
-    ctx.font = 'bold 60px "Yu Gothic", sans-serif';
+    ctx.font = 'bold 60px sans-serif';
 
     ctx.strokeStyle = "#FFFFFF";
         ctx.lineWidth = 6;
@@ -130,21 +130,21 @@ resultMembers.forEach((member, index) => {
         );
 
     // グループ名
-    ctx.font = '30px "Yu Gothic", sans-serif';
+    ctx.font = '25px sans-serif';
 
     ctx.strokeStyle = "#FFFFFF";
         ctx.lineWidth = 6;
         ctx.strokeText(
         member.group,
         600,
-        710
+        720
         );
 
     ctx.fillStyle = "#333333";
         ctx.fillText(
         member.group,
         600,
-        710
+        720
         );
     }
 
@@ -154,7 +154,7 @@ resultMembers.forEach((member, index) => {
   else {
 
     // 名前
-    ctx.font = 'bold 30px "Yu Gothic", sans-serif';
+    ctx.font = 'bold 30px sans-serif';
 
     ctx.strokeStyle = "#333333";
         ctx.lineWidth = 6;
@@ -172,21 +172,21 @@ resultMembers.forEach((member, index) => {
         );
         
     // グループ名
-    ctx.font = '18px "Yu Gothic", sans-serif';
+    ctx.font = '18px sans-serif';
 
     ctx.strokeStyle = "#333333";
         ctx.lineWidth = 6;
         ctx.strokeText(
         member.group,
         pos.x + pos.w / 2,
-        pos.y + pos.h - 47
+        pos.y + pos.h - 75
         );
 
     ctx.fillStyle = "#FFFFFF";
         ctx.fillText(
         member.group,
         pos.x + pos.w / 2,
-        pos.y + pos.h - 47
+        pos.y + pos.h - 75
         );
   }
 
