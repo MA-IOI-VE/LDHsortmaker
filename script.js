@@ -898,13 +898,13 @@ round2ConfirmButton.addEventListener("click", () => {
 
   round2PassSelected.push(...round2LikeSelected);
 
-  const currentGroup =
+  const currentLikeGroup =
     round2LikeMembers.slice(
       round2LikeIndex,
       round2LikeIndex + 6
     );
 
-  currentGroup.forEach(member => {
+  currentLikeGroup.forEach(member => {
   const isSelected =
     round2LikeSelected.some(
       selected => selected.id === member.id
