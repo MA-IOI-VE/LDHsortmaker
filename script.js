@@ -612,27 +612,38 @@ card.addEventListener("click", () => {
     remainingSlots
   );
 
-  if (
-    selected.some(
-      item => item.id === member.id
-    )
-  ) {
-    console.log("既に選択済み");
+  const selectedIndex =
+   selected.findIndex(
+     item => item.id === member.id
+  );
+
+  // すでに選択済み → 選択解除
+  if (selectedIndex !== -1) {
+
+    selected.splice(selectedIndex, 1);
+
+    card.classList.remove("eliminated");
+
+    console.log("選択解除", member.name);
+
+    updateRound2SelectionButton();
     return;
   }
 
+  // 4人上限
   if (selected.length >= 4) {
     console.log("4人上限");
     return;
   }
 
+  // 選択
   selected.push(member);
 
   console.log("選択後", selected.length);
 
-  card.classList.add("selected");
+  card.classList.add("eliminated");
 
-  updateRound2SelectionButton();
+updateRound2SelectionButton();
 });
     area.appendChild(card);
   });
