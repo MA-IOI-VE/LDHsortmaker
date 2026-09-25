@@ -398,16 +398,6 @@ button:active {
   margin: 5px;
 }
 
-#resultButtons button {
-  padding: 12px 32px;
-  border: none;
-  background: var(--accent);
-  color: #FFFFFF;
-  font-size: 16px;
-  cursor: pointer;
-   border-radius: 10px;
-}
-
 #resultButtons button:active {
   opacity: 0.85;
 }
