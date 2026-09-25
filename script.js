@@ -1644,6 +1644,9 @@ function selectFinal6Member(selectedMember) {
  ********************************************************/
 
 function showFinal6Result() {
+
+  console.log("★ showFinal6Result 実行");
+
   document.getElementById("finalScreen").hidden = true;
   document.getElementById("resultScreen").hidden = false;
 
