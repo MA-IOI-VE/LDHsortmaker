@@ -115,7 +115,7 @@ resultMembers.forEach((member, index) => {
     ctx.font = 'bold 60px sans-serif';
 
     ctx.strokeStyle = "#FFFFFF";
-        ctx.lineWidth = 6;
+        ctx.lineWidth = 3;
         ctx.strokeText(
         member.name,
         600,
@@ -133,7 +133,7 @@ resultMembers.forEach((member, index) => {
     ctx.font = '25px sans-serif';
 
     ctx.strokeStyle = "#FFFFFF";
-        ctx.lineWidth = 6;
+        ctx.lineWidth = 3;
         ctx.strokeText(
         member.group,
         600,
@@ -157,7 +157,7 @@ resultMembers.forEach((member, index) => {
     ctx.font = 'bold 30px sans-serif';
 
     ctx.strokeStyle = "#333333";
-        ctx.lineWidth = 6;
+        ctx.lineWidth = 3;
         ctx.strokeText(
         member.name,
         pos.x + pos.w / 2,
@@ -175,18 +175,18 @@ resultMembers.forEach((member, index) => {
     ctx.font = '18px sans-serif';
 
     ctx.strokeStyle = "#333333";
-        ctx.lineWidth = 6;
+        ctx.lineWidth = 3;
         ctx.strokeText(
         member.group,
         pos.x + pos.w / 2,
-        pos.y + pos.h - 75
+        pos.y + pos.h - 2
         );
 
     ctx.fillStyle = "#FFFFFF";
         ctx.fillText(
         member.group,
         pos.x + pos.w / 2,
-        pos.y + pos.h - 75
+        pos.y + pos.h - 2
         );
   }
 
