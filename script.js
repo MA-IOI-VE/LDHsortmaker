@@ -934,7 +934,7 @@ round2ConfirmButton.addEventListener("click", () => {
     16 - results.love.length;
 
   // ちょうど必要人数
-  if (totalLikeSelected === remainingRequired) {
+  if (totalLikeSelected === remainingLikeRequired) {
 
     results.love.push(
       ...round2PassSelected
@@ -949,7 +949,7 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   // 選びすぎ → 選んだ人だけで再選抜
-  if (totalLikeSelected > remainingRequired) {
+  if (totalLikeSelected > remainingLikeRequired) {
 
     round2LikeMembers =
       [...round2PassSelected];
@@ -964,7 +964,7 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   // 足りない → 今回選んだ人は確定
-  if (totalLikeSelected < remainingRequired) {
+  if (totalLikeSelected < remainingLikeRequired) {
 
     results.love.push(
       ...round2PassSelected
@@ -1038,7 +1038,7 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   showLikeGroup();
-}});
+});
 
 
 /********************************************************
