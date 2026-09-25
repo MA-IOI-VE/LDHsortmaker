@@ -96,7 +96,7 @@ async function createResultImage(designFile) {
 // 名前・グループ名
 // ========================================
 
-mconst resultMembers = final6Ranking.slice(0, 6);
+const resultMembers = final6Ranking.slice(0, 6);
 
 resultMembers.forEach((member, index) => {
 
