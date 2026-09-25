@@ -479,6 +479,7 @@ let round2NormalIndex = 0;
 let round2NormalSelected = [];
 let round2NormalUnselected = [];
 let round2NormalPassSelected = [];
+let round2NormalConfirmed = [];
 let round2SelectionType = "like";
 
 // 現在の「6人」の中で選択したメンバー
@@ -511,6 +512,7 @@ function startLikeSelection() {
       round2NormalIndex = 0;
       round2NormalSelected = [];
       round2NormalUnselected = [];
+      round2NormalConfirmed = [];
       round2NormalPassSelected = [];
 
       round2SelectionType = "normal";
@@ -858,11 +860,16 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   // 一巡終了
-  const required =
-    16 - results.love.length;
+ const totalSelected =
+  round2NormalPassSelected.length;
 
-  const totalSelected =
-    round2NormalPassSelected.length;
+    const remainingRequired =
+  16 - results.love.length
+  - round2NormalConfirmed.length;
+
+    const remainingRequired =
+  16 - results.love.length
+  - round2NormalConfirmed.length;
 
     console.log(
   "NORMAL一巡終了",
@@ -873,22 +880,28 @@ round2ConfirmButton.addEventListener("click", () => {
 );
 
   // ちょうど必要人数
-  if (totalSelected === required) {
+  if (totalSelected === remainingRequired) {
 
-    results.love.push(
+  // 今回選んだ人も確定通過
+    round2NormalConfirmed.push(
       ...round2NormalPassSelected
     );
 
+  // 確定した全員をROUND2通過者に追加
+    results.love.push(
+      ...round2NormalConfirmed
+    );
+
     round2LikeOrder.push(
-      ...round2NormalPassSelected
+      ...round2NormalConfirmed
     );
 
     finishRound2();
     return;
   }
 
-  // 選びすぎ → 選んだ人だけで再選抜
-  if (totalSelected > required) {
+    // 選びすぎ → 選んだ人だけで再選抜
+  if (totalSelected > remainingRequired) {
 
     round2NormalMembers =
       [...round2NormalPassSelected];
@@ -902,8 +915,12 @@ round2ConfirmButton.addEventListener("click", () => {
     return;
   }
 
-  // 足りない → 選ばなかった人だけで再選抜
-  if (totalSelected < required) {
+  // 足りない → 今回選んだ人は確定通過
+  if (totalSelected < remainingRequired) {
+
+    round2NormalConfirmed.push(
+      ...round2NormalPassSelected
+    );
 
     round2NormalMembers =
       [...round2NormalUnselected];
