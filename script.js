@@ -419,7 +419,10 @@ function showRound2Intro() {
     document.getElementById("round2OverText").hidden = false;
 
   // LOVEが16人
-  } else if (results.love.length === 16) {
+  } else if (
+    results.love.length === 16 ||
+    results.love.length + results.like.length === 16
+  ) {
 
     document.getElementById("round2FullText").hidden = false;
     round2StartButton.textContent = "NEXT";
@@ -456,17 +459,32 @@ let round2Eliminated = [];
 // ----------------------------------------
 
 function startRound2() {
+
   round2Eliminated = [];
 
   if (results.love.length >= 17) {
-    startLoveSelection();
-  } else if (results.love.length === 16) {
-    finishRound2();
-  } else {
-    startLikeSelection();
-  }
-}
 
+    startLoveSelection();
+
+  } else if (
+    results.love.length === 16 ||
+    results.love.length + results.like.length === 16
+  ) {
+
+    // LOVEだけ、またはLOVE+LIKEで16人確定
+    if (results.love.length < 16) {
+      results.love.push(...results.like);
+    }
+
+    finishRound2();
+
+  } else {
+
+    startLikeSelection();
+
+  }
+
+}
 
 // ========================================
 // パターン1.残り枠
@@ -560,6 +578,39 @@ function showRound2SelectionGroup() {
     isNormal
       ? round2NormalMembers
       : round2LikeMembers;
+
+    // 残り候補人数と残り枠が一致したら、全員を自動通過
+  if (isNormal) {
+
+    const remainingRequired =
+      16
+      - results.love.length
+      - round2NormalConfirmed.length;
+
+    if (members.length === remainingRequired) {
+
+      console.log(
+        "NORMAL残り候補と残り枠が一致 → 全員通過"
+      );
+
+      round2NormalConfirmed.push(
+        ...members
+      );
+
+      results.love.push(
+        ...round2NormalConfirmed
+      );
+
+      round2LikeOrder.push(
+        ...round2NormalConfirmed
+      );
+
+      finishRound2();
+      return;
+    }
+  }
+
+const index =
 
   const index =
     isNormal
