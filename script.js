@@ -492,6 +492,39 @@ let round2LikeOrder = [];
 let finalGroups = [];
 
 function startLikeSelection() {
+
+  const remainingSlots =
+    16 - results.love.length;
+
+  // LIKE全員を通過させても16人に届かない場合
+  // LIKEは選抜せず、全員通過
+  if (results.like.length <= remainingSlots) {
+
+    results.love.push(...results.like);
+    round2LikeOrder.push(...results.like);
+
+    // まだ枠が残っている → NORMALへ
+    if (results.love.length < 16) {
+
+      round2NormalMembers = [...results.normal];
+
+      round2NormalIndex = 0;
+      round2NormalSelected = [];
+      round2NormalUnselected = [];
+      round2NormalPassSelected = [];
+
+      round2SelectionType = "normal";
+
+      showRound2SelectionGroup();
+      return;
+    }
+
+    // 16人ちょうど
+    finishRound2();
+    return;
+  }
+
+  // LIKEの人数が残り枠を超える場合だけ選抜
   round2LikeMembers = [...results.like];
   round2LikeIndex = 0;
 
