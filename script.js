@@ -16,7 +16,7 @@ let judgmentHistory = [];
 
 
 // ========================================
-// CSVからメンバー情報を読み込む
+// CSVメンバー情報読込
 // ========================================
 
 async function loadMembers() {
@@ -44,9 +44,7 @@ async function loadMembers() {
     img.src = `images/${member.id}.jpg`;
   });
 
-console.log("読み込んだ人数:", members.length);
   console.log("読み込んだ人数:", members.length);
-
   console.log(members);
 }
 
@@ -54,7 +52,7 @@ loadMembers();
 
 
 // ========================================
-// スタートボタン
+// スタート画面
 // ========================================
 
 startButton.addEventListener("click", () => {
@@ -105,11 +103,9 @@ console.log("テスト：showRound2Intro実行");
 
 
 
-// ========================================
-// ========================================
-// 第１ラウンド
-// ========================================
-// ========================================
+/********************************************************
+ * 予選書類審査
+ ********************************************************/
 
 // ========================================
 // メンバーをカードに表示
@@ -170,10 +166,6 @@ let startY = 0;
 let currentX = 0;
 let currentY = 0;
 let animationFrame = null;
-
-// ----------------------------------------
-// カードを掴んだとき
-// ----------------------------------------
 
 card.addEventListener("pointerup", () => {
   if (!isDragging) {
@@ -295,10 +287,6 @@ card.addEventListener("pointerdown", (event) => {
   card.setPointerCapture(event.pointerId);
 });
 
-// ----------------------------------------
-// カードを動かしているとき
-// ----------------------------------------
-
 card.addEventListener("pointermove", (event) => {
   if (!isDragging) {
     return;
@@ -336,7 +324,7 @@ card.style.transform =
 
 
 // ========================================
-// スワイプ方向を判定
+// スワイプ方向判定
 // ========================================
 
 function getSwipeDirection(x, y) {
@@ -384,10 +372,15 @@ backButton.addEventListener("click", () => {
 
 
 
+/********************************************************
+ * ROUND1：16人
+ * 　ほとんどround2って名前になってる…
+ ********************************************************/
+
+let round2Eliminated = [];
+
 // ========================================
-// ========================================
-// 第2ラウンドの説明画面
-// ========================================
+// ROUND1：説明画面
 // ========================================
 
 const round2Intro =
@@ -434,7 +427,7 @@ function showRound2Intro() {
 }
 
 // ========================================
-// 第2ラウンド開始ボタン
+// ROUND1：開始
 // ========================================
 
 round2StartButton.addEventListener("click", () => {
@@ -443,20 +436,6 @@ round2StartButton.addEventListener("click", () => {
 
   startRound2();
 });
-
-
-
-// ========================================
-// ========================================
-// 第2ラウンド
-// ========================================
-// ========================================
-
-let round2Eliminated = [];
-
-// ----------------------------------------
-// 第2ラウンド開始
-// ----------------------------------------
 
 function startRound2() {
 
@@ -486,10 +465,6 @@ function startRound2() {
 
 }
 
-// ========================================
-// パターン1.残り枠
-// ========================================
-
 let round2LikeMembers = [];
 let round2LikeIndex = 0;
 let round2NormalMembers = [];
@@ -510,6 +485,88 @@ let round2PassUnselected = [];
 let round2LikeOrder = [];
 let finalGroups = [];
 
+
+// ========================================
+// パターン1.　LOVE超過
+// ========================================
+
+function startLoveSelection() {
+  const loveMembers = [...results.love];
+
+  const eliminateCount = loveMembers.length - 16;
+
+  document.getElementById("round2Progress").textContent =
+    `${eliminateCount}人を選択してください`;
+
+  const area = document.getElementById("round2Area");
+
+  area.innerHTML = "";
+
+  loveMembers.forEach(member => {
+    const card = document.createElement("div");
+
+    card.className = "round2Card";
+
+    card.innerHTML = `
+      <img src="images/${member.id}.jpg" alt="${member.name}">
+      <h3>${member.name}</h3>
+      <p>${member.group}</p>
+    `;
+
+    card.addEventListener("click", () => {
+      toggleRound2Elimination(member, card);
+    });
+
+    area.appendChild(card);
+  });
+
+  updateRound2Button(eliminateCount);
+}
+
+function toggleRound2Elimination(member, card) {
+  const index = round2Eliminated.findIndex(
+    person => person.id === member.id
+  );
+
+  if (index !== -1) {
+    round2Eliminated.splice(index, 1);
+    card.classList.remove("eliminated");
+  } else {
+    const eliminateCount = results.love.length - 16;
+
+    if (round2Eliminated.length >= eliminateCount) {
+      return;
+    }
+
+    round2Eliminated.push(member);
+    card.classList.add("eliminated");
+  }
+
+  updateRound2Button(results.love.length - 16);
+}
+
+function updateRound2Button(requiredCount) {
+  const button =
+    document.getElementById("round2ConfirmButton");
+
+  if (requiredCount === 0) {
+    button.disabled = false;
+    button.textContent = "NEXT";
+    return;
+  }
+
+  button.disabled =
+    round2Eliminated.length !== requiredCount;
+
+  button.textContent =
+    `NEXT（${round2Eliminated.length} / ${requiredCount}）`;
+}
+
+// ========================================
+// パターン2.　LIKE / NORMAL選抜
+// ========================================
+
+// 選抜開始
 function startLikeSelection() {
 
   const remainingSlots =
@@ -669,6 +726,9 @@ updateRound2SelectionButton();
   updateRound2SelectionButton();
 }
 
+// ----------------------------------------
+// 選抜ボタン
+// ----------------------------------------
 function updateRound2SelectionButton() {
 
   const button =
@@ -686,6 +746,9 @@ function updateRound2SelectionButton() {
   button.textContent = "NEXT";
 }
 
+// ----------------------------------------
+// LIKEグループ
+// ----------------------------------------
 function showLikeGroup() {
 
   round2SelectionType = "like";
@@ -694,156 +757,8 @@ function showLikeGroup() {
 }
 
 // ----------------------------------------
-// 「次へ」ボタンの状態
+// NEXTボタン処理
 // ----------------------------------------
-
-function updateLikeButton() {
-  const button =
-    document.getElementById("round2ConfirmButton");
-
-  const currentGroupSize = Math.min(
-    6,
-    round2LikeMembers.length - round2LikeIndex
-  );
-
-  const maxSelectable = Math.min(
-    4,
-    currentGroupSize
-  );
-
-  button.disabled = false;
-
-  button.textContent =
-    `NEXT`;
-}
-
-// ----------------------------------------
-// 選択・選択解除
-// ----------------------------------------
-
-function toggleLikeSelection(member, card) {
-  const index = round2LikeSelected.findIndex(
-    person => person.id === member.id
-  );
-
-  if (index !== -1) {
-    round2LikeSelected.splice(index, 1);
-    card.classList.remove("eliminated");
-
-    updateLikeButton();
-
-    return;
-  }
-
-  if (round2LikeSelected.length >= 4) {
-    return;
-  }
-
-  round2LikeSelected.push(member);
-  card.classList.add("eliminated");
-
-  updateLikeButton();
-}
-
-// ----------------------------------------
-// 選択人数の表示
-// ----------------------------------------
-
-function updateLikeProgress() {
-  const remainingSlots = 16 - results.love.length;
-
-  document.getElementById("round2Progress").textContent =
-    `${round2LikeSelected.length}/${remainingSlots}`;
-}
-
-// ========================================
-// パターン2.予選敗退を選ぶ
-// ========================================
-
-function startLoveSelection() {
-  const loveMembers = [...results.love];
-
-  const eliminateCount = loveMembers.length - 16;
-
-  document.getElementById("round2Progress").textContent =
-    `${eliminateCount}人を選択してください`;
-
-  const area = document.getElementById("round2Area");
-
-  area.innerHTML = "";
-
-  loveMembers.forEach(member => {
-    const card = document.createElement("div");
-
-    card.className = "round2Card";
-
-    card.innerHTML = `
-      <img src="images/${member.id}.jpg" alt="${member.name}">
-      <h3>${member.name}</h3>
-      <p>${member.group}</p>
-    `;
-
-    card.addEventListener("click", () => {
-      toggleRound2Elimination(member, card);
-    });
-
-    area.appendChild(card);
-  });
-
-  updateRound2Button(eliminateCount);
-}
-
-// ----------------------------------------
-// 予選敗退の選択・解除
-// ----------------------------------------
-
-function toggleRound2Elimination(member, card) {
-  const index = round2Eliminated.findIndex(
-    person => person.id === member.id
-  );
-
-  if (index !== -1) {
-    round2Eliminated.splice(index, 1);
-    card.classList.remove("eliminated");
-  } else {
-    const eliminateCount = results.love.length - 16;
-
-    if (round2Eliminated.length >= eliminateCount) {
-      return;
-    }
-
-    round2Eliminated.push(member);
-    card.classList.add("eliminated");
-  }
-
-  updateRound2Button(results.love.length - 16);
-}
-
-// ----------------------------------------
-// 「次へ」ボタンの状態
-// ----------------------------------------
-
-function updateRound2Button(requiredCount) {
-  const button =
-    document.getElementById("round2ConfirmButton");
-
-  if (requiredCount === 0) {
-    button.disabled = false;
-    button.textContent = "NEXT";
-    return;
-  }
-
-  button.disabled =
-    round2Eliminated.length !== requiredCount;
-
-  button.textContent =
-    `NEXT（${round2Eliminated.length} / ${requiredCount}）`;
-}
-
-
-// ========================================
-// 第2ラウンド「次へ」
-// ========================================
 
 const round2ConfirmButton =
   document.getElementById("round2ConfirmButton");
@@ -1146,9 +1061,19 @@ round2ConfirmButton.addEventListener("click", () => {
   showLikeGroup();
 });
 
-  // ----------------------------------------
-  // LOVEがちょうど16人の場合
-  // ----------------------------------------
+
+/********************************************************
+ * ROUND2：16人→6人
+ ********************************************************/
+
+let currentFinalGroup = 0;
+let finalRanking = [];
+let finalGroupRankings = [];
+let currentGroupRanking = [];
+
+// ========================================
+// ROUND2：4グループ作成
+// ========================================
 
 function finishRound2() {
   console.log("予選通過者:", results.love);
@@ -1169,10 +1094,6 @@ finalStartButton.addEventListener("click", () => {
   document.getElementById("finalIntro").hidden = true;
   startFinalRanking();
 });
-
-// ========================================
-// 16人を4グループに分ける
-// ========================================
 
 function createFinalGroups() {
   const loveMembers = [...results.love];
@@ -1215,19 +1136,8 @@ function createFinalGroups() {
 }
 
 // ========================================
+// グループ内順位決定
 // ========================================
-// 最終順位決定
-// ========================================
-// ========================================
-
-let currentFinalGroup = 0;
-let finalRanking = [];
-let finalGroupRankings = [];
-let currentGroupRanking = [];
-
-// ----------------------------------------
-// 最終順位決定を開始
-// ----------------------------------------
 
 function startFinalRanking() {
   finalScreenMode = "round2";
@@ -1236,14 +1146,9 @@ function startFinalRanking() {
   finalGroupRankings = [];
 
   document.getElementById("round2Screen").hidden = true;
-  document.getElementById("finalScreen").hidden = false;
 
   showFinalGroup();
 }
-
-// ----------------------------------------
-// 4人のグループを表示
-// ----------------------------------------
 
 function showFinalGroup() {
   const group = finalGroups[currentFinalGroup];
@@ -1278,10 +1183,6 @@ function showFinalGroup() {
     area.appendChild(card);
   });
 }
-
-// ----------------------------------------
-// 4人の順位を決める
-// ----------------------------------------
 
 function selectFinalMember(member, card) {
 
@@ -1326,12 +1227,7 @@ function selectFinalMember(member, card) {
   }
 }
 
-// ----------------------------------------
-// 最終グループの順位確定
-// ----------------------------------------
-
 function finishFinalGroup() {
-
 console.log("finishFinalGroup実行");
 
   // グループごとの順位を保存
@@ -1361,8 +1257,6 @@ console.log("finishFinalGroup実行");
    // 4グループすべて終了
   console.log("グループ別順位:", finalGroupRankings);
   console.log("全グループの順位:", finalRanking);
-
-  document.getElementById("finalScreen").hidden = true;
 
   document.getElementById("finalScreen").hidden = true;
 
@@ -1403,10 +1297,6 @@ let mergeRound = 0;
 let mergeCandidates = [];
 let mergeCurrentRanking = [];
 
-// ----------------------------------------
-// TOP6の決定を開始
-// ----------------------------------------
-
 function startTop6Merge() {
 
   top6Ranking = [];
@@ -1418,10 +1308,6 @@ function startTop6Merge() {
 
   showMergeComparison();
 }
-
-// ----------------------------------------
-// 4人の候補を表示
-// ----------------------------------------
 
 function showMergeComparison() {
 
@@ -1438,10 +1324,6 @@ function showMergeComparison() {
 
   showMergeComparisonScreen();
 }
-
-// ----------------------------------------
-// 4人の中から順位を決める
-// ----------------------------------------
 
 function selectMergeMember(member, card) {
 
@@ -1478,10 +1360,6 @@ function selectMergeMember(member, card) {
     return;
   }
 }
-
-// ----------------------------------------
-// 4人の順位を確定
-// ----------------------------------------
 
 function finishMergeRound() {
 
@@ -1560,33 +1438,19 @@ function showMergeComparisonScreen() {
   });
 }
 
-// ----------------------------------------
-// 最終順位の進捗
-// ----------------------------------------
 
-function updateFinalProgress() {
-
-  const rank =
-    currentGroupRanking.length + 1;
-
-  document.getElementById("finalProgress").textContent =
-    `${currentFinalGroup + 1} / ${finalGroups.length}　` +
-    `次は${rank}位を選んでください`;
-}
-
-// ========================================
-// 決勝戦：6人の最終順位決定
-// ========================================
+/********************************************************
+ * ROUND3：最終6人順位
+ ********************************************************/
 
 let final6Ranking = [];
 let final6Members = [];
 let final6CurrentMemberIndex = 0;
 let final6InsertIndex = 0;
 
-
-// ----------------------------------------
-// 6人の決勝戦を開始
-// ----------------------------------------
+// ========================================
+// 決勝戦：6人の最終順位決定
+// ========================================
 
 function startFinalRanking6() {
   finalScreenMode = "finalBattle";
@@ -1609,10 +1473,6 @@ function startFinalRanking6() {
 
   showFinal6Comparison();
 }
-
-// ----------------------------------------
-// 2択の比較画面
-// ----------------------------------------
 
 function showFinal6Comparison() {
 
@@ -1719,10 +1579,6 @@ function showFinal6Comparison() {
   area.appendChild(targetCard);
 }
 
-// ----------------------------------------
-// 2択の結果を処理
-// ----------------------------------------
-
 function selectFinal6Member(selectedMember) {
 
   const currentMember =
@@ -1781,9 +1637,10 @@ function selectFinal6Member(selectedMember) {
   showFinal6Comparison();
 }
 
-// ----------------------------------------
-// 最終結果
-// ----------------------------------------
+
+/********************************************************
+ * 最終結果
+ ********************************************************/
 
 function showFinal6Result() {
 
