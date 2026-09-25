@@ -38,7 +38,8 @@ async function createResultImage(designFile) {
     })
   );
 
-  // ========================================
+
+// ========================================
 // メンバー画像の配置
 // ========================================
 
@@ -78,8 +79,10 @@ async function createResultImage(designFile) {
 
     });
 
+// ========================================
+// 透過PNGを重ねる
+// ========================================
 
-  // 最後に透過PNGを重ねる
   ctx.drawImage(
     designImage,
     0,
@@ -89,7 +92,79 @@ async function createResultImage(designFile) {
   );
 
 
-  // PNGとして書き出す
+// ========================================
+// 名前・グループ名
+// ========================================
+
+mconst resultMembers = final6Ranking.slice(0, 6);
+
+resultMembers.forEach((member, index) => {
+
+  const pos = positions[index];
+
+  // 文字を中央揃え
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  // --------------------
+  // 1位
+  // --------------------
+  if (index === 0) {
+
+    // 名前
+    ctx.font = "bold 60px sans-serif";
+    ctx.fillStyle = "#333333";
+
+    ctx.fillText(
+      member.name,
+      600,
+      720
+    );
+
+    // グループ名
+    ctx.font = "30px sans-serif";
+
+    ctx.fillText(
+      member.group,
+      600,
+      765
+    );
+
+  }
+
+  // --------------------
+  // 2～6位
+  // --------------------
+  else {
+
+    // 名前
+    ctx.font = "bold 30px sans-serif";
+    ctx.fillStyle = "#FFFFFF";
+
+    ctx.fillText(
+      member.name,
+      pos.x + pos.w / 2,
+      pos.y + pos.h - 20
+    );
+
+    // グループ名
+    ctx.font = "18px sans-serif";
+
+    ctx.fillText(
+      member.group,
+      pos.x + pos.w / 2,
+      pos.y + pos.h + 12
+    );
+
+  }
+
+});
+
+
+// ========================================
+// 書き出し・配置
+// ========================================
+
   const resultData =
     canvas.toDataURL("image/png");
 
