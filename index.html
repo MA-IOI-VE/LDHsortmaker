@@ -30,8 +30,8 @@
       
     </div>
 
-  <!--- 書類選考 --->
-  <!--- 書類選考 --->
+  <!--- ROUND1 --->
+  <!--- ROUND1 --->
     <section id="sortScreen" hidden>
 
       <h2>ROUND1</h2>
@@ -58,9 +58,9 @@
     </section>
 
 
-    
-  <!--- ROUND1 --->
-  <!--- ROUND1 --->
+
+  <!--- ROUND2 --->
+  <!--- ROUND2 --->
     <section id="round2Intro" hidden>
       <h2>ROUND1</h2>
 
@@ -124,6 +124,62 @@
       <p id="finalProgress"></p>
       <button id="finalBackButton">← BACK</button>
       <div id="finalArea"></div>
+    </section>
+
+
+  <!--- RESULT --->
+  <!--- RESULT --->
+    <section id="resultScreen" hidden>
+      <section id="resultScreen" hidden>
+
+      <h2>RESULT</h2>
+
+      <!-- YouTube -->
+      <div id="resultMovie">
+        <iframe
+          src="YOUR_YOUTUBE_URL"
+          title="結果発表"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- 読み込み表示 -->
+      <div id="resultLoading">
+        <div id="resultLoadingBar">
+          <div id="resultLoadingProgress"></div>
+        </div>
+
+        <p id="resultLoadingText">0%</p>
+      </div>
+
+      <!-- デザイン選択 -->
+      <div id="resultDesignSelect" hidden>
+
+        <p>結果画像のデザインを選択してください</p>
+
+        <button id="resultDesign1">DESIGN 1</button>
+        <button id="resultDesign2">DESIGN 2</button>
+        <button id="resultDesign3">DESIGN 3</button>
+
+      </div>
+
+    </section>
+
+    <section id="resultImageScreen" hidden>
+
+      <h2>RESULT</h2>
+
+      <div id="resultImageArea">
+        <img id="resultImage" alt="LDH My Best 6 最終結果">
+      </div>
+
+      <div id="resultButtons">
+        <button id="resultShareButton">SHARE</button>
+        <button id="resultSaveButton">SAVE</button>
+      </div>
+
     </section>
 
   </main>

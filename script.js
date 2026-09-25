@@ -1644,42 +1644,40 @@ function selectFinal6Member(selectedMember) {
  ********************************************************/
 
 function showFinal6Result() {
+  document.getElementById("finalScreen").hidden = true;
+  document.getElementById("resultScreen").hidden = false;
 
-  document.getElementById("finalTitle").textContent =
-    "最終結果";
+  const progress =
+    document.getElementById("resultLoadingProgress");
 
-  document.getElementById("finalProgress").textContent =
-    "1位〜6位が決定しました";
+  const text =
+    document.getElementById("resultLoadingText");
 
+  const designSelect =
+    document.getElementById("resultDesignSelect");
 
-  const area =
-    document.getElementById("finalArea");
+  // 初期状態
+  progress.style.width = "0%";
+  text.textContent = "0%";
+  designSelect.hidden = true;
 
-  area.innerHTML = "";
+  let percent = 0;
 
+  const loading =
+    setInterval(() => {
 
-  final6Ranking.forEach(
-    (member, index) => {
+      percent++;
 
-      const card =
-        document.createElement("div");
+      progress.style.width = percent + "%";
+      text.textContent = percent + "%";
 
-      card.className =
-        "finalCard";
+      if (percent >= 100) {
+        clearInterval(loading);
 
-      card.innerHTML = `
-        <img
-          src="images/${member.id}.jpg"
-          alt="${member.name}"
-        >
-        <h3>${index + 1}位　${member.name}</h3>
-        <p>${member.group}</p>
-      `;
+        designSelect.hidden = false;
+      }
 
-      area.appendChild(card);
-    }
-  );
-
+    }, 30);
 
   console.log(
     "最終順位:",
