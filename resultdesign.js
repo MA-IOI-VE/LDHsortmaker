@@ -123,21 +123,21 @@ resultMembers.forEach((member, index) => {
   if (index === 0) {
 
     // 名前
-    ctx.font = 'bold 60px sans-serif';
+    ctx.font = 'bold 65px sans-serif';
 
     ctx.strokeStyle = "#FFFFFF";
         ctx.lineWidth = 5;
         ctx.strokeText(
         member.name,
         600,
-        670
+        675
         );
 
     ctx.fillStyle = "#333333";
         ctx.fillText(
         member.name,
         600,
-        670
+        675
         );
 
     // グループ名
@@ -148,14 +148,14 @@ resultMembers.forEach((member, index) => {
         ctx.strokeText(
         member.group,
         600,
-        720
+        725
         );
 
     ctx.fillStyle = "#333333";
         ctx.fillText(
         member.group,
         600,
-        720
+        725
         );
     }
 
