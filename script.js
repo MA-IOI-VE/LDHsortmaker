@@ -727,26 +727,6 @@ updateRound2SelectionButton();
 }
 
 // ----------------------------------------
-// 選抜ボタン
-// ----------------------------------------
-function updateRound2SelectionButton() {
-
-  const button =
-    document.getElementById("round2ConfirmButton");
-
-  const selected =
-    round2SelectionType === "normal"
-      ? round2NormalSelected
-      : round2LikeSelected;
-
-  const remaining =
-    16 - results.love.length;
-
-  button.disabled = false;
-  button.textContent = "NEXT";
-}
-
-// ----------------------------------------
 // LIKEグループ
 // ----------------------------------------
 function showLikeGroup() {
