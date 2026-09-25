@@ -579,10 +579,6 @@ function showRound2SelectionGroup() {
       ? round2NormalMembers
       : round2LikeMembers;
 
-    
-
-const index =
-
   const index =
     isNormal
       ? round2NormalIndex
