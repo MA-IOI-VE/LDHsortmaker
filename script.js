@@ -88,8 +88,8 @@ const testRound2Button =
 
 testRound2Button.addEventListener("click", () => {
 results.love = [...members.slice(0, 10)];
-results.like = [...members.slice(10, 13)];
-results.normal = [...members.slice(13, 75)];
+results.like = [...members.slice(10, 20)];
+results.normal = [...members.slice(20, 75)];
 
 console.log("テストNORMAL人数", results.normal.length);
 
@@ -1031,57 +1031,114 @@ round2ConfirmButton.addEventListener("click", () => {
 
   // 一巡終了
   const totalSelected =
-    results.love.length + round2PassSelected.length;
+    round2PassSelected.length;
 
-  // 16人ちょうど
-  if (totalSelected === 16) {
-    results.love.push(...round2PassSelected);
-    round2LikeOrder.push(...round2PassSelected);
+  const remainingRequired =
+    16 - results.love.length;
+
+  // ちょうど必要人数
+  if (totalSelected === remainingRequired) {
+
+    results.love.push(
+      ...round2PassSelected
+    );
+
+    round2LikeOrder.push(
+      ...round2PassSelected
+    );
 
     finishRound2();
     return;
   }
 
-  // 17人以上 → 今回選ばれた人だけを再選抜
-  if (totalSelected > 16) {
-    round2LikeMembers = [...round2PassSelected];
+  // 選びすぎ → 選んだ人だけで再選抜
+  if (totalSelected > remainingRequired) {
+
+    round2LikeMembers =
+      [...round2PassSelected];
+
+    round2LikeIndex = 0;
+    round2LikeSelected = [];
+    round2PassSelected = [];
+    round2PassUnselected = [];
+
+    showLikeGroup();
+    return;
   }
 
-  // LOVE + LIKE が16人未満
-if (totalSelected < 16) {
+  // 足りない → 今回選んだ人は確定
+  if (totalSelected < remainingRequired) {
 
-  // LOVEとLIKEを全員通過させる
-  results.love.push(...round2PassSelected);
-  round2LikeOrder.push(...round2PassSelected);
+    results.love.push(
+      ...round2PassSelected
+    );
 
-  // NORMALを選抜対象にする
-  console.log(
-  "NORMAL開始",
-  results.normal.length
-);
-  round2NormalMembers = [...results.normal];
+    round2LikeOrder.push(
+      ...round2PassSelected
+    );
 
-  round2NormalIndex = 0;
-  round2NormalSelected = [];
-  round2NormalUnselected = [];
+    round2LikeMembers =
+      [...round2PassUnselected];
 
-  round2SelectionType = "normal";
+    round2LikeIndex = 0;
+    round2LikeSelected = [];
+    round2PassSelected = [];
+    round2PassUnselected = [];
+
+    // 次の一巡の候補と残り枠を確認
+    const nextRemainingRequired =
+      16 - results.love.length;
+
+    // 候補と残り枠が一致 → 全員確定
+    if (
+      round2LikeMembers.length ===
+      nextRemainingRequired
+    ) {
+
+      results.love.push(
+        ...round2LikeMembers
+      );
+
+      round2LikeOrder.push(
+        ...round2LikeMembers
+      );
+
+      finishRound2();
+      return;
+    }
+
+    // まだLIKEの選抜が必要
+    if (round2LikeMembers.length > 0) {
+      showLikeGroup();
+      return;
+    }
+
+    // LIKEを使い切ってもまだ枠が残る → NORMALへ
+    console.log(
+      "NORMAL開始",
+      results.normal.length
+    );
+
+    round2NormalMembers =
+      [...results.normal];
+
+    round2NormalIndex = 0;
+    round2NormalSelected = [];
+    round2NormalUnselected = [];
+    round2NormalConfirmed = [];
+    round2NormalPassSelected = [];
+
+    round2SelectionType = "normal";
 
     showRound2SelectionGroup();
 
     console.log(
-  "切替後",
-  round2SelectionType
-);
+      "切替後",
+      round2SelectionType
+    );
 
     return;
   }
-
-  // 次の一巡を開始
-  round2LikeIndex = 0;
-  round2LikeSelected = [];
-  round2PassSelected = [];
-  round2PassUnselected = [];
 
   showLikeGroup();
 });
