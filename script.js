@@ -1036,6 +1036,7 @@ round2ConfirmButton.addEventListener("click", () => {
 
     return;
   }
+}
 
   showLikeGroup();
 });
