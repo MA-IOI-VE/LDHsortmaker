@@ -516,6 +516,11 @@ function showRound2SelectionGroup() {
   const isNormal =
     round2SelectionType === "normal";
 
+    console.log(
+  "showRound2SelectionGroup",
+  round2SelectionType
+);
+
   const members =
     isNormal
       ? round2NormalMembers
@@ -958,6 +963,12 @@ if (totalSelected < 16) {
   round2SelectionType = "normal";
 
     showRound2SelectionGroup();
+
+    console.log(
+  "切替後",
+  round2SelectionType
+);
+
     return;
   }
 
