@@ -927,14 +927,14 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   // 一巡終了
-  const totalSelected =
+  const totalLikeSelected =
     round2PassSelected.length;
 
   const remainingRequired =
     16 - results.love.length;
 
   // ちょうど必要人数
-  if (totalSelected === remainingRequired) {
+  if (totalLikeSelected === remainingRequired) {
 
     results.love.push(
       ...round2PassSelected
@@ -949,7 +949,7 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   // 選びすぎ → 選んだ人だけで再選抜
-  if (totalSelected > remainingRequired) {
+  if (totalLikeSelected > remainingRequired) {
 
     round2LikeMembers =
       [...round2PassSelected];
@@ -964,7 +964,7 @@ round2ConfirmButton.addEventListener("click", () => {
   }
 
   // 足りない → 今回選んだ人は確定
-  if (totalSelected < remainingRequired) {
+  if (totalLikeSelected < remainingRequired) {
 
     results.love.push(
       ...round2PassSelected
