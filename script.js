@@ -930,7 +930,7 @@ round2ConfirmButton.addEventListener("click", () => {
   const totalLikeSelected =
     round2PassSelected.length;
 
-  const remainingRequired =
+  const remainingLikeRequired =
     16 - results.love.length;
 
   // ちょうど必要人数
