@@ -413,18 +413,19 @@ button:active {
 #result16Area {
   width: 90%;
   max-width: 900px;
-  margin: 30px auto;
+  margin: 18px auto;
   
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  gap: 8px;
 }
+
 .result16CardArea {
   border: 1px solid var(--accent);
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
-  padding: 10px;
+  padding: 3px;
   box-sizing: border-box;
 }
 
@@ -446,14 +447,12 @@ button:active {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 12px;
-
+  bottom: 6px;
   text-align: center;
-
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
+  line-height: 1;
   color: #ffffff;
-
   -webkit-text-stroke: 2px #333333;
   paint-order: stroke fill;
 }
@@ -464,7 +463,7 @@ button:active {
   right: 0;
   bottom: 2px;
   text-align: center;
-  font-size: 8px;
+  font-size: 6px;
   line-height: 1;
   color: #ffffff;
 
