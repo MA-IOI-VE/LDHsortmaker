@@ -1778,14 +1778,17 @@ document.getElementById("resultProvideConfirmButton").addEventListener("click", 
     });
 
     document.getElementById("resultProvideModal").hidden = true;
+    
+    button.textContent = "送信済";
+    button.disabled = true;
 
-    alert("結果を提供しました。");
+    alert("結果を送信しました。");
 
   } catch (error) {
 
     console.error(error);
 
-    alert("結果の提供に失敗しました。");
+    alert("結果の送信に失敗しました。");
 
     // 失敗した場合は再送信できるように戻す
     resultSending = false;
