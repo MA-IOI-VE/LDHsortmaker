@@ -1813,7 +1813,7 @@ document.getElementById("resultProvideButton").addEventListener("click", () => {
 
 document.querySelectorAll(".resultTypeButton").forEach(button => {
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
 
     event.preventDefault();
 
