@@ -123,7 +123,7 @@ resultMembers.forEach((member, index) => {
   if (index === 0) {
 
     // 名前
-    ctx.font = 'bold 60px sans-serif';
+    ctx.font = 'bold 55px sans-serif';
 
     ctx.strokeStyle = "#FFFFFF";
     ctx.lineWidth = 5;
