@@ -1696,6 +1696,14 @@ document.getElementById("resultDesign3").addEventListener("click", () => {
   createResultImage("images/result_design3.png");
 });
 
+// BACK -デザインの再選択
+document.getElementById("resultRedesignButton").addEventListener("click", () => {
+
+  document.getElementById("resultImageScreen").hidden = true;
+  document.getElementById("resultDesignSelect").hidden = false;
+
+});
+
 // ========================================
 // 16 MEMBERS
 // ========================================
