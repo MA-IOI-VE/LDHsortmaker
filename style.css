@@ -455,12 +455,9 @@ button:active {
   left: 0;
   right: 0;
   bottom: 2px;
-
   text-align: center;
-
   font-size: 8px;
+  line-height: 1;
   color: #ffffff;
 
-  -webkit-text-stroke: 1px #333333;
-  paint-order: stroke fill;
 }
