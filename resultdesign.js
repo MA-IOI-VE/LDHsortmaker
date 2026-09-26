@@ -241,7 +241,7 @@ if (userName) {
 }
 
 ctx.font = 'italic 25px "Open Sans", sans-serif';
-ctx.fillStyle = "#333B22";
+ctx.fillStyle = "#333333";
 
 ctx.fillText(
   infoText,

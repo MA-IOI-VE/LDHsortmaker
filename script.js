@@ -1834,7 +1834,22 @@ document.getElementById("resultTypeCancelButton").addEventListener("click", () =
 // 集計：送信
 // ========================================
 
+let resultSending = false;
+
 document.getElementById("resultProvideConfirmButton").addEventListener("click", async () => {
+
+  // 送信中なら何もしない
+  if (resultSending) {
+    return;
+  }
+
+  resultSending = true;
+
+  const button = document.getElementById("resultProvideConfirmButton");
+
+  // ボタンを一時的に無効化
+  button.disabled = true;
+  button.textContent = "送信中...";
 
   const members = final6Ranking.slice(0, 6);
 
@@ -1868,6 +1883,11 @@ document.getElementById("resultProvideConfirmButton").addEventListener("click", 
     console.error(error);
 
     alert("結果の提供に失敗しました。");
+
+    // 失敗した場合は再送信できるように戻す
+    resultSending = false;
+    button.disabled = false;
+    button.textContent = "提供する";
 
   }
 
