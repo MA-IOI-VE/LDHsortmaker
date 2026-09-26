@@ -43,9 +43,6 @@ async function loadMembers() {
     const img = new Image();
     img.src = `images/${member.id}.jpg`;
   });
-
-  console.log("読み込んだ人数:", members.length);
-  console.log(members);
 }
 
 loadMembers();
@@ -88,10 +85,6 @@ testRound2Button.addEventListener("click", () => {
 results.love = [...members.slice(0, 16)];
 results.like = [...members.slice(16, 20)];
 results.normal = [...members.slice(20, 75)];
-
-console.log("テストNORMAL人数", results.normal.length);
-
-console.log("テスト：showRound2Intro実行");
 
   showRound2Intro();
 });
@@ -616,18 +609,8 @@ function startLikeSelection() {
 
 function showRound2SelectionGroup() {
 
-  console.log(
-  "SelectionType",
-  round2SelectionType
-);
-
   const isNormal =
     round2SelectionType === "normal";
-
-    console.log(
-  "showRound2SelectionGroup",
-  round2SelectionType
-);
 
   const members =
     isNormal
@@ -641,12 +624,6 @@ function showRound2SelectionGroup() {
 
   const group =
     members.slice(index, index + 6);
-    console.log(
-  "表示グループ",
-  "候補人数=", members.length,
-  "開始位置=", index,
-  "グループ人数=", group.length
-);
 
   const area =
     document.getElementById("round2Area");
@@ -668,8 +645,6 @@ function showRound2SelectionGroup() {
 
 card.addEventListener("click", () => {
 
-  console.log("カードクリック", member.name);
-
   const selected =
     isNormal
       ? round2NormalSelected
@@ -677,13 +652,6 @@ card.addEventListener("click", () => {
 
   const remainingSlots =
     16 - results.love.length;
-
-  console.log(
-    "選択前",
-    selected.length,
-    "残り枠",
-    remainingSlots
-  );
 
   const selectedIndex =
    selected.findIndex(
@@ -697,22 +665,17 @@ card.addEventListener("click", () => {
 
     card.classList.remove("eliminated");
 
-    console.log("選択解除", member.name);
-
     updateRound2SelectionButton();
     return;
   }
 
   // 4人上限
   if (selected.length >= 4) {
-    console.log("4人上限");
     return;
   }
 
   // 選択
   selected.push(member);
-
-  console.log("選択後", selected.length);
 
   card.classList.add("eliminated");
 
@@ -808,14 +771,6 @@ round2ConfirmButton.addEventListener("click", () => {
     const remainingRequired =
   16 - results.love.length
   - round2NormalConfirmed.length;
-
-    console.log(
-  "NORMAL一巡終了",
-  "候補人数=", round2NormalMembers.length,
-  "選択人数=", totalSelected,
-  "必要人数=", remainingRequired,
-  "未選択人数=", round2NormalUnselected.length
-);
 
   // ちょうど必要人数
   if (totalSelected === remainingRequired) {
@@ -1030,10 +985,6 @@ round2ConfirmButton.addEventListener("click", () => {
     }
 
     // LIKEを使い切ってもまだ枠が残る → NORMALへ
-    console.log(
-      "NORMAL開始",
-      results.normal.length
-    );
 
     round2NormalMembers =
       [...results.normal];
@@ -1047,11 +998,6 @@ round2ConfirmButton.addEventListener("click", () => {
     round2SelectionType = "normal";
 
     showRound2SelectionGroup();
-
-    console.log(
-      "切替後",
-      round2SelectionType
-    );
 
     return;
   }
@@ -1074,12 +1020,8 @@ let currentGroupRanking = [];
 // ========================================
 
 function finishRound2() {
-  console.log("予選通過者:", results.love);
-  console.log("通過人数:", results.love.length);
 
   finalGroups = createFinalGroups();
-
-  console.log("最終4グループ:", finalGroups);
 
   document.getElementById("round2Screen").hidden = true;
   document.getElementById("finalIntro").hidden = false;
@@ -1127,8 +1069,6 @@ function createFinalGroups() {
       group.push(remainingLove.shift());
     }
   });
-
-  console.log("最終4グループ:", groups);
 
   return groups;
 }
@@ -1185,13 +1125,6 @@ function showFinalGroup() {
 
 function selectFinalMember(member, card) {
 
-    console.log(
-    "選択:",
-    member.name,
-    "現在の人数:",
-    currentGroupRanking.length
-  );
-
   // すでに選択済みなら何もしない
   if (
     currentGroupRanking.some(
@@ -1227,7 +1160,6 @@ function selectFinalMember(member, card) {
 }
 
 function finishFinalGroup() {
-console.log("finishFinalGroup実行");
 
   // グループごとの順位を保存
   finalGroupRankings.push([...currentGroupRanking]);
@@ -1240,11 +1172,6 @@ console.log("finishFinalGroup実行");
   // 全体用にも保存
   finalRanking.push(...currentGroupRanking);
 
-  console.log(
-    `グループ${currentFinalGroup + 1}の順位:`,
-    currentGroupRanking
-  );
-
   currentFinalGroup++;
 
   // まだグループが残っている
@@ -1254,9 +1181,6 @@ console.log("finishFinalGroup実行");
   }
 
    // 4グループすべて終了
-  console.log("グループ別順位:", finalGroupRankings);
-  console.log("全グループの順位:", finalRanking);
-
   document.getElementById("finalScreen").hidden = true;
 
   startTop6Merge();
@@ -1362,19 +1286,9 @@ function selectMergeMember(member, card) {
 
 function finishMergeRound() {
 
-  console.log(
-    `第${mergeRound + 1}ブロックの順位:`,
-    mergeCurrentRanking
-  );
-
   // 今回の4人を全体順位に追加
   top6Ranking.push(
     ...mergeCurrentRanking
-  );
-
-  console.log(
-    "現在の全体順位:",
-    top6Ranking
   );
 
   // 6人決まったら終了
@@ -1453,8 +1367,6 @@ let final6InsertIndex = 0;
 
 function startFinalRanking6() {
   finalScreenMode = "finalBattle";
-  console.log("top6Ranking", top6Ranking);
-  console.log("人数", top6Ranking.length);
 
   document.getElementById("finalScreen").hidden = false;
 
@@ -1474,13 +1386,6 @@ function startFinalRanking6() {
 }
 
 function showFinal6Comparison() {
-
-  console.log(
-  "current",
-  final6CurrentMemberIndex,
-  "/",
-  final6Members.length
-);
 
   // 全員の順位が決まった
   if (
@@ -1678,10 +1583,6 @@ function showFinal6Result() {
 
     }, 30);
 
-  console.log(
-    "最終順位:",
-    final6Ranking
-  );
 }
 
 document.getElementById("resultDesign1").addEventListener("click", () => {
