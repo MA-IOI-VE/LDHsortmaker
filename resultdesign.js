@@ -216,8 +216,8 @@ if (userName) {
   infoText += "　" + userName;
 }
 
-ctx.font = '18px "Yu Gothic", sans-serif';
-ctx.fillStyle = "#FFFFFF";
+ctx.font = '18px "Open Sans", sans-serif';
+ctx.fillStyle = "#333B22";
 
 ctx.fillText(
   infoText,
