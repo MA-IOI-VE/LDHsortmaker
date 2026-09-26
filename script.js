@@ -1803,11 +1803,43 @@ document.getElementById("resultUpgradeBackButton").addEventListener("click", () 
 // 集計
 // ========================================
 
-document.getElementById("resultProvideButton").addEventListener("click", async () => {
+let selectedResultType = "";
+
+document.getElementById("resultProvideButton").addEventListener("click", () => {
+
+  document.getElementById("resultTypeModal").hidden = false;
+
+});
+
+document.querySelectorAll(".resultTypeButton").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    selectedResultType = button.dataset.type;
+
+    document.getElementById("resultTypeModal").hidden = true;
+    document.getElementById("resultProvideModal").hidden = false;
+
+  });
+
+});
+
+document.getElementById("resultTypeCancelButton").addEventListener("click", () => {
+
+  document.getElementById("resultTypeModal").hidden = true;
+
+});
+
+// ========================================
+// 集計：送信
+// ========================================
+
+document.getElementById("resultProvideConfirmButton").addEventListener("click", async () => {
 
   const members = final6Ranking.slice(0, 6);
 
   const data = [
+    selectedResultType,
     members[0].id,
     members[1].id,
     members[2].id,
@@ -1820,9 +1852,23 @@ document.getElementById("resultProvideButton").addEventListener("click", async (
   const gasUrl =
     "https://script.google.com/macros/s/AKfycbwdspSyg2gfzkOyh1tle0fGNEl8xxOREzD1X_dg5LcTKABhRzMisUEr_zCphNvz_WT4QQ/exec";
 
-  await fetch(gasUrl, {
-    method: "POST",
-    body: JSON.stringify(data)
-  });
+  try {
+
+    await fetch(gasUrl, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    document.getElementById("resultProvideModal").hidden = true;
+
+    alert("結果を提供しました。");
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("結果の提供に失敗しました。");
+
+  }
 
 });

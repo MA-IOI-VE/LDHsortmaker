@@ -220,26 +220,37 @@
         結果を提供する
       </button>
 
+      <div id="resultTypeModal" hidden>
+      <div id="resultTypeModalContent">
+
+        <h3>選考基準を選択</h3>
+        <p>今回の結果を、どの選考基準として提供しますか？</p>
+        <button class="resultTypeButton" data-type="ビジュアル">ビジュアル</button>
+        <button class="resultTypeButton" data-type="パフォーマンス">パフォーマンス</button>
+        <button class="resultTypeButton" data-type="初見">初見</button>
+        <button class="resultTypeButton" data-type="総合">総合</button>
+        <br><br>
+        <button id="resultTypeCancelButton">キャンセル</button>
+
+      </div>
+      </div>
+
       <div id="resultProvideModal" hidden>
+      <div id="resultProvideModalContent">
 
-    <div id="resultProvideModalContent">
+        <h3>結果の提供について</h3>
+        <p>あなたの1〜6位の結果を匿名で集計に提供します。</p>
 
-      <h3>結果の提供について</h3>
+        <p><span class="smallText">
+          【送信される情報】<br>
+          1〜6位のメンバー・送信日時・匿名ID<br>
+          個人を特定できる情報は収集しません</span></p>
+        <p>結果を提供しますか？</p>
+        <button id="resultProvideCancelButton">キャンセル</button>
+        <button id="resultProvideConfirmButton">提供する</button>
 
-      <p>あなたの1〜6位の結果を匿名で集計に提供します。</p>
-
-      <p><span class="smallText">
-        【送信される情報】<br>
-        1〜6位のメンバー・送信日時・匿名ID<br>
-        個人を特定できる情報は収集しません</span></p>
-      <p>結果を提供しますか？</p>
-      <button id="resultProvideCancelButton">キャンセル</button>
-      <button id="resultProvideConfirmButton">提供する</button>
-
-    </div>
-
-</div>
-
+      </div>
+      </div>
 
     </div>
 
