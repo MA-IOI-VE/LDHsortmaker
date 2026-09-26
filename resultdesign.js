@@ -126,41 +126,83 @@ resultMembers.forEach((member, index) => {
     ctx.font = 'bold 65px sans-serif';
 
     ctx.strokeStyle = "#FFFFFF";
-        ctx.lineWidth = 5;
-        ctx.strokeText(
-        member.name,
-        600,
-        675
-        );
+    ctx.lineWidth = 5;
+    ctx.strokeText(
+      member.name,
+      600,
+      675
+    );
 
     ctx.fillStyle = "#333333";
-        ctx.fillText(
-        member.name,
-        600,
-        675
-        );
+    ctx.fillText(
+      member.name,
+      600,
+      675
+    );
 
     // グループ名
     ctx.font = '25px sans-serif';
 
     ctx.strokeStyle = "#FFFFFF";
-        ctx.lineWidth = 3;
-        ctx.strokeText(
-        member.group,
-        600,
-        725
-        );
+    ctx.lineWidth = 3;
+    ctx.strokeText(
+      member.group,
+      600,
+      725
+    );
 
     ctx.fillStyle = "#333333";
-        ctx.fillText(
-        member.group,
-        600,
-        725
-        );
-    }
+    ctx.fillText(
+      member.group,
+      600,
+      725
+    );
+  }
 
   // --------------------
-  // 2,3位
+  // 2～3位
+  // --------------------
+  else if (index <= 2) {
+
+    // 名前
+    ctx.font = 'bold 30px sans-serif';
+
+    ctx.strokeStyle = "#333333";
+    ctx.lineWidth = 3;
+    ctx.strokeText(
+      member.name,
+      pos.x + pos.w / 2,
+      pos.y + pos.h - 40
+    );
+
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillText(
+      member.name,
+      pos.x + pos.w / 2,
+      pos.y + pos.h - 40
+    );
+
+    // グループ名
+    ctx.font = '18px sans-serif';
+
+    ctx.strokeStyle = "#333333";
+    ctx.lineWidth = 3;
+    ctx.strokeText(
+      member.group,
+      pos.x + pos.w / 2,
+      pos.y + pos.h - 15
+    );
+
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillText(
+      member.group,
+      pos.x + pos.w / 2,
+      pos.y + pos.h - 15
+    );
+  }
+
+  // --------------------
+  // 4～6位
   // --------------------
   else {
 
@@ -168,64 +210,20 @@ resultMembers.forEach((member, index) => {
     ctx.font = 'bold 30px sans-serif';
 
     ctx.strokeStyle = "#333333";
-        ctx.lineWidth = 3;
-        ctx.strokeText(
-        member.name,
-        pos.x + pos.w / 2,
-        pos.y + pos.h - 40
-        );
+    ctx.lineWidth = 3;
+    ctx.strokeText(
+      member.name,
+      pos.x + pos.w / 2,
+      pos.y + pos.h - 40
+    );
 
     ctx.fillStyle = "#FFFFFF";
-        ctx.fillText(
-        member.name,
-        pos.x + pos.w / 2,
-        pos.y + pos.h - 40
-        );
-        
-    // グループ名
-    ctx.font = '18px sans-serif';
-
-    ctx.strokeStyle = "#333333";
-        ctx.lineWidth = 3;
-        ctx.strokeText(
-        member.group,
-        pos.x + pos.w / 2,
-        pos.y + pos.h - 15
-        );
-
-    ctx.fillStyle = "#FFFFFF";
-        ctx.fillText(
-        member.group,
-        pos.x + pos.w / 2,
-        pos.y + pos.h - 15
-        );
-    }
-
-    // --------------------
-    // 4～6位
-    // --------------------
-
-    else {
-
-    // 名前
-    ctx.font = 'bold 30px sans-serif';
-
-    ctx.strokeStyle = "#333333";
-        ctx.lineWidth = 3;
-        ctx.strokeText(
-        member.name,
-        pos.x + pos.w / 2,
-        pos.y + pos.h - 40
-        );
-
-    ctx.fillStyle = "#FFFFFF";
-        ctx.fillText(
-        member.name,
-        pos.x + pos.w / 2,
-        pos.y + pos.h - 40
-        );
-        
-    }
+    ctx.fillText(
+      member.name,
+      pos.x + pos.w / 2,
+      pos.y + pos.h - 40
+    );
+  }
 
 });
 
