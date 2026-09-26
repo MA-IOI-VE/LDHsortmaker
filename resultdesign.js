@@ -57,13 +57,13 @@ async function createResultImage(designFile) {
     const positions = [
 
     // 1位
-    { x: 400, y: 288, w: 370, h: 370 },
+    { x: 415, y: 288, w: 370, h: 370 },
 
     // 2位
-    { x: 100, y: 462, w: 284, h: 284 },
+    { x: 98, y: 462, w: 284, h: 284 },
 
     // 3位
-    { x: 819, y: 462, w: 284, h: 284 },
+    { x: 820, y: 462, w: 284, h: 284 },
 
     // 4位
     { x: 112, y: 793, w: 270, h: 270 },
@@ -72,7 +72,7 @@ async function createResultImage(designFile) {
     { x: 465, y: 793, w: 270, h: 270 },
 
     // 6位
-    { x: 818, y: 793, w: 270, h: 270 }
+    { x: 819, y: 793, w: 270, h: 270 }
 
     ];
 
