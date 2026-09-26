@@ -63,7 +63,7 @@ async function createResultImage(designFile) {
     { x: 98, y: 462, w: 284, h: 284 },
 
     // 3位
-    { x: 820, y: 462, w: 284, h: 284 },
+    { x: 818, y: 462, w: 284, h: 284 },
 
     // 4位
     { x: 112, y: 793, w: 270, h: 270 },
