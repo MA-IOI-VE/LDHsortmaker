@@ -74,6 +74,7 @@ p {
 .smallText {
   font-size: 12px;
   line-height: 0.5;
+  display: block;
 }
 
 a {

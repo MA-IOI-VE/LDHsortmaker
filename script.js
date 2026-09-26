@@ -1815,6 +1815,8 @@ document.querySelectorAll(".resultTypeButton").forEach(button => {
 
   button.addEventListener("click", () => {
 
+    event.preventDefault();
+
     selectedResultType = button.dataset.type;
 
     document.getElementById("resultTypeModal").hidden = true;
@@ -1890,5 +1892,11 @@ document.getElementById("resultProvideConfirmButton").addEventListener("click", 
     button.textContent = "提供する";
 
   }
+
+});
+
+document.getElementById("resultProvideCancelButton").addEventListener("click", () => {
+
+  document.getElementById("resultProvideModal").hidden = true;
 
 });
