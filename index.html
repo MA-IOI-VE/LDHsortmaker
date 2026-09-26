@@ -72,12 +72,12 @@
 
       <!-- LOVEが16人の場合 -->
       <div id="round2FullText" hidden>
-        <p>予選の通過メンバーが決定しました</p>
+        <p>予選通過メンバーが決定しました</p>
       </div>
 
       <!-- LOVEが16人未満の場合 -->
       <div id="round2UnderText" hidden>
-        <p>"特別"に選んだメンバーは全員予選を通過します<br>それ以外のメンバーから<br>ROUND2に進むメンバーを決めます</p>
+        <p>"特別"に選んだメンバーは全員予選を通過しました<br>それ以外からROUND2に進むメンバーを決めます</p>
         <p>好きなメンバーを<b>0~4人</b>自由に選択して<br>「NEXT」を押してください<br>
           *選ばなかったメンバーも、<br>枠にまだ余りがあれば再び回ってきます</p>
       </div>
@@ -102,7 +102,7 @@
       <div id="finalIntroText">
         <p><b>1位から好きな順番に</b>選択してください<br>
           <b>*3位まで選択すると自動で次のグループに進みます</b></p>
-        <p>「BACK」を押すとこの画面まで戻ります。</p>
+        <p>「BACK」を押すとこの画面まで戻ります</p>
       </div>
 
       <button id="finalStartButton">START</button>
@@ -113,7 +113,7 @@
 
       <div id="finalBattleIntroText">
         <p>候補が2人ずつ表示されます<br>より好きな方を選択してください</p>
-        <p>「BACK」を押すとこの画面まで戻ります。</p>
+        <p>「BACK」を押すとこの画面まで戻ります</p>
       </div>
 
       <button id="finalBattleStartButton">START</button>
@@ -188,8 +188,9 @@
 
       <div id="resultButtons">
         <button id="resultShareButton">SHARE</button>
-        <button id="result16Button">16 MEMBERS</button><br><br>
-        <button id="resultRedesignButton">デザインを選び直す</button>
+        <button id="result16Button">BEST16を見る</button><br><br>
+        <button id="resultRedesignButton">デザインを選び直す</button><br><br>
+        <button id="resultUpgradeButton">このツールをレベルアップ</button>
       </div>
 
     </section>
@@ -214,6 +215,44 @@
 
     </section>
 
+  <!--- UPDATE --->
+  <!--- UPDATE --->
+    <section id="resultUpgradeScreen" hidden>
+
+    <div id="resultProvideSection">
+      <h3>1〜6位の結果を提供</h3>
+      <p>
+        あなたの結果を匿名で集計に提供できます。
+      </p>
+
+      <button id="resultProvideButton">
+        結果を提供する
+      </button>
+    </div>
+
+    <!--- --->
+
+    <div id="memberPhotoSection">
+      <h3>メンバーの写真を応募</h3>
+      <p>
+        1位のメンバーの好きな写真を提供できます。
+      </p>
+
+      <button id="memberPhotoButton">
+        写真を応募する
+      </button>
+
+      <p>
+        <b>必ずLDH公式のSNSルールで使用が許可されている画像を提供してください</b><br>
+        提供された画像の出典に関してツールの作成者は責任を負いません。<br>
+        不適切な画像提供にお気づきの場合、@MA_IOI_VEまでご連絡ください。
+      </p>
+
+    </div>
+
+    <button id="resultUpgradeBackButton">← BACK</button>
+
+  </section>
 
   <!--- --->
   </main>

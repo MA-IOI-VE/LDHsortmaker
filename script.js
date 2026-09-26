@@ -1778,3 +1778,21 @@ document.getElementById("resultShareButton").addEventListener("click", () => {
   window.open(shareUrl, "_blank");
 
 });
+
+// ========================================
+// UPDATE
+// ========================================
+
+document.getElementById("resultUpgradeButton").addEventListener("click", () => {
+
+  document.getElementById("resultImageScreen").hidden = true;
+  document.getElementById("resultUpgradeScreen").hidden = false;
+
+});
+
+document.getElementById("resultUpgradeBackButton").addEventListener("click", () => {
+
+  document.getElementById("resultUpgradeScreen").hidden = true;
+  document.getElementById("resultImageScreen").hidden = false;
+
+});
