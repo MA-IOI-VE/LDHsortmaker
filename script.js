@@ -1708,6 +1708,10 @@ let selectedResultType = "";
 
 document.getElementById("resultProvideButton").addEventListener("click", () => {
 
+  if (resultProvided) {
+    return;
+  }
+
   document.getElementById("resultUpgradeScreen").hidden = true;
   document.getElementById("resultProvideScreen").hidden = false;
 
@@ -1742,6 +1746,7 @@ document.getElementById("resultTypeCancelButton").addEventListener("click", () =
 // ========================================
 
 let resultSending = false;
+let resultProvided = false;
 
 document.getElementById("resultProvideConfirmButton").addEventListener("click", async () => {
 
@@ -1781,12 +1786,19 @@ document.getElementById("resultProvideConfirmButton").addEventListener("click", 
       body: JSON.stringify(data)
     });
 
-    document.getElementById("rankingpolicy").hidden = true;
-    
-    button.textContent = "送信済";
-    button.disabled = true;
+  document.getElementById("rankingpolicy").hidden = true;
+  document.getElementById("resultProvideScreen").hidden = true;
+  document.getElementById("resultUpgradeScreen").hidden = false;
 
-    alert("結果を送信しました。");
+  resultProvided = true;
+
+  const provideButton =
+  document.getElementById("resultProvideButton");
+
+  provideButton.textContent = "提供済み";
+  provideButton.disabled = true;
+
+  alert("結果を送信しました。");
 
   } catch (error) {
 
