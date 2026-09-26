@@ -130,14 +130,14 @@ resultMembers.forEach((member, index) => {
     ctx.strokeText(
       member.name,
       600,
-      680
+      690
     );
 
     ctx.fillStyle = "#333333";
     ctx.fillText(
       member.name,
       600,
-      680
+      690
     );
 
     // グループ名
@@ -148,14 +148,14 @@ resultMembers.forEach((member, index) => {
     ctx.strokeText(
       member.group,
       600,
-      725
+      730
     );
 
     ctx.fillStyle = "#333333";
     ctx.fillText(
       member.group,
       600,
-      725
+      730
     );
   }
 
@@ -207,21 +207,21 @@ resultMembers.forEach((member, index) => {
   else {
 
     // 名前
-    ctx.font = 'bold 30px sans-serif';
+    ctx.font = 'bold 25px sans-serif';
 
     ctx.strokeStyle = "#333333";
     ctx.lineWidth = 3;
     ctx.strokeText(
       member.name,
       pos.x + pos.w / 2,
-      pos.y + pos.h - 32
+      pos.y + pos.h - 28
     );
 
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText(
       member.name,
       pos.x + pos.w / 2,
-      pos.y + pos.h - 32
+      pos.y + pos.h - 28
     );
   }
 
