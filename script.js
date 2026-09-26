@@ -1798,3 +1798,31 @@ document.getElementById("resultUpgradeBackButton").addEventListener("click", () 
   document.getElementById("resultImageScreen").hidden = false;
 
 });
+
+// ========================================
+// 集計
+// ========================================
+
+document.getElementById("resultProvideButton").addEventListener("click", async () => {
+
+  const members = final6Ranking.slice(0, 6);
+
+  const data = [
+    members[0].id,
+    members[1].id,
+    members[2].id,
+    members[3].id,
+    members[4].id,
+    members[5].id,
+    crypto.randomUUID()
+  ];
+
+  const gasUrl =
+    "https://script.google.com/macros/s/AKfycbwdspSyg2gfzkOyh1tle0fGNEl8xxOREzD1X_dg5LcTKABhRzMisUEr_zCphNvz_WT4QQ/exec";
+
+  await fetch(gasUrl, {
+    method: "POST",
+    body: JSON.stringify(data)
+  });
+
+});
