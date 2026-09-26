@@ -127,8 +127,8 @@
     </section>
 
 
-  <!--- RESULT --->
-  <!--- RESULT --->
+  <!--- RESULT load --->
+  <!--- RESULT load --->
     <section id="resultScreen" hidden>
     
       <h2>RESULT</h2>
@@ -158,20 +158,25 @@
       <!-- デザイン選択 -->
       <div id="resultDesignSelect" hidden>
 
+        <input
+          id="resultUserName"
+          type="text"
+          placeholder="NAME/ID"
+        >
+        <p>名前は入力しなくてもOKです</p>
+
         <p>結果画像のデザインを選択してください</p>
 
         <button id="resultDesign1">ノーマルver.</button><br>
         <button id="resultDesign2">ビジュアルver.</button><br>
         <button id="resultDesign3">パフォーマンスver.</button><br><br>
-        <input
-          id="resultUserName"
-          type="text"
-          placeholder="NAME"
-        >
+        
       </div>
 
     </section>
 
+  <!--- RESULT img --->
+  <!--- RESULT img --->
     <section id="resultImageScreen" hidden>
 
       <h2>RESULT</h2>
@@ -188,16 +193,28 @@
 
     </section>
 
+  <!--- RESULT img16 --->
+  <!--- RESULT img16 --->
     <section id="result16Screen" hidden>
 
       <h2>LDH My Best 16</h2>
       <p>並び順はランダムです</p>
-      <div id="result16Area"></div>
+      <div id="result16Area">
+
+        <div class="result16CardArea">
+          <div class="result16Card">
+            ...
+          </div>
+        </div>
+
+      </div>
 
       <button id="result16BackButton">← BACK</button>
 
     </section>
 
+
+  <!--- --->
   </main>
 
   <script src="resultdesign.js"></script>

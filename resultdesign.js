@@ -214,14 +214,14 @@ resultMembers.forEach((member, index) => {
     ctx.strokeText(
       member.name,
       pos.x + pos.w / 2,
-      pos.y + pos.h - 40
+      pos.y + pos.h - 32
     );
 
     ctx.fillStyle = "#FFFFFF";
     ctx.fillText(
       member.name,
       pos.x + pos.w / 2,
-      pos.y + pos.h - 40
+      pos.y + pos.h - 32
     );
   }
 

@@ -1713,20 +1713,23 @@ document.getElementById("result16Button").addEventListener("click", () => {
 
   members16.forEach(member => {
 
-    const card = document.createElement("div");
+    const cardArea = document.createElement("div");
 
-    card.className = "result16Card";
+    cardArea.className = "result16CardArea";
 
-    card.innerHTML = `
-      <img
-        src="images/${member.id}.jpg"
-        alt="${member.name}"
-      >
-      <h3>${member.name}</h3>
-      <p>${member.group}</p>
+    cardArea.innerHTML = `
+      <div class="result16Card">
+        <img
+          src="images/${member.id}.jpg"
+          alt="${member.name}"
+        >
+        <div class="result16Name">${member.name}</div>
+        <div class="result16Group">${member.group}</div>
+      </div>
     `;
 
-    area.appendChild(card);
+    area.appendChild(cardArea);
+    
   });
 
   // 結果画像画面 → 16人画面
