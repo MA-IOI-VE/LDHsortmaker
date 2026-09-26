@@ -74,12 +74,13 @@ h2 {
 }
 
 p {
-  margin: 0 0 32px;
+  margin: 30px;
 }
 
 .smallText {
   font-size: 12px;
-  line-height: 0.5;
+  margin: 10px;
+  line-height: 1.0;
   display: block;
 }
 
