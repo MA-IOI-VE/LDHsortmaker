@@ -1685,7 +1685,6 @@ function showFinal6Result() {
 }
 
 document.getElementById("resultDesign1").addEventListener("click", () => {
-  console.log("DESIGN1");
   createResultImage("images/result_design1.png");
 });
 
@@ -1695,4 +1694,52 @@ document.getElementById("resultDesign2").addEventListener("click", () => {
 
 document.getElementById("resultDesign3").addEventListener("click", () => {
   createResultImage("images/result_design3.png");
+});
+
+// ========================================
+// 16 MEMBERS
+// ========================================
+
+document.getElementById("result16Button").addEventListener("click", () => {
+
+  // 16人をランダムに並べる
+  const members16 = [...results.love];
+
+  members16.sort(() => Math.random() - 0.5);
+
+  const area = document.getElementById("result16Area");
+
+  area.innerHTML = "";
+
+  members16.forEach(member => {
+
+    const card = document.createElement("div");
+
+    card.className = "result16Card";
+
+    card.innerHTML = `
+      <img
+        src="images/${member.id}.jpg"
+        alt="${member.name}"
+      >
+      <h3>${member.name}</h3>
+      <p>${member.group}</p>
+    `;
+
+    area.appendChild(card);
+  });
+
+  // 結果画像画面 → 16人画面
+  document.getElementById("resultImageScreen").hidden = true;
+  document.getElementById("result16Screen").hidden = false;
+
+});
+
+
+// BACK
+  document.getElementById("result16BackButton").addEventListener("click", () => {
+
+  document.getElementById("result16Screen").hidden = true;
+  document.getElementById("resultImageScreen").hidden = false;
+
 });
