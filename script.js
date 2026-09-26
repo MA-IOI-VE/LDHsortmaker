@@ -1733,7 +1733,6 @@ document.getElementById("result16Button").addEventListener("click", () => {
           alt="${member.name}"
         >
         <div class="result16Name">${member.name}</div>
-        <div class="result16Group">${member.group}</div>
       </div>
     `;
 

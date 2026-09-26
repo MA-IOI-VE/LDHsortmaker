@@ -82,7 +82,7 @@ button {
   color: #FFFFFF;
   font-size: 16px;
   cursor: pointer;
-   border-radius: 10px;
+  border-radius: 10px;
 }
 
 button:active {
@@ -422,7 +422,7 @@ button:active {
 
 .result16CardArea {
   border: 1px solid var(--accent);
-  border-radius: 10px;
+  border-radius: 5px;
   background: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
   padding: 3px;
@@ -455,16 +455,4 @@ button:active {
   color: #ffffff;
   -webkit-text-stroke: 2px #333333;
   paint-order: stroke fill;
-}
-
-.result16Group {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2px;
-  text-align: center;
-  font-size: 6px;
-  line-height: 1;
-  color: #ffffff;
-
 }
