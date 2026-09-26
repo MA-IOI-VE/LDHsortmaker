@@ -1746,3 +1746,27 @@ document.getElementById("result16Button").addEventListener("click", () => {
   document.getElementById("resultImageScreen").hidden = false;
 
 });
+
+// ========================================
+// X SHARE
+// ========================================
+
+document.getElementById("resultShareButton").addEventListener("click", () => {
+
+  const members = final6Ranking.slice(0, 6);
+
+  let text = "LDH My Best 6\n\n";
+
+  members.forEach((member, index) => {
+    text += `${index + 1}位 ${member.name}\n`;
+  });
+
+  text += "\n#LDHMyBest6";
+
+  const shareUrl =
+    "https://twitter.com/intent/tweet?text=" +
+    encodeURIComponent(text);
+
+  window.open(shareUrl, "_blank");
+
+});
