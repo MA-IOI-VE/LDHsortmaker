@@ -1700,6 +1700,7 @@ document.getElementById("resultDesign3").addEventListener("click", () => {
 document.getElementById("resultRedesignButton").addEventListener("click", () => {
 
   document.getElementById("resultImageScreen").hidden = true;
+  document.getElementById("resultScreen").hidden = false;
   document.getElementById("resultDesignSelect").hidden = false;
 
 });
