@@ -160,7 +160,7 @@ resultMembers.forEach((member, index) => {
     }
 
   // --------------------
-  // 2～6位
+  // 2,3位
   // --------------------
   else {
 
@@ -190,16 +190,42 @@ resultMembers.forEach((member, index) => {
         ctx.strokeText(
         member.group,
         pos.x + pos.w / 2,
-        pos.y + pos.h - 8
+        pos.y + pos.h - 15
         );
 
     ctx.fillStyle = "#FFFFFF";
         ctx.fillText(
         member.group,
         pos.x + pos.w / 2,
-        pos.y + pos.h - 8
+        pos.y + pos.h - 15
         );
-  }
+    }
+
+    // --------------------
+    // 4～6位
+    // --------------------
+
+    else {
+
+    // 名前
+    ctx.font = 'bold 30px sans-serif';
+
+    ctx.strokeStyle = "#333333";
+        ctx.lineWidth = 3;
+        ctx.strokeText(
+        member.name,
+        pos.x + pos.w / 2,
+        pos.y + pos.h - 40
+        );
+
+    ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(
+        member.name,
+        pos.x + pos.w / 2,
+        pos.y + pos.h - 40
+        );
+        
+    }
 
 });
 
