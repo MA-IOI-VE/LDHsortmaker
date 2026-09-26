@@ -2,7 +2,7 @@ async function createResultImage(designFile) {
 
     
   // 日付と名前を取得
-    cconst userName = document.getElementById("resultUserName").value;
+    const userName = document.getElementById("resultUserName").value;
 
     const now = new Date();
 
