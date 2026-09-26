@@ -29,8 +29,8 @@
       
     </div>
 
-  <!--- ROUND1 --->
-  <!--- ROUND1 --->
+<!--- ROUND1 --->
+<!--- ROUND1 --->
     <section id="sortScreen" hidden>
 
       <h2>ROUND1</h2>
@@ -58,8 +58,8 @@
 
 
 
-  <!--- ROUND2 --->
-  <!--- ROUND2 --->
+<!--- ROUND2 --->
+ <!--- ROUND2 --->
     <section id="round2Intro" hidden>
       <h2>ROUND1</h2>
 
@@ -93,8 +93,8 @@
     </section>
 
 
-  <!--- ROUND3 --->
-  <!--- ROUND3 --->
+<!--- ROUND3 --->
+<!--- ROUND3 --->
     <section id="finalIntro" hidden>
       <h2>ROUND2</h2>
 
@@ -126,8 +126,8 @@
     </section>
 
 
-  <!--- RESULT load --->
-  <!--- RESULT load --->
+<!--- RESULT load --->
+<!--- RESULT load --->
     <section id="resultScreen" hidden>
     
       <h2>RESULT</h2>
@@ -172,8 +172,8 @@
 
     </section>
 
-  <!--- RESULT img --->
-  <!--- RESULT img --->
+<!--- RESULT img --->
+<!--- RESULT img --->
     <section id="resultImageScreen" hidden>
 
       <h2>RESULT</h2>
@@ -192,8 +192,8 @@
 
     </section>
 
-  <!--- RESULT img16 --->
-  <!--- RESULT img16 --->
+<!--- RESULT 16 --->
+<!--- RESULT 16 --->
     <section id="result16Screen" hidden>
 
       <h2>LDH My Best 16</h2>
@@ -205,32 +205,52 @@
 
     </section>
 
-  <!--- UPDATE --->
-  <!--- UPDATE --->
+<!--- UPDATE --->
+<!--- UPDATE --->
     <section id="resultUpgradeScreen" hidden>
 
     <div id="resultProvideSection">
       <h3>ランキングに協力</h3>
       <p>あなたの結果を匿名で集計に提供できます</p>
       <button id="resultProvideButton">結果を提供する</button>
+    </div>
 
-      <div id="resultTypeModal" hidden>
-      <div id="resultTypeModalContent">
-        <h3>選考基準を選択</h3>
+    <div id="memberPhotoSection">
+      <h3>メンバーの写真を提供</h3>
+      <p>1位に選んだメンバーの好きな写真を提供できます。</p>
+      <button id="memberPhotoButton">写真を提供する</button>
+        <p>
+          <span class="smallText"><b>必ず<a href="https://www.ldh.co.jp/rule3/">LDH公式のSNSルール</a>で<br>使用が許可されている画像を提供してください</b><br>
+          提供された画像の出典に関して<br>ツールの作成者は責任を負いません。<br>
+          不適切な画像提供にお気づきの場合、<br><a href="https://allaboutweesa.weebly.com/admin.html">@MA_IOI_VE</a>までご連絡ください。</span>
+        </p>
+    </div>
+
+    <button id="resultUpgradeBackButton">← BACK</button>
+
+    </section>
+
+  
+  <!--- ランキング提供 --->
+
+    <section id="resultProvideScreen" hidden>
+      <h2>RANKING DATA</h2>
+      <p>集計へのご協力ありがとうございます</p>
+
+
+      <div id="resultType">
+        <h3>選考基準</h3>
         <p>どのランキングに提供しますか？</p>
-        
-        <p><a href="#" class="resultTypeButton" data-type="ビジュアル">ビジュアル</a></p>
-        <p><a href="#" class="resultTypeButton" data-type="パフォーマンス">パフォーマンス</a></p>
-        <p><a href="#" class="resultTypeButton" data-type="初見">初見</a></p>
-        <p><a href="#" class="resultTypeButton" data-type="総合">総合</a></p>
-        <br><br>
+            <p><a href="#" class="resultTypeButton" data-type="ビジュアル">ビジュアル</a></p>
+            <p><a href="#" class="resultTypeButton" data-type="パフォーマンス">パフォーマンス</a></p>
+            <p><a href="#" class="resultTypeButton" data-type="初見">初見</a></p>
+            <p><a href="#" class="resultTypeButton" data-type="総合">総合</a></p>
+            <br><br>
         <button id="resultTypeCancelButton">キャンセル</button>
-
-      </div>
       </div>
 
-      <div id="resultProvideModal" hidden>
-      <div id="resultProvideModalContent">
+      <div id="rankingpolicy" hidden>
+      <div id="rankingpolicyContents">
         <h3>データの取扱について</h3>
         <p><br>集計結果はランキングとして<br>公開する場合があります</p>
         <p><span class="smallText">
@@ -241,37 +261,23 @@
           あくまでもエンターテイメント目的です<br>
           悪意のある参加やランキングのハック行為は禁止します
         </span></p>
-        <p>結果を提供しますか？</p>
+        <p>データを提供しますか？</p>
         <button id="resultProvideCancelButton">キャンセル</button>
-        <button id="resultProvideConfirmButton">提供する</button>
-
+        <button id="resultProvideConfirmButton">提供する</button><br>
       </div>
       </div>
+      
+      </section>
 
-    </div>
 
-    <!--- --->
 
-    <div id="memberPhotoSection">
-      <h3>メンバーの写真を提供</h3>
-      <p>1位のメンバーの好きな写真を提供できます。</p>
+  <!--- 画像提供 --->
+    <section id="memberPhotoScreen" hidden>
 
-      <button id="memberPhotoButton">
-        写真を提供する
-      </button><br>
-      <p>
-        <span class="smallText"><b>必ず<a href="https://www.ldh.co.jp/rule3/">LDH公式のSNSルール</a>で<br>使用が許可されている画像を提供してください</b><br>
-        提供された画像の出典に関して<br>ツールの作成者は責任を負いません。<br>
-        不適切な画像提供にお気づきの場合、<br><a href="https://allaboutweesa.weebly.com/admin.html">@MA_IOI_VE</a>までご連絡ください。</span>
-      </p>
 
-    </div>
+    </section>
 
-    <button id="resultUpgradeBackButton">← BACK</button>
 
-  </section>
-
-  <!--- --->
   </main>
 
   <script src="resultdesign.js"></script>

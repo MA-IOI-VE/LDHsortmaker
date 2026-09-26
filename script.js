@@ -1708,7 +1708,11 @@ let selectedResultType = "";
 
 document.getElementById("resultProvideButton").addEventListener("click", () => {
 
-  document.getElementById("resultTypeModal").hidden = false;
+  document.getElementById("resultUpgradeScreen").hidden = true;
+  document.getElementById("resultProvideScreen").hidden = false;
+
+  document.getElementById("resultType").hidden = false;
+  document.getElementById("rankingpolicy").hidden = true;
 
 });
 
@@ -1719,9 +1723,8 @@ document.querySelectorAll(".resultTypeButton").forEach(button => {
     event.preventDefault();
 
     selectedResultType = button.dataset.type;
-
-    document.getElementById("resultTypeModal").hidden = true;
-    document.getElementById("resultProvideModal").hidden = false;
+    document.getElementById("resultType").hidden = true;
+    document.getElementById("rankingpolicy").hidden = false;
 
   });
 
@@ -1729,7 +1732,8 @@ document.querySelectorAll(".resultTypeButton").forEach(button => {
 
 document.getElementById("resultTypeCancelButton").addEventListener("click", () => {
 
-  document.getElementById("resultTypeModal").hidden = true;
+  document.getElementById("resultProvideScreen").hidden = true;
+  document.getElementById("resultUpgradeScreen").hidden = false;
 
 });
 
@@ -1777,7 +1781,7 @@ document.getElementById("resultProvideConfirmButton").addEventListener("click", 
       body: JSON.stringify(data)
     });
 
-    document.getElementById("resultProvideModal").hidden = true;
+    document.getElementById("rankingpolicy").hidden = true;
     
     button.textContent = "送信済";
     button.disabled = true;
@@ -1801,6 +1805,7 @@ document.getElementById("resultProvideConfirmButton").addEventListener("click", 
 
 document.getElementById("resultProvideCancelButton").addEventListener("click", () => {
 
-  document.getElementById("resultProvideModal").hidden = true;
+  document.getElementById("rankingpolicy").hidden = true;
+  document.getElementById("resultType").hidden = false;
 
 });
