@@ -419,6 +419,14 @@ button:active {
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
+.result16CardArea {
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
+  padding: 10px;
+  box-sizing: border-box;
+}
 
 .result16Card {
   position: relative;
