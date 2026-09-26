@@ -240,7 +240,7 @@ if (userName) {
   infoText += "　" + userName;
 }
 
-ctx.font = '18px "Open Sans", sans-serif';
+ctx.font = '25px "Open Sans Italic", sans-serif';
 ctx.fillStyle = "#333B22";
 
 ctx.fillText(
